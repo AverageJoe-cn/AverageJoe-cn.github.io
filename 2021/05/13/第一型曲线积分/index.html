@@ -6,19 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://averagejoe-cn.github.io">
-  <title>TALK AND THINK | Average Joe&#39;s Blog</title>
+  <title>第一型曲线积分 | Average Joe&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="We need to think about something. We need to talk about something. We should learn something. That’s why I build this webpage.">
+  <meta name="description" content="实例1.曲线型构件的质量已知一曲线L的方程，他的线密度函数$\rho (x,y,z)$为连续函数，求构件的质量 可将构件截割成n个很短的小段构件，此时质量近似等于$\sum_{i&#x3D;1}^{n}\rho (x,y,z)\Delta s_{i}$ 2.空间柱面的表面积已知一曲线L，端点为A，B，其高度$h(x,y) ((x,y)\in L)$,在L上连续 可以将L切割得很小，则每一份面积可以看作是一个">
 <meta property="og:type" content="article">
-<meta property="og:title" content="TALK AND THINK">
-<meta property="og:url" content="https://averagejoe-cn.github.io/2021/05/13/TALK-AND-THINK/index.html">
+<meta property="og:title" content="第一型曲线积分">
+<meta property="og:url" content="https://averagejoe-cn.github.io/2021/05/13/%E7%AC%AC%E4%B8%80%E5%9E%8B%E6%9B%B2%E7%BA%BF%E7%A7%AF%E5%88%86/index.html">
 <meta property="og:site_name" content="Average Joe&#39;s Blog">
-<meta property="og:description" content="We need to think about something. We need to talk about something. We should learn something. That’s why I build this webpage.">
+<meta property="og:description" content="实例1.曲线型构件的质量已知一曲线L的方程，他的线密度函数$\rho (x,y,z)$为连续函数，求构件的质量 可将构件截割成n个很短的小段构件，此时质量近似等于$\sum_{i&#x3D;1}^{n}\rho (x,y,z)\Delta s_{i}$ 2.空间柱面的表面积已知一曲线L，端点为A，B，其高度$h(x,y) ((x,y)\in L)$,在L上连续 可以将L切割得很小，则每一份面积可以看作是一个">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2021-05-13T07:32:10.000Z">
-<meta property="article:modified_time" content="2021-05-13T08:30:30.000Z">
+<meta property="article:published_time" content="2021-05-13T12:54:45.000Z">
+<meta property="article:modified_time" content="2021-05-13T14:28:21.042Z">
 <meta property="article:author" content="Average Joe">
-<meta property="article:tag" content="随笔">
+<meta property="article:tag" content="数学">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="Average Joe&#39;s Blog" type="application/atom+xml">
@@ -167,30 +167,49 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-TALK-AND-THINK" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-第一型曲线积分" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      TALK AND THINK
+      第一型曲线积分
     </h1>
   
 
         
-        <a href="/2021/05/13/TALK-AND-THINK/" class="archive-article-date">
-  	<time datetime="2021-05-13T07:32:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-05-13</time>
+        <a href="/2021/05/13/%E7%AC%AC%E4%B8%80%E5%9E%8B%E6%9B%B2%E7%BA%BF%E7%A7%AF%E5%88%86/" class="archive-article-date">
+  	<time datetime="2021-05-13T12:54:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-05-13</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>We need to think about something.</p>
-<p>We need to talk about something.</p>
-<p>We should learn something.</p>
-<p>That’s why I build this webpage.</p>
+        <h1 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h1><h2 id="1-曲线型构件的质量"><a href="#1-曲线型构件的质量" class="headerlink" title="1.曲线型构件的质量"></a>1.曲线型构件的质量</h2><p>已知一曲线L的方程，他的线密度函数$\rho (x,y,z)$为连续函数，求构件的质量</p>
+<p>可将构件截割成n个很短的小段构件，此时质量近似等于$\sum_{i=1}^{n}\rho (x,y,z)\Delta s_{i}$</p>
+<h2 id="2-空间柱面的表面积"><a href="#2-空间柱面的表面积" class="headerlink" title="2.空间柱面的表面积"></a>2.空间柱面的表面积</h2><p>已知一曲线L，端点为A，B，其高度$h(x,y) ((x,y)\in L)$,在L上连续</p>
+<p>可以将L切割得很小，则每一份面积可以看作是一个长方形</p>
+<p>即$\delta A_{i}\approx h(x_{i},y_{i})\delta s_{i}$</p>
+<p>于是柱面面积为：</p>
+<p>$A = \sum_{i=1}^{n} \delta A_{i} \approx \sum_{i=1}^{n} h( x_{i},y_{i}) \delta s_{i}$</p>
+<h1 id="第一型积分的定义及性质"><a href="#第一型积分的定义及性质" class="headerlink" title="第一型积分的定义及性质"></a>第一型积分的定义及性质</h1><h2 id="1-定义"><a href="#1-定义" class="headerlink" title="1.定义"></a>1.定义</h2><p>如果极限<br>$$<br>\lim_{\lambda \to 0} \sum_{i=1}^{n}f(x,y,z)\delta s_{i}<br>$$<br>总存在，则称此极限为函数$f(x,y,z)$在曲线L上的第一型积分记为<br>$$<br>\int_{L}^{}f(x,y,z)ds<br>$$<br>$f(x,y,z)$为被积函数，$L$为积分弧段，$ds$称为弧长元素，第一型曲线积分也称为对弧长的曲线积分</p>
+<h2 id="2-性质"><a href="#2-性质" class="headerlink" title="2.性质"></a>2.性质</h2><h3 id="1"><a href="#1" class="headerlink" title="1."></a>1.</h3><p>若$f(x,y,z)$，$g(x,y,z)$在光滑曲线弧$L$上的第一型曲线积分存在，$k1$,$k2$是任意实数，则$k_{1}f(x,y,z)+k_{2}g(x,y,z)$在L上的第一型曲线积分也存在，且<br>$$<br>\int_{L}(k_{1}f(x,y,z)+k_{2}g(x,y,z))ds=k_{1}\int_{L}f(x,y,z)ds+k_{2}\int_{L}g(x,y,z)ds<br>$$</p>
+<h3 id="2"><a href="#2" class="headerlink" title="2."></a>2.</h3><p>若分段光滑曲线弧L分为两段曲线弧$L_{1}$,$L_{2}$,$\int_{L}f(x,y,z)ds$存在，则$\int_{L_{1}}f(x,z,y)ds$和$\int_{L_{2}}f(x,y,z)ds$均存在，且<br>$$<br>\int_{L}f(x,y,z)ds = \int_{L_{1}}f(x,y,z)ds + \int_{L_{2}}f(x,y,z)ds<br>$$</p>
+<h3 id="3"><a href="#3" class="headerlink" title="3."></a>3.</h3><p>若函数$f(x,y,z)$,$g(x,y,z)$在光滑曲线弧L上的第一型曲线积分存在，$f(x,y,z) \leq g(x,y,z)$,$(x,y,z)\in L$,则<br>$$<br>\int_{L}f(x,y,z)ds \leq \int_{L}g(x,y,z)ds<br>$$<br><strong>推论</strong>：</p>
+<p>若$f(x,y,z)$在L上的第一型积分存在，则$\left | f(x,y,z) \right |$在L上的第一型积分也存在**(反之不亦然)**</p>
+<p>且有<br>$$<br>\left | \int_{L}f(x,y,z)ds \right | \leq \int_{L} \left | f(x,y,z) \right | ds<br>$$</p>
+<h3 id="4-中值定理"><a href="#4-中值定理" class="headerlink" title="4.(中值定理)"></a>4.(中值定理)</h3><p>若函数$f(x,y,z)$在L上连续，$s_{L}$是光滑曲线弧L的长度，则L上至少存在一点$(a,b,c)$使得<br>$$<br>\int_{L}f(x,y,z)ds=s_{L} \cdot f(a,b,c)<br>$$</p>
+<h1 id="第一型曲线积分的计算"><a href="#第一型曲线积分的计算" class="headerlink" title="第一型曲线积分的计算"></a>第一型曲线积分的计算</h1><h2 id="1-定理："><a href="#1-定理：" class="headerlink" title="1.定理："></a>1.定理：</h2><p><strong>设函数$f(x,y,z)$在光滑曲线L上有定义且连续，且L的参数方程为</strong><br>$$<br>\begin{cases}x=x(t)\y=y(t)\z=z(t)\end{cases}  \alpha \leq t \leq \beta<br>$$<br><strong>其中$x(t),y(t),z(t)$在$\left [ \alpha,\beta \right ]$上具有连续一阶导数，且不同时为0，则第一型曲线积分$\int_{L}f(x,y,z)ds$存在，且</strong><br>$$<br>\int_{L}f(x,y,z)ds=\int_{\alpha}^{\beta}f[x(t),y(t),z(t)]\sqrt{x’^{2}+y’^{2}+z’^{x}}dt<br>$$</p>
+<h1 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h1><h3 id="1-利用第一型曲线积分求柱面-x-2-y-2-ax-a-gt-0-位于球面-x-2-y-2-z-2-a-2-内的那一部分面积"><a href="#1-利用第一型曲线积分求柱面-x-2-y-2-ax-a-gt-0-位于球面-x-2-y-2-z-2-a-2-内的那一部分面积" class="headerlink" title="1.利用第一型曲线积分求柱面$x^{2} + y^{2}=ax(a&gt;0)$位于球面$x^{2}+ y^{2}+ z^{2}= a^{2}$内的那一部分面积"></a>1.利用第一型曲线积分求柱面$x^{2} + y^{2}=ax(a&gt;0)$位于球面$x^{2}+ y^{2}+ z^{2}= a^{2}$内的那一部分面积</h3><p><strong>换元</strong></p>
+<p>将x,y分别用关于t的余弦函数和正弦函数表示，再通过球面方程求出z关于t方程，z(t)即为被积函数</p>
+<h3 id="2-oint-L-xds-L为对数螺线-rho-ae-k-theta-k-gt-0-在园-rho-a-内的部分"><a href="#2-oint-L-xds-L为对数螺线-rho-ae-k-theta-k-gt-0-在园-rho-a-内的部分" class="headerlink" title="2.$\oint_{L}xds$,L为对数螺线$\rho = ae^{k\theta}(k&gt;0)$在园$\rho = a$内的部分"></a>2.$\oint_{L}xds$,L为对数螺线$\rho = ae^{k\theta}(k&gt;0)$在园$\rho = a$内的部分</h3><p>$x=\rho cos\theta$将$\rho$的方程带入x的方程中，求出结果</p>
+<h3 id="3-int-L-left-y-right-ds-，L为双纽线-x-2-y-2-2-a-2-x-2-y-2"><a href="#3-int-L-left-y-right-ds-，L为双纽线-x-2-y-2-2-a-2-x-2-y-2" class="headerlink" title="3.$\int_{L}\left | y \right |ds$，L为双纽线$(x^{2}+ y^{2} )^2= a^{2} (x^{2} - y^{2})$"></a>3.$\int_{L}\left | y \right |ds$，L为双纽线$(x^{2}+ y^{2} )^2= a^{2} (x^{2} - y^{2})$</h3><p>L可化为$\rho^{2} = a^{2} cos2\theta$</p>
+<p>对两边求导可得$2\rho’\rho = -2a^{2}sin2\theta$</p>
+<p>已知了$\rho$，可求$\rho’$</p>
+<p><strong>对$x=\rho cos\theta$和$y=\rho sin\theta$求导并带入公式可得</strong><br>$$<br>ds=\sqrt{\rho^{2}+\rho’^{2}}d\theta<br>$$<br>带入即可</p>
+<h1 id="重要结论"><a href="#重要结论" class="headerlink" title="重要结论"></a>重要结论</h1><p>1.化为极坐标时<br>$$<br>ds=\sqrt{\rho^{2}+\rho’^{2}}d\theta<br>$$<br>2.当被积函数为关于x,y的奇函数，L关于x，y轴轴对称时，积分等于零</p>
 
       
 
@@ -204,7 +223,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">数学</a>
         		</li>
       		
 		</ul>
@@ -260,7 +279,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=https://averagejoe-cn.github.io/2021/05/13/TALK-AND-THINK/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=https://averagejoe-cn.github.io/2021/05/13/%E7%AC%AC%E4%B8%80%E5%9E%8B%E6%9B%B2%E7%BA%BF%E7%A7%AF%E5%88%86/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -274,15 +293,11 @@
   
 <nav id="article-nav">
   
-    <a href="/2021/05/13/HelloWorld/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          HelloWorld
-        
-      </div>
-    </a>
   
+    <a href="/2021/05/13/HelloWorld/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">HelloWorld</div>
+      <i class="icon-circle-right"></i>
+    </a>
   
 </nav>
 
@@ -307,7 +322,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    目录，不存在的…
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%9E%E4%BE%8B"><span class="toc-number">1.</span> <span class="toc-text">实例</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E6%9B%B2%E7%BA%BF%E5%9E%8B%E6%9E%84%E4%BB%B6%E7%9A%84%E8%B4%A8%E9%87%8F"><span class="toc-number">1.1.</span> <span class="toc-text">1.曲线型构件的质量</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E7%A9%BA%E9%97%B4%E6%9F%B1%E9%9D%A2%E7%9A%84%E8%A1%A8%E9%9D%A2%E7%A7%AF"><span class="toc-number">1.2.</span> <span class="toc-text">2.空间柱面的表面积</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E5%9E%8B%E7%A7%AF%E5%88%86%E7%9A%84%E5%AE%9A%E4%B9%89%E5%8F%8A%E6%80%A7%E8%B4%A8"><span class="toc-number">2.</span> <span class="toc-text">第一型积分的定义及性质</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E5%AE%9A%E4%B9%89"><span class="toc-number">2.1.</span> <span class="toc-text">1.定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E6%80%A7%E8%B4%A8"><span class="toc-number">2.2.</span> <span class="toc-text">2.性质</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1"><span class="toc-number">2.2.1.</span> <span class="toc-text">1.</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2"><span class="toc-number">2.2.2.</span> <span class="toc-text">2.</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3"><span class="toc-number">2.2.3.</span> <span class="toc-text">3.</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E4%B8%AD%E5%80%BC%E5%AE%9A%E7%90%86"><span class="toc-number">2.2.4.</span> <span class="toc-text">4.(中值定理)</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E5%9E%8B%E6%9B%B2%E7%BA%BF%E7%A7%AF%E5%88%86%E7%9A%84%E8%AE%A1%E7%AE%97"><span class="toc-number">3.</span> <span class="toc-text">第一型曲线积分的计算</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E5%AE%9A%E7%90%86%EF%BC%9A"><span class="toc-number">3.1.</span> <span class="toc-text">1.定理：</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BE%8B%E9%A2%98"><span class="toc-number">4.</span> <span class="toc-text">例题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%88%A9%E7%94%A8%E7%AC%AC%E4%B8%80%E5%9E%8B%E6%9B%B2%E7%BA%BF%E7%A7%AF%E5%88%86%E6%B1%82%E6%9F%B1%E9%9D%A2-x-2-y-2-ax-a-gt-0-%E4%BD%8D%E4%BA%8E%E7%90%83%E9%9D%A2-x-2-y-2-z-2-a-2-%E5%86%85%E7%9A%84%E9%82%A3%E4%B8%80%E9%83%A8%E5%88%86%E9%9D%A2%E7%A7%AF"><span class="toc-number">4.0.1.</span> <span class="toc-text">1.利用第一型曲线积分求柱面$x^{2} + y^{2}&#x3D;ax(a&gt;0)$位于球面$x^{2}+ y^{2}+ z^{2}&#x3D; a^{2}$内的那一部分面积</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-oint-L-xds-L%E4%B8%BA%E5%AF%B9%E6%95%B0%E8%9E%BA%E7%BA%BF-rho-ae-k-theta-k-gt-0-%E5%9C%A8%E5%9B%AD-rho-a-%E5%86%85%E7%9A%84%E9%83%A8%E5%88%86"><span class="toc-number">4.0.2.</span> <span class="toc-text">2.$\oint_{L}xds$,L为对数螺线$\rho &#x3D; ae^{k\theta}(k&gt;0)$在园$\rho &#x3D; a$内的部分</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-int-L-left-y-right-ds-%EF%BC%8CL%E4%B8%BA%E5%8F%8C%E7%BA%BD%E7%BA%BF-x-2-y-2-2-a-2-x-2-y-2"><span class="toc-number">4.0.3.</span> <span class="toc-text">3.$\int_{L}\left | y \right |ds$，L为双纽线$(x^{2}+ y^{2} )^2&#x3D; a^{2} (x^{2} - y^{2})$</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%87%8D%E8%A6%81%E7%BB%93%E8%AE%BA"><span class="toc-number">5.</span> <span class="toc-text">重要结论</span></a></li></ol>
                     </div>
                 </span>
             </div>

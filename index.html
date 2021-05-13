@@ -236,6 +236,102 @@
 
 
   
+    <article id="post-第一型曲线积分" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/05/13/%E7%AC%AC%E4%B8%80%E5%9E%8B%E6%9B%B2%E7%BA%BF%E7%A7%AF%E5%88%86/">第一型曲线积分</a>
+    </h1>
+  
+
+        
+        <a href="/2021/05/13/%E7%AC%AC%E4%B8%80%E5%9E%8B%E6%9B%B2%E7%BA%BF%E7%A7%AF%E5%88%86/" class="archive-article-date">
+  	<time datetime="2021-05-13T12:54:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-05-13</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h1><h2 id="1-曲线型构件的质量"><a href="#1-曲线型构件的质量" class="headerlink" title="1.曲线型构件的质量"></a>1.曲线型构件的质量</h2><p>已知一曲线L的方程，他的线密度函数$\rho (x,y,z)$为连续函数，求构件的质量</p>
+<p>可将构件截割成n个很短的小段构件，此时质量近似等于$\sum_{i=1}^{n}\rho (x,y,z)\Delta s_{i}$</p>
+<h2 id="2-空间柱面的表面积"><a href="#2-空间柱面的表面积" class="headerlink" title="2.空间柱面的表面积"></a>2.空间柱面的表面积</h2><p>已知一曲线L，端点为A，B，其高度$h(x,y) ((x,y)\in L)$,在L上连续</p>
+<p>可以将L切割得很小，则每一份面积可以看作是一个长方形</p>
+<p>即$\delta A_{i}\approx h(x_{i},y_{i})\delta s_{i}$</p>
+<p>于是柱面面积为：</p>
+<p>$A = \sum_{i=1}^{n} \delta A_{i} \approx \sum_{i=1}^{n} h( x_{i},y_{i}) \delta s_{i}$</p>
+<h1 id="第一型积分的定义及性质"><a href="#第一型积分的定义及性质" class="headerlink" title="第一型积分的定义及性质"></a>第一型积分的定义及性质</h1><h2 id="1-定义"><a href="#1-定义" class="headerlink" title="1.定义"></a>1.定义</h2><p>如果极限<br>$$<br>\lim_{\lambda \to 0} \sum_{i=1}^{n}f(x,y,z)\delta s_{i}<br>$$<br>总存在，则称此极限为函数$f(x,y,z)$在曲线L上的第一型积分记为<br>$$<br>\int_{L}^{}f(x,y,z)ds<br>$$<br>$f(x,y,z)$为被积函数，$L$为积分弧段，$ds$称为弧长元素，第一型曲线积分也称为对弧长的曲线积分</p>
+<h2 id="2-性质"><a href="#2-性质" class="headerlink" title="2.性质"></a>2.性质</h2><h3 id="1"><a href="#1" class="headerlink" title="1."></a>1.</h3><p>若$f(x,y,z)$，$g(x,y,z)$在光滑曲线弧$L$上的第一型曲线积分存在，$k1$,$k2$是任意实数，则$k_{1}f(x,y,z)+k_{2}g(x,y,z)$在L上的第一型曲线积分也存在，且<br>$$<br>\int_{L}(k_{1}f(x,y,z)+k_{2}g(x,y,z))ds=k_{1}\int_{L}f(x,y,z)ds+k_{2}\int_{L}g(x,y,z)ds<br>$$</p>
+<h3 id="2"><a href="#2" class="headerlink" title="2."></a>2.</h3><p>若分段光滑曲线弧L分为两段曲线弧$L_{1}$,$L_{2}$,$\int_{L}f(x,y,z)ds$存在，则$\int_{L_{1}}f(x,z,y)ds$和$\int_{L_{2}}f(x,y,z)ds$均存在，且<br>$$<br>\int_{L}f(x,y,z)ds = \int_{L_{1}}f(x,y,z)ds + \int_{L_{2}}f(x,y,z)ds<br>$$</p>
+<h3 id="3"><a href="#3" class="headerlink" title="3."></a>3.</h3><p>若函数$f(x,y,z)$,$g(x,y,z)$在光滑曲线弧L上的第一型曲线积分存在，$f(x,y,z) \leq g(x,y,z)$,$(x,y,z)\in L$,则<br>$$<br>\int_{L}f(x,y,z)ds \leq \int_{L}g(x,y,z)ds<br>$$<br><strong>推论</strong>：</p>
+<p>若$f(x,y,z)$在L上的第一型积分存在，则$\left | f(x,y,z) \right |$在L上的第一型积分也存在**(反之不亦然)**</p>
+<p>且有<br>$$<br>\left | \int_{L}f(x,y,z)ds \right | \leq \int_{L} \left | f(x,y,z) \right | ds<br>$$</p>
+<h3 id="4-中值定理"><a href="#4-中值定理" class="headerlink" title="4.(中值定理)"></a>4.(中值定理)</h3><p>若函数$f(x,y,z)$在L上连续，$s_{L}$是光滑曲线弧L的长度，则L上至少存在一点$(a,b,c)$使得<br>$$<br>\int_{L}f(x,y,z)ds=s_{L} \cdot f(a,b,c)<br>$$</p>
+<h1 id="第一型曲线积分的计算"><a href="#第一型曲线积分的计算" class="headerlink" title="第一型曲线积分的计算"></a>第一型曲线积分的计算</h1><h2 id="1-定理："><a href="#1-定理：" class="headerlink" title="1.定理："></a>1.定理：</h2><p><strong>设函数$f(x,y,z)$在光滑曲线L上有定义且连续，且L的参数方程为</strong><br>$$<br>\begin{cases}x=x(t)\y=y(t)\z=z(t)\end{cases}  \alpha \leq t \leq \beta<br>$$<br><strong>其中$x(t),y(t),z(t)$在$\left [ \alpha,\beta \right ]$上具有连续一阶导数，且不同时为0，则第一型曲线积分$\int_{L}f(x,y,z)ds$存在，且</strong><br>$$<br>\int_{L}f(x,y,z)ds=\int_{\alpha}^{\beta}f[x(t),y(t),z(t)]\sqrt{x’^{2}+y’^{2}+z’^{x}}dt<br>$$</p>
+<h1 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h1><h3 id="1-利用第一型曲线积分求柱面-x-2-y-2-ax-a-gt-0-位于球面-x-2-y-2-z-2-a-2-内的那一部分面积"><a href="#1-利用第一型曲线积分求柱面-x-2-y-2-ax-a-gt-0-位于球面-x-2-y-2-z-2-a-2-内的那一部分面积" class="headerlink" title="1.利用第一型曲线积分求柱面$x^{2} + y^{2}=ax(a&gt;0)$位于球面$x^{2}+ y^{2}+ z^{2}= a^{2}$内的那一部分面积"></a>1.利用第一型曲线积分求柱面$x^{2} + y^{2}=ax(a&gt;0)$位于球面$x^{2}+ y^{2}+ z^{2}= a^{2}$内的那一部分面积</h3><p><strong>换元</strong></p>
+<p>将x,y分别用关于t的余弦函数和正弦函数表示，再通过球面方程求出z关于t方程，z(t)即为被积函数</p>
+<h3 id="2-oint-L-xds-L为对数螺线-rho-ae-k-theta-k-gt-0-在园-rho-a-内的部分"><a href="#2-oint-L-xds-L为对数螺线-rho-ae-k-theta-k-gt-0-在园-rho-a-内的部分" class="headerlink" title="2.$\oint_{L}xds$,L为对数螺线$\rho = ae^{k\theta}(k&gt;0)$在园$\rho = a$内的部分"></a>2.$\oint_{L}xds$,L为对数螺线$\rho = ae^{k\theta}(k&gt;0)$在园$\rho = a$内的部分</h3><p>$x=\rho cos\theta$将$\rho$的方程带入x的方程中，求出结果</p>
+<h3 id="3-int-L-left-y-right-ds-，L为双纽线-x-2-y-2-2-a-2-x-2-y-2"><a href="#3-int-L-left-y-right-ds-，L为双纽线-x-2-y-2-2-a-2-x-2-y-2" class="headerlink" title="3.$\int_{L}\left | y \right |ds$，L为双纽线$(x^{2}+ y^{2} )^2= a^{2} (x^{2} - y^{2})$"></a>3.$\int_{L}\left | y \right |ds$，L为双纽线$(x^{2}+ y^{2} )^2= a^{2} (x^{2} - y^{2})$</h3><p>L可化为$\rho^{2} = a^{2} cos2\theta$</p>
+<p>对两边求导可得$2\rho’\rho = -2a^{2}sin2\theta$</p>
+<p>已知了$\rho$，可求$\rho’$</p>
+<p><strong>对$x=\rho cos\theta$和$y=\rho sin\theta$求导并带入公式可得</strong><br>$$<br>ds=\sqrt{\rho^{2}+\rho’^{2}}d\theta<br>$$<br>带入即可</p>
+<h1 id="重要结论"><a href="#重要结论" class="headerlink" title="重要结论"></a>重要结论</h1><p>1.化为极坐标时<br>$$<br>ds=\sqrt{\rho^{2}+\rho’^{2}}d\theta<br>$$<br>2.当被积函数为关于x,y的奇函数，L关于x，y轴轴对称时，积分等于零</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">数学</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/05/13/%E7%AC%AC%E4%B8%80%E5%9E%8B%E6%9B%B2%E7%BA%BF%E7%A7%AF%E5%88%86/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-TALK-AND-THINK" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -420,6 +516,10 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">数学</a>
               </li>
             
             <div class="clearfix"></div>
