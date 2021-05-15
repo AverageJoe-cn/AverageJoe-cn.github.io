@@ -6,17 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://averagejoe-cn.github.io">
-  <title>Average Joe&#39;s Blog</title>
+  <title>正弦电流电路导论知识点整理 | Average Joe&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="It&#39;s a wonderful life not for Average Joe">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Average Joe&#39;s Blog">
-<meta property="og:url" content="https://averagejoe-cn.github.io/index.html">
+  <meta name="description" content="1.正弦电压和电流的基本概念略，同高中交流电路 2.线性电路对正弦激励的响应$\cdot$正弦稳态响应略 3.正弦量的相量表示法$$z&#x3D;re^{j\psi}&#x3D;x+yj$$ 分别是指数形式和代数形式">
+<meta property="og:type" content="article">
+<meta property="og:title" content="正弦电流电路导论知识点整理">
+<meta property="og:url" content="https://averagejoe-cn.github.io/2021/05/14/%E6%AD%A3%E5%BC%A6%E7%94%B5%E6%B5%81%E7%94%B5%E8%B7%AF%E5%AF%BC%E8%AE%BA%E7%9F%A5%E8%AF%86%E7%82%B9%E6%95%B4%E7%90%86/index.html">
 <meta property="og:site_name" content="Average Joe&#39;s Blog">
-<meta property="og:description" content="It&#39;s a wonderful life not for Average Joe">
+<meta property="og:description" content="1.正弦电压和电流的基本概念略，同高中交流电路 2.线性电路对正弦激励的响应$\cdot$正弦稳态响应略 3.正弦量的相量表示法$$z&#x3D;re^{j\psi}&#x3D;x+yj$$ 分别是指数形式和代数形式">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="c:/Users/15357/Pictures/绘图1.png">
+<meta property="article:published_time" content="2021-05-14T13:24:34.000Z">
+<meta property="article:modified_time" content="2021-05-15T08:34:51.235Z">
 <meta property="article:author" content="Average Joe">
+<meta property="article:tag" content="电路原理">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="c:/Users/15357/Pictures/绘图1.png">
   
     <link rel="alternative" href="/atom.xml" title="Average Joe&#39;s Blog" type="application/atom+xml">
   
@@ -164,16 +169,14 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-    <article id="post-正弦电流电路导论知识点整理" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-正弦电流电路导论知识点整理" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/05/14/%E6%AD%A3%E5%BC%A6%E7%94%B5%E6%B5%81%E7%94%B5%E8%B7%AF%E5%AF%BC%E8%AE%BA%E7%9F%A5%E8%AF%86%E7%82%B9%E6%95%B4%E7%90%86/">正弦电流电路导论知识点整理</a>
+    <h1 class="article-title" itemprop="name">
+      正弦电流电路导论知识点整理
     </h1>
   
 
@@ -213,16 +216,75 @@
       
 
       
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/05/14/%E6%AD%A3%E5%BC%A6%E7%94%B5%E6%B5%81%E7%94%B5%E8%B7%AF%E5%AF%BC%E8%AE%BA%E7%9F%A5%E8%AF%86%E7%82%B9%E6%95%B4%E7%90%86/">展开全文 >></a>
-        </p>
-      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=https://averagejoe-cn.github.io/2021/05/14/%E6%AD%A3%E5%BC%A6%E7%94%B5%E6%B5%81%E7%94%B5%E8%B7%AF%E5%AF%BC%E8%AE%BA%E7%9F%A5%E8%AF%86%E7%82%B9%E6%95%B4%E7%90%86/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+  
+    <a href="/2021/05/14/%E7%AC%AC%E4%BA%8C%E5%9E%8B%E6%9B%B2%E7%BA%BF%E7%A7%AF%E5%88%86/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">第二型曲线积分</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -237,198 +299,32 @@
         </div>
         
         
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-第二型曲线积分" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/05/14/%E7%AC%AC%E4%BA%8C%E5%9E%8B%E6%9B%B2%E7%BA%BF%E7%A7%AF%E5%88%86/">第二型曲线积分</a>
-    </h1>
-  
-
-        
-        <a href="/2021/05/14/%E7%AC%AC%E4%BA%8C%E5%9E%8B%E6%9B%B2%E7%BA%BF%E7%A7%AF%E5%88%86/" class="archive-article-date">
-  	<time datetime="2021-05-14T02:44:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-05-14</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="第二型曲线积分"><a href="#第二型曲线积分" class="headerlink" title="第二型曲线积分"></a>第二型曲线积分</h1><h1 id="1-预备概念"><a href="#1-预备概念" class="headerlink" title="1.预备概念"></a>1.预备概念</h1><p><strong>向量值函数</strong></p>
-<p>在平面$\Omega$上，向量值函数表示为$F(x,y)=P(x,y)i+Q(x,y)j, (x,y)\in \Omega$</p>
-<p>在空间区域$\Omega$上，则向量值函数表示为$F(x,y,z)=P(x,y,z)i+Q(x,y,z)j+R(x,y,z)k, (x,y,z)\in \Omega$</p>
-<p><strong>有向曲线</strong></p>
-<p>定义了方向的曲线，$L=\widehat{AB}$表示一条有向曲线，A为L起点，B为L终点</p>
-<p>对L进行切割得$\vec{dr}=(dx,dy,dz)$<br>$$<br>\because \begin{cases}dx=cos\alpha ds\dy=cos\beta ds\dz=cos\gamma ds\end{cases}<br>$$</p>
-<p>$$<br>\therefore \vec{dr}=(cos\alpha,cos\beta,cos\gamma)ds<br>$$</p>
-<p><strong>实例</strong></p>
-<p>求变力做功：<br>$$<br>\delta W_{i} \approx \left[ F(x_{i},y_{i},z_{i}) \cdot e_{r}(x_{i},y_{i},z_{i}) \right] \delta s_{i}<br>$$<br>其中$e_{r}$为曲线某点的单位向量</p>
-<p>故：<br>$$<br>W=\sum_{i=1}^{n} \left[ F(x_{i},y_{i},z_{i})\cdot e_{r}(x_{i},y_{i},z_{i}) \right]\delta s_{i}<br>$$<br>故有:<br>$$<br>W=\int_{L}F(x,y,z)\cdot e_{r}(x,y,z)ds<br>$$</p>
-<h2 id="2-第二型曲线积分的定义及性质"><a href="#2-第二型曲线积分的定义及性质" class="headerlink" title="2.第二型曲线积分的定义及性质"></a>2.第二型曲线积分的定义及性质</h2><h3 id="1-定义"><a href="#1-定义" class="headerlink" title="1.定义"></a>1.定义</h3><p>如果积分$\int_{L}\vec{F}(x,y,z)d\vec{r}(d\vec{r}=e_{r}(x,y,z)ds)$存在，则此积分为函数F(x,y,z)在L上的第二型曲线积分</p>
-<p>也可记为：<br>$$<br>\int_{L}F(x,y,z)d\vec{r}=\int_{L}P(x,y,z)dx+\int_{L}Q(x,y,z)dy+\int_{L}R(x,y,z)dz<br>(F(x,y,z)=P(x,y,z)i+Q(x,y,z)j,R(x,y,z)k)<br>$$<br>故第二型曲线积分也称为<strong>对坐标的曲线积分</strong></p>
-<p>若L为闭有向曲线，则将其记为$\oint_{L}F(x,y,z)dr$，该式称为F(x,y,z)沿有向闭曲线L的<strong>环量</strong>（或<strong>环流量</strong>）</p>
-<h2 id="2-性质"><a href="#2-性质" class="headerlink" title="2.性质"></a>2.性质</h2><p>1.<br>$$<br>\int_{L}(k_{1}F_{1}(x,y,z)+k_{2}F_{2}(x,y,z))dr=k_{1}\int_{L}F_{1}(x,y,z)dr+k_{2}\int_{L}F_{2}(x,y,z)dr<br>$$<br>2.<br>$$<br>\int_{L}F(x,y,z)dr=\int_{L_{1}}F(x,y,z)dr+\int_{L_{2}}F(x,y,z)dr<br>$$<br>3.<br>$$<br>\int_{L^{+}}F(x,y,z)dr=-\int_{L^{-}}F(x,y,z)dr<br>$$</p>
-<h1 id="3-第二型曲线积分的计算"><a href="#3-第二型曲线积分的计算" class="headerlink" title="3.第二型曲线积分的计算"></a>3.第二型曲线积分的计算</h1><p>$$<br>F(x,y,z)=P(x,y,z)i+Q(x,y,z)j+R(x,y,z)k<br>$$</p>
-<p>且<br>$$<br>\begin{cases}x=x(t)\y=y(t)\z=z(t)\end{cases}  (t:a \to b)<br>$$<br>则有<br>$$<br>\int_{L}F(x,y,z)dr=\int_{a}^{b} \left{ P\left[ x(t),y(t),z(t) \right]x’(t) +Q\left[ x(t),y(t),z(t) \right]y’(t)+R\left[ x(t),y(t),z(t) \right]z’(t) \right }dt<br>$$<br>a为起点参数，b为终点参数，<strong>a不一定小于b</strong></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">数学</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/05/14/%E7%AC%AC%E4%BA%8C%E5%9E%8B%E6%9B%B2%E7%BA%BF%E7%A7%AF%E5%88%86/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-%E6%AD%A3%E5%BC%A6%E7%94%B5%E5%8E%8B%E5%92%8C%E7%94%B5%E6%B5%81%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="toc-number">1.</span> <span class="toc-text">1.正弦电压和电流的基本概念</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-%E7%BA%BF%E6%80%A7%E7%94%B5%E8%B7%AF%E5%AF%B9%E6%AD%A3%E5%BC%A6%E6%BF%80%E5%8A%B1%E7%9A%84%E5%93%8D%E5%BA%94-cdot-%E6%AD%A3%E5%BC%A6%E7%A8%B3%E6%80%81%E5%93%8D%E5%BA%94"><span class="toc-number">2.</span> <span class="toc-text">2.线性电路对正弦激励的响应$\cdot$正弦稳态响应</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-%E6%AD%A3%E5%BC%A6%E9%87%8F%E7%9A%84%E7%9B%B8%E9%87%8F%E8%A1%A8%E7%A4%BA%E6%B3%95"><span class="toc-number">3.</span> <span class="toc-text">3.正弦量的相量表示法</span></a></li></ol>
+                    </div>
+                </span>
             </div>
         </div>
         
-        
     </div>
 </aside>
 
 
 
-
   
-    <article id="post-第一型曲线积分" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/05/13/%E7%AC%AC%E4%B8%80%E5%9E%8B%E6%9B%B2%E7%BA%BF%E7%A7%AF%E5%88%86/">第一型曲线积分</a>
-    </h1>
   
 
-        
-        <a href="/2021/05/13/%E7%AC%AC%E4%B8%80%E5%9E%8B%E6%9B%B2%E7%BA%BF%E7%A7%AF%E5%88%86/" class="archive-article-date">
-  	<time datetime="2021-05-13T12:54:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-05-13</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h1><h2 id="1-曲线型构件的质量"><a href="#1-曲线型构件的质量" class="headerlink" title="1.曲线型构件的质量"></a>1.曲线型构件的质量</h2><p>已知一曲线L的方程，他的线密度函数$\rho (x,y,z)$为连续函数，求构件的质量</p>
-<p>可将构件截割成n个很短的小段构件，此时质量近似等于$\sum_{i=1}^{n}\rho (x,y,z)\Delta s_{i}$</p>
-<h2 id="2-空间柱面的表面积"><a href="#2-空间柱面的表面积" class="headerlink" title="2.空间柱面的表面积"></a>2.空间柱面的表面积</h2><p>已知一曲线L，端点为A，B，其高度$h(x,y) ((x,y)\in L)$,在L上连续</p>
-<p>可以将L切割得很小，则每一份面积可以看作是一个长方形</p>
-<p>即$\delta A_{i}\approx h(x_{i},y_{i})\delta s_{i}$</p>
-<p>于是柱面面积为：</p>
-<p>$A = \sum_{i=1}^{n} \delta A_{i} \approx \sum_{i=1}^{n} h( x_{i},y_{i}) \delta s_{i}$</p>
-<h1 id="第一型积分的定义及性质"><a href="#第一型积分的定义及性质" class="headerlink" title="第一型积分的定义及性质"></a>第一型积分的定义及性质</h1><h2 id="1-定义"><a href="#1-定义" class="headerlink" title="1.定义"></a>1.定义</h2><p>如果极限<br>$$<br>\lim_{\lambda \to 0} \sum_{i=1}^{n}f(x,y,z)\delta s_{i}<br>$$<br>总存在，则称此极限为函数$f(x,y,z)$在曲线L上的第一型积分记为<br>$$<br>\int_{L}^{}f(x,y,z)ds<br>$$<br>$f(x,y,z)$为被积函数，$L$为积分弧段，$ds$称为弧长元素，第一型曲线积分也称为对弧长的曲线积分</p>
-<h2 id="2-性质"><a href="#2-性质" class="headerlink" title="2.性质"></a>2.性质</h2><h3 id="1"><a href="#1" class="headerlink" title="1."></a>1.</h3><p>若$f(x,y,z)$，$g(x,y,z)$在光滑曲线弧$L$上的第一型曲线积分存在，$k1$,$k2$是任意实数，则$k_{1}f(x,y,z)+k_{2}g(x,y,z)$在L上的第一型曲线积分也存在，且<br>$$<br>\int_{L}(k_{1}f(x,y,z)+k_{2}g(x,y,z))ds=k_{1}\int_{L}f(x,y,z)ds+k_{2}\int_{L}g(x,y,z)ds<br>$$</p>
-<h3 id="2"><a href="#2" class="headerlink" title="2."></a>2.</h3><p>若分段光滑曲线弧L分为两段曲线弧$L_{1}$,$L_{2}$,$\int_{L}f(x,y,z)ds$存在，则$\int_{L_{1}}f(x,z,y)ds$和$\int_{L_{2}}f(x,y,z)ds$均存在，且<br>$$<br>\int_{L}f(x,y,z)ds = \int_{L_{1}}f(x,y,z)ds + \int_{L_{2}}f(x,y,z)ds<br>$$</p>
-<h3 id="3"><a href="#3" class="headerlink" title="3."></a>3.</h3><p>若函数$f(x,y,z)$,$g(x,y,z)$在光滑曲线弧L上的第一型曲线积分存在，$f(x,y,z) \leq g(x,y,z)$,$(x,y,z)\in L$,则<br>$$<br>\int_{L}f(x,y,z)ds \leq \int_{L}g(x,y,z)ds<br>$$<br><strong>推论</strong>：</p>
-<p>若$f(x,y,z)$在L上的第一型积分存在，则$\left | f(x,y,z) \right |$在L上的第一型积分也存在**(反之不亦然)**</p>
-<p>且有<br>$$<br>\left | \int_{L}f(x,y,z)ds \right | \leq \int_{L} \left | f(x,y,z) \right | ds<br>$$</p>
-<h3 id="4-中值定理"><a href="#4-中值定理" class="headerlink" title="4.(中值定理)"></a>4.(中值定理)</h3><p>若函数$f(x,y,z)$在L上连续，$s_{L}$是光滑曲线弧L的长度，则L上至少存在一点$(a,b,c)$使得<br>$$<br>\int_{L}f(x,y,z)ds=s_{L} \cdot f(a,b,c)<br>$$</p>
-<h1 id="第一型曲线积分的计算"><a href="#第一型曲线积分的计算" class="headerlink" title="第一型曲线积分的计算"></a>第一型曲线积分的计算</h1><h2 id="1-定理："><a href="#1-定理：" class="headerlink" title="1.定理："></a>1.定理：</h2><p><strong>设函数$f(x,y,z)$在光滑曲线L上有定义且连续，且L的参数方程为</strong><br>$$<br>\begin{cases}x=x(t)\y=y(t)\z=z(t)\end{cases}  \alpha \leq t \leq \beta<br>$$<br><strong>其中$x(t),y(t),z(t)$在$\left [ \alpha,\beta \right ]$上具有连续一阶导数，且不同时为0，则第一型曲线积分$\int_{L}f(x,y,z)ds$存在，且</strong><br>$$<br>\int_{L}f(x,y,z)ds=\int_{\alpha}^{\beta}f[x(t),y(t),z(t)]\sqrt{x’^{2}+y’^{2}+z’^{x}}dt<br>$$</p>
-<h1 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h1><h3 id="1-利用第一型曲线积分求柱面-x-2-y-2-ax-a-gt-0-位于球面-x-2-y-2-z-2-a-2-内的那一部分面积"><a href="#1-利用第一型曲线积分求柱面-x-2-y-2-ax-a-gt-0-位于球面-x-2-y-2-z-2-a-2-内的那一部分面积" class="headerlink" title="1.利用第一型曲线积分求柱面$x^{2} + y^{2}=ax(a&gt;0)$位于球面$x^{2}+ y^{2}+ z^{2}= a^{2}$内的那一部分面积"></a>1.利用第一型曲线积分求柱面$x^{2} + y^{2}=ax(a&gt;0)$位于球面$x^{2}+ y^{2}+ z^{2}= a^{2}$内的那一部分面积</h3><p><strong>换元</strong></p>
-<p>将x,y分别用关于t的余弦函数和正弦函数表示，再通过球面方程求出z关于t方程，z(t)即为被积函数</p>
-<h3 id="2-oint-L-xds-L为对数螺线-rho-ae-k-theta-k-gt-0-在园-rho-a-内的部分"><a href="#2-oint-L-xds-L为对数螺线-rho-ae-k-theta-k-gt-0-在园-rho-a-内的部分" class="headerlink" title="2.$\oint_{L}xds$,L为对数螺线$\rho = ae^{k\theta}(k&gt;0)$在园$\rho = a$内的部分"></a>2.$\oint_{L}xds$,L为对数螺线$\rho = ae^{k\theta}(k&gt;0)$在园$\rho = a$内的部分</h3><p>$x=\rho cos\theta$将$\rho$的方程带入x的方程中，求出结果</p>
-<h3 id="3-int-L-left-y-right-ds-，L为双纽线-x-2-y-2-2-a-2-x-2-y-2"><a href="#3-int-L-left-y-right-ds-，L为双纽线-x-2-y-2-2-a-2-x-2-y-2" class="headerlink" title="3.$\int_{L}\left | y \right |ds$，L为双纽线$(x^{2}+ y^{2} )^2= a^{2} (x^{2} - y^{2})$"></a>3.$\int_{L}\left | y \right |ds$，L为双纽线$(x^{2}+ y^{2} )^2= a^{2} (x^{2} - y^{2})$</h3><p>L可化为$\rho^{2} = a^{2} cos2\theta$</p>
-<p>对两边求导可得$2\rho’\rho = -2a^{2}sin2\theta$</p>
-<p>已知了$\rho$，可求$\rho’$</p>
-<p><strong>对$x=\rho cos\theta$和$y=\rho sin\theta$求导并带入公式可得</strong><br>$$<br>ds=\sqrt{\rho^{2}+\rho’^{2}}d\theta<br>$$<br>带入即可</p>
-<h1 id="重要结论"><a href="#重要结论" class="headerlink" title="重要结论"></a>重要结论</h1><p>1.化为极坐标时<br>$$<br>ds=\sqrt{\rho^{2}+\rho’^{2}}d\theta<br>$$<br>2.当被积函数为关于x,y的奇函数，L关于x，y轴轴对称时，积分等于零</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">数学</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/05/13/%E7%AC%AC%E4%B8%80%E5%9E%8B%E6%9B%B2%E7%BA%BF%E7%A7%AF%E5%88%86/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
+  
 
   
+
   
 
 
@@ -451,8 +347,8 @@
     <script>
 	var yiliaConfig = {
 		mathjax: true,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
