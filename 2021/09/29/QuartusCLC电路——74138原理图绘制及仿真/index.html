@@ -6,15 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://averagejoe-cn.github.io">
-  <title>Archives: 2021 | Average Joe&#39;s Blog</title>
+  <title>QuartusCLC电路——74138原理图绘制及仿真 | Average Joe&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="It&#39;s a wonderful life not for Average Joe">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Average Joe&#39;s Blog">
-<meta property="og:url" content="https://averagejoe-cn.github.io/archives/2021/index.html">
+  <meta name="description" content="1.原理图绘制1.1 绘制真值表双全加器74LS138的真值表如下            输入                     输出                      CI       A       B       S       CO               0       0       0       0       0               0       0">
+<meta property="og:type" content="article">
+<meta property="og:title" content="QuartusCLC电路——74138原理图绘制及仿真">
+<meta property="og:url" content="https://averagejoe-cn.github.io/2021/09/29/QuartusCLC%E7%94%B5%E8%B7%AF%E2%80%94%E2%80%9474138%E5%8E%9F%E7%90%86%E5%9B%BE%E7%BB%98%E5%88%B6%E5%8F%8A%E4%BB%BF%E7%9C%9F/index.html">
 <meta property="og:site_name" content="Average Joe&#39;s Blog">
-<meta property="og:description" content="It&#39;s a wonderful life not for Average Joe">
+<meta property="og:description" content="1.原理图绘制1.1 绘制真值表双全加器74LS138的真值表如下            输入                     输出                      CI       A       B       S       CO               0       0       0       0       0               0       0">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-09-29T15:26:43.000Z">
+<meta property="article:modified_time" content="2021-09-30T06:16:11.127Z">
 <meta property="article:author" content="Average Joe">
 <meta name="twitter:card" content="summary">
   
@@ -182,277 +184,264 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-QuartusCLC电路——74138原理图绘制及仿真" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      QuartusCLC电路——74138原理图绘制及仿真
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2021" class="archive-year">2021</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/09/29/QuartusCLC%E7%94%B5%E8%B7%AF%E2%80%94%E2%80%9474138%E5%8E%9F%E7%90%86%E5%9B%BE%E7%BB%98%E5%88%B6%E5%8F%8A%E4%BB%BF%E7%9C%9F/" class="archive-article-date">
+
+        
+        <a href="/2021/09/29/QuartusCLC%E7%94%B5%E8%B7%AF%E2%80%94%E2%80%9474138%E5%8E%9F%E7%90%86%E5%9B%BE%E7%BB%98%E5%88%B6%E5%8F%8A%E4%BB%BF%E7%9C%9F/" class="archive-article-date">
   	<time datetime="2021-09-29T15:26:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-09-29</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/09/29/QuartusCLC%E7%94%B5%E8%B7%AF%E2%80%94%E2%80%9474138%E5%8E%9F%E7%90%86%E5%9B%BE%E7%BB%98%E5%88%B6%E5%8F%8A%E4%BB%BF%E7%9C%9F/">QuartusCLC电路——74138原理图绘制及仿真</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="1-原理图绘制"><a href="#1-原理图绘制" class="headerlink" title="1.原理图绘制"></a>1.原理图绘制</h1><h2 id="1-1-绘制真值表"><a href="#1-1-绘制真值表" class="headerlink" title="1.1 绘制真值表"></a>1.1 绘制真值表</h2><p>双全加器74LS138的真值表如下</p>
+<table>
+   <tr>
+      <td>输入</td>
+      <td></td>
+      <td></td>
+      <td>输出</td>
+      <td></td>
+   </tr>
+   <tr>
+      <td>CI</td>
+      <td>A</td>
+      <td>B</td>
+      <td>S</td>
+      <td>CO</td>
+   </tr>
+   <tr>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+   </tr>
+   <tr>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+   </tr>
+   <tr>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+   </tr>
+   <tr>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+   </tr>
+   <tr>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+   </tr>
+   <tr>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+   </tr>
+   <tr>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+   </tr>
+   <tr>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+   </tr>
+   <tr>
+      <td></td>
+   </tr>
+</table>
 
-        <div class="article-info info-on-right">
-          
-          
+<h2 id="1-2-绘制卡诺图化简"><a href="#1-2-绘制卡诺图化简" class="headerlink" title="1.2 绘制卡诺图化简"></a>1.2 绘制卡诺图化简</h2><p>$$<br>\left{\begin{matrix}<br> S= \left ( A’B’CI’+AB’CI+A’BCI+ABCI’ \right )’ \<br> CO= \left ( A’B’+B’CI’+A’CI’ \right)’<br>\end{matrix}\right.<br>$$</p>
+<h2 id="1-3-根据函数式绘制原理图"><a href="#1-3-根据函数式绘制原理图" class="headerlink" title="1.3 根据函数式绘制原理图"></a>1.3 根据函数式绘制原理图</h2><p>![原理图](QuartusCLC电路——74138原理图绘制及仿真/2021-09-29 (2).png)</p>
+<p>非门选择元件库中逻辑元件NOT</p>
+<p>与门选择元件库中的7408</p>
+<p>三输入与门选择元件库中的7411</p>
+<p>四输入或非门选择元件库中的逻辑元件NOR4</p>
+<p>三输入或非门选择元件库中的原件7427</p>
+<p>连接元器件组成CLC电路</p>
+<p>按照视频教程自动布置端口</p>
+<blockquote>
+<p>注意：连接元器件时注意不要出现没有连上的孤立线段，否则会报错</p>
+</blockquote>
+<h2 id="1-4-编译"><a href="#1-4-编译" class="headerlink" title="1.4 编译"></a>1.4 编译</h2><p>![编译方法]( QuartusCLC电路——74138原理图绘制及仿真/2021-09-29 (2)_LI.jpg)</p>
+<h2 id="1-5-创建vwf文件"><a href="#1-5-创建vwf文件" class="headerlink" title="1.5 创建vwf文件"></a>1.5 创建vwf文件</h2><p>find node，引入所有端口</p>
+<p>A 设置波形为时钟信号，周期200ns</p>
+<p>B 设置波形为时钟信号，周期100ns</p>
+<p>CI 设置波形为时钟信号，周期50ns</p>
+<p>保存文件</p>
+<blockquote>
+<p>注意：文件名的首字母不能为数字，否则会报错</p>
+</blockquote>
+<h1 id="2-电路仿真"><a href="#2-电路仿真" class="headerlink" title="2. 电路仿真"></a>2. 电路仿真</h1><h2 id="2-1-功能仿真"><a href="#2-1-功能仿真" class="headerlink" title="2.1 功能仿真"></a>2.1 功能仿真</h2><p>![波形图仿真](QuartusCLC电路——74138原理图绘制及仿真/2021-09-29 (3).png)</p>
+<p>点击Simulation-&gt;Simulation settings,按照教学视频中的所教授的方法消除bug</p>
+<p>然后点击Simulation-&gt; Run Functional Simulation,开始功能仿真</p>
+<p>开始后可能出现如下问题</p>
+<p>![-novopt option](QuartusCLC电路——74138原理图绘制及仿真/2021-09-29 (4).png)</p>
+<p>报错信息</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"># vsim -novopt -c -t 1ps -L cycloneive_ver -L altera_ver -L altera_mf_ver -L 220model_ver -L sgate_ver -L altera_lnsim_ver work.my_74138_vlg_vec_tst</span><br><span class="line"># Start time: 23:12:01 on Sep 29,2021</span><br><span class="line"># ** Error (suppressible):(vsim-12110) The -novopt option has no effect on this product. -novopt option is now deprecated and will be removed in future releases.</span><br><span class="line"># Error loading design</span><br><span class="line">Error loading design</span><br><span class="line"></span><br><span class="line"># End time: 23:12:01 on Sep 29,2021, Elapsed time: 0:00:00</span><br><span class="line"># Errors: 1, Warnings: 0</span><br><span class="line"></span><br><span class="line">Error.</span><br></pre></td></tr></table></figure>
 
+<p>这是因为novopt功能在Quartus Prime早期版本中已经中不被支持了，所以应当关闭novopt功能</p>
+<p>我们打开Simulation-&gt;Simulation-settings, 修改Verilog HDL文件中的如下代码行</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vsim -novopt -c -t 1ps -L cycloneive_ver -L altera_ver -L altera_mf_ver -L 220model_ver -L sgate_ver -L altera_lnsim_ver work.my_74138_vlg_vec_tst</span><br></pre></td></tr></table></figure>
+
+<p>删除如下option</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-novopt</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-2-时序仿真"><a href="#2-2-时序仿真" class="headerlink" title="2.2 时序仿真"></a>2.2 时序仿真</h2><p>![时序仿真](QuartusCLC电路——74138原理图绘制及仿真/2021-09-29 (1).png)</p>
+<p>同功能仿真</p>
+<p>点击Simulation-&gt;Run Timing Simulation</p>
+<p>同样可能出现novopt功能的错误，在Simulation-&gt;Simulation Settings-&gt;Timing Simulation Settings 删除Verilog文件中的相同行中的novopt option</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=https://averagejoe-cn.github.io/2021/09/29/QuartusCLC%E7%94%B5%E8%B7%AF%E2%80%94%E2%80%9474138%E5%8E%9F%E7%90%86%E5%9B%BE%E7%BB%98%E5%88%B6%E5%8F%8A%E4%BB%BF%E7%9C%9F/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/08/14/%E8%B7%AF%E7%94%B1%E5%99%A8%E3%80%81%E4%BA%A4%E6%8D%A2%E6%9C%BA%E3%80%81%E9%98%B2%E7%81%AB%E5%A2%99%E3%80%81%E6%97%A0%E7%BA%BFAP%E5%9F%BA%E7%A1%80%E7%90%86%E8%AE%BA%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/" class="archive-article-date">
-  	<time datetime="2021-08-14T15:09:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-08-14</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2021/08/14/%E8%B7%AF%E7%94%B1%E5%99%A8%E3%80%81%E4%BA%A4%E6%8D%A2%E6%9C%BA%E3%80%81%E9%98%B2%E7%81%AB%E5%A2%99%E3%80%81%E6%97%A0%E7%BA%BFAP%E5%9F%BA%E7%A1%80%E7%90%86%E8%AE%BA%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">路由器、交换机、防火墙、无线AP基础理论知识总结</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/08/14/%E8%B7%AF%E7%94%B1%E5%99%A8%E3%80%81%E4%BA%A4%E6%8D%A2%E6%9C%BA%E3%80%81%E9%98%B2%E7%81%AB%E5%A2%99%E3%80%81%E6%97%A0%E7%BA%BFAP%E5%9F%BA%E7%A1%80%E7%90%86%E8%AE%BA%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/">路由器、交换机、防火墙、无线AP基础理论知识总结</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">通信</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-%E5%8E%9F%E7%90%86%E5%9B%BE%E7%BB%98%E5%88%B6"><span class="toc-number">1.</span> <span class="toc-text">1.原理图绘制</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-%E7%BB%98%E5%88%B6%E7%9C%9F%E5%80%BC%E8%A1%A8"><span class="toc-number">1.1.</span> <span class="toc-text">1.1 绘制真值表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2-%E7%BB%98%E5%88%B6%E5%8D%A1%E8%AF%BA%E5%9B%BE%E5%8C%96%E7%AE%80"><span class="toc-number">1.2.</span> <span class="toc-text">1.2 绘制卡诺图化简</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-3-%E6%A0%B9%E6%8D%AE%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BB%98%E5%88%B6%E5%8E%9F%E7%90%86%E5%9B%BE"><span class="toc-number">1.3.</span> <span class="toc-text">1.3 根据函数式绘制原理图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-4-%E7%BC%96%E8%AF%91"><span class="toc-number">1.4.</span> <span class="toc-text">1.4 编译</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-5-%E5%88%9B%E5%BB%BAvwf%E6%96%87%E4%BB%B6"><span class="toc-number">1.5.</span> <span class="toc-text">1.5 创建vwf文件</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-%E7%94%B5%E8%B7%AF%E4%BB%BF%E7%9C%9F"><span class="toc-number">2.</span> <span class="toc-text">2. 电路仿真</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-%E5%8A%9F%E8%83%BD%E4%BB%BF%E7%9C%9F"><span class="toc-number">2.1.</span> <span class="toc-text">2.1 功能仿真</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-%E6%97%B6%E5%BA%8F%E4%BB%BF%E7%9C%9F"><span class="toc-number">2.2.</span> <span class="toc-text">2.2 时序仿真</span></a></li></ol></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+        
+    </div>
+</aside>
+
+
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/05/25/%E5%95%86%E5%93%81%E7%9A%84%E4%BA%8C%E5%9B%A0%E7%B4%A0%E2%80%94%E2%80%94%E4%BD%BF%E7%94%A8%E4%BB%B7%E5%80%BC%E4%B8%8E%E4%BB%B7%E5%80%BC%EF%BC%88%E4%BB%B7%E5%80%BC%E5%AE%9E%E4%BD%93%E4%B8%8E%E4%BB%B7%E5%80%BC%E9%87%8F%EF%BC%89/" class="archive-article-date">
-  	<time datetime="2021-05-25T14:52:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-05-25</time>
-</a>
-        </div>
-    	 
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/05/25/%E5%95%86%E5%93%81%E7%9A%84%E4%BA%8C%E5%9B%A0%E7%B4%A0%E2%80%94%E2%80%94%E4%BD%BF%E7%94%A8%E4%BB%B7%E5%80%BC%E4%B8%8E%E4%BB%B7%E5%80%BC%EF%BC%88%E4%BB%B7%E5%80%BC%E5%AE%9E%E4%BD%93%E4%B8%8E%E4%BB%B7%E5%80%BC%E9%87%8F%EF%BC%89/">商品的二因素——使用价值与价值（价值实体与价值量）</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">资本论</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/05/15/CNN-Explainer/" class="archive-article-date">
-  	<time datetime="2021-05-15T13:42:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-05-15</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/05/15/CNN-Explainer/">CNN-Explainer</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">机器学习</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/05/14/%E6%AD%A3%E5%BC%A6%E7%94%B5%E6%B5%81%E7%94%B5%E8%B7%AF%E5%AF%BC%E8%AE%BA%E7%9F%A5%E8%AF%86%E7%82%B9%E6%95%B4%E7%90%86/" class="archive-article-date">
-  	<time datetime="2021-05-14T13:24:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-05-14</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/05/14/%E6%AD%A3%E5%BC%A6%E7%94%B5%E6%B5%81%E7%94%B5%E8%B7%AF%E5%AF%BC%E8%AE%BA%E7%9F%A5%E8%AF%86%E7%82%B9%E6%95%B4%E7%90%86/">正弦电流电路导论知识点整理</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">电路原理</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/05/14/%E7%AC%AC%E4%BA%8C%E5%9E%8B%E6%9B%B2%E7%BA%BF%E7%A7%AF%E5%88%86/" class="archive-article-date">
-  	<time datetime="2021-05-14T02:44:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-05-14</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/05/14/%E7%AC%AC%E4%BA%8C%E5%9E%8B%E6%9B%B2%E7%BA%BF%E7%A7%AF%E5%88%86/">第二型曲线积分</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">数学</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/05/13/%E7%AC%AC%E4%B8%80%E5%9E%8B%E6%9B%B2%E7%BA%BF%E7%A7%AF%E5%88%86/" class="archive-article-date">
-  	<time datetime="2021-05-13T12:54:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-05-13</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/05/13/%E7%AC%AC%E4%B8%80%E5%9E%8B%E6%9B%B2%E7%BA%BF%E7%A7%AF%E5%88%86/">第一型曲线积分</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">数学</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
 
 
           </div>
@@ -475,8 +464,8 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: true,
