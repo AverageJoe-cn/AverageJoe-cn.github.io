@@ -190,34 +190,44 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-Day5-Verilog的基本要素" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-Day21-Verilog过程结构" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2021/10/19/Day5-Verilog%E7%9A%84%E5%9F%BA%E6%9C%AC%E8%A6%81%E7%B4%A0/">Day5-Verilog的基本要素</a>
+      <a class="article-title" href="/2021/11/04/Day21-Verilog%E8%BF%87%E7%A8%8B%E7%BB%93%E6%9E%84/">Day21-Verilog过程结构</a>
     </h1>
   
 
         
-        <a href="/2021/10/19/Day5-Verilog%E7%9A%84%E5%9F%BA%E6%9C%AC%E8%A6%81%E7%B4%A0/" class="archive-article-date">
-  	<time datetime="2021-10-19T11:41:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-19</time>
+        <a href="/2021/11/04/Day21-Verilog%E8%BF%87%E7%A8%8B%E7%BB%93%E6%9E%84/" class="archive-article-date">
+  	<time datetime="2021-11-04T10:28:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-11-04</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="1-标识符（identifier）"><a href="#1-标识符（identifier）" class="headerlink" title="1. 标识符（identifier）"></a>1. 标识符（identifier）</h1><p>标识符是模块、端口、连线、寄存器等元素的名字</p>
-<p>标识符可以是任意一组字母、数字、$符号和下划线，但数字不能打头。</p>
-<p>每个系统函数和系统任务前面都用一个标识符$加以确认</p>
-<p>标识符的字符数不能多于1024个。转移标识符可以包含任意可打印字符</p>
-<h1 id="2-格式预与注释"><a href="#2-格式预与注释" class="headerlink" title="2.格式预与注释"></a>2.格式预与注释</h1><h2 id="2-1-格式"><a href="#2-1-格式" class="headerlink" title="2.1 格式"></a>2.1 格式</h2><p>Verilog HDL 的格式包括自由格式和标识符</p>
-<p>自由格式即结构可以跨越多行编写，也可以在一行内编写。白空没有特殊意义。</p>
-<p>标识符区分大小写，也就是说大小写不同的标识符是不同的</p>
-<h2 id="2-2-注释"><a href="#2-2-注释" class="headerlink" title="2.2 注释"></a>2.2 注释</h2><p>在Verilog HDL 中有两种格式的注释：第一种形式“/*…*/”，可以拓展至多行；第二种形式“\\”，在本行结束。</p>
+        <h3 id="关键词：initial，-always"><a href="#关键词：initial，-always" class="headerlink" title="关键词：initial， always"></a>关键词：initial， always</h3><p>过程结构语句有 2 种，initial 与 always 语句。它们是行为级建模的 2 种基本语句。</p>
+<p>一个模块中可以包含多个 initial 和 always 语句，但 2 种语句不能嵌套使用。</p>
+<p>这些语句在模块间并行执行，与其在模块的前后顺序没有关系。</p>
+<p>但是 initial 语句或 always 语句内部可以理解为是顺序执行的（非阻塞赋值除外）。</p>
+<p>每个 initial 语句或 always 语句都会产生一个独立的控制流，执行时间都是从 0 时刻开始。</p>
+<h3 id="initial语句"><a href="#initial语句" class="headerlink" title="initial语句"></a>initial语句</h3><p>initial 语句从 0 时刻开始执行，只执行一次，多个 initial 块之间是相互独立的。</p>
+<p>如果 initial 块内包含多个语句，需要使用关键字 begin 和 end 组成一个块语句。</p>
+<p>如果 initial 块内只要一条语句，关键字 begin 和 end 可使用也可不使用。</p>
+<p>initial 理论上来讲是不可综合的，多用于初始化、信号检测等。</p>
+<p>对上一节代码稍作修改，进行仿真，代码如下。</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">`<span class="meta-keyword">timescale</span> 1ns/1ns</span></span><br><span class="line"> </span><br><span class="line"><span class="keyword">module</span> test ;</span><br><span class="line">    <span class="keyword">reg</span>  ai, bi ;</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">initial</span> <span class="keyword">begin</span></span><br><span class="line">        ai         = <span class="number">0</span> ;</span><br><span class="line">        #<span class="number">25</span> ;      ai        = <span class="number">1</span> ;</span><br><span class="line">        #<span class="number">35</span> ;      ai        = <span class="number">0</span> ;        <span class="comment">//absolute 60ns</span></span><br><span class="line">        #<span class="number">40</span> ;      ai        = <span class="number">1</span> ;        <span class="comment">//absolute 100ns</span></span><br><span class="line">        #<span class="number">10</span> ;      ai        = <span class="number">0</span> ;        <span class="comment">//absolute 110ns</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"> </span><br><span class="line">    <span class="keyword">initial</span> <span class="keyword">begin</span></span><br><span class="line">        bi         = <span class="number">1</span> ;</span><br><span class="line">        #<span class="number">70</span> ;      bi        = <span class="number">0</span> ;        <span class="comment">//absolute 70ns</span></span><br><span class="line">        #<span class="number">20</span> ;      bi        = <span class="number">1</span> ;        <span class="comment">//absolute 90ns</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"> </span><br><span class="line">    <span class="comment">//at proper time stop the simulation</span></span><br><span class="line">    <span class="keyword">initial</span> <span class="keyword">begin</span></span><br><span class="line">        <span class="keyword">forever</span> <span class="keyword">begin</span></span><br><span class="line">            #<span class="number">100</span>;</span><br><span class="line">            <span class="comment">//$display(&quot;---gyc---%d&quot;, $time);</span></span><br><span class="line">            <span class="keyword">if</span> (<span class="built_in">$time</span> &gt;= <span class="number">1000</span>) <span class="keyword">begin</span></span><br><span class="line">                <span class="built_in">$finish</span> ;</span><br><span class="line">            <span class="keyword">end</span></span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">   <span class="keyword">end</span></span><br><span class="line"> </span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="always-语句"><a href="#always-语句" class="headerlink" title="always 语句"></a>always 语句</h3><p>与 initial 语句相反，always 语句是重复执行的。always 语句块从 0 时刻开始执行其中的行为语句；当执行完最后一条语句后，便再次执行语句块中的第一条语句，如此循环反复。</p>
+<p>由于循环执行的特点，always 语句多用于仿真时钟的产生，信号行为的检测等。</p>
+<p>下面用 always 产生一个 100MHz 时钟源，并在 1010ns 时停止仿真代码如下。</p>
+<p>代码如下:</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">`<span class="meta-keyword">timescale</span> 1ns/1ns</span></span><br><span class="line"> </span><br><span class="line"><span class="keyword">module</span> test ;</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">parameter</span> CLK_FREQ   = <span class="number">100</span> ; <span class="comment">//100MHz</span></span><br><span class="line">    <span class="keyword">parameter</span> CLK_CYCLE  = <span class="number">1</span>e9 / (CLK_FREQ * <span class="number">1</span>e6) ;   <span class="comment">//switch to ns</span></span><br><span class="line"> </span><br><span class="line">    <span class="keyword">reg</span>  clk ;</span><br><span class="line">    <span class="keyword">initial</span>      clk = <span class="number">1&#x27;b0</span> ;      <span class="comment">//clk is initialized to &quot;0&quot;</span></span><br><span class="line">    <span class="keyword">always</span>     # (CLK_CYCLE/<span class="number">2</span>) clk = ~clk ;       <span class="comment">//generating a real clock by reversing</span></span><br><span class="line"> </span><br><span class="line">    <span class="keyword">always</span> <span class="keyword">begin</span></span><br><span class="line">        #<span class="number">10</span>;</span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">$time</span> &gt;= <span class="number">1000</span>) <span class="keyword">begin</span></span><br><span class="line">            <span class="built_in">$finish</span> ;</span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"> </span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
+
 
       
 
@@ -230,7 +240,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2021/10/19/Day5-Verilog%E7%9A%84%E5%9F%BA%E6%9C%AC%E8%A6%81%E7%B4%A0/">展开全文 >></a>
+          <a class="article-more-a" href="/2021/11/04/Day21-Verilog%E8%BF%87%E7%A8%8B%E7%BB%93%E6%9E%84/">展开全文 >></a>
         </p>
       
 
@@ -260,35 +270,42 @@
 
 
   
-    <article id="post-Day4-Verilog的描述方式3" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-Day20-Verilog时延" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2021/10/18/Day4-Verilog%E7%9A%84%E6%8F%8F%E8%BF%B0%E6%96%B9%E5%BC%8F3/">Day4-Verilog的描述方式3</a>
+      <a class="article-title" href="/2021/11/03/Day20-Verilog%E6%97%B6%E5%BB%B6/">Day20-Verilog时延</a>
     </h1>
   
 
         
-        <a href="/2021/10/18/Day4-Verilog%E7%9A%84%E6%8F%8F%E8%BF%B0%E6%96%B9%E5%BC%8F3/" class="archive-article-date">
-  	<time datetime="2021-10-18T11:30:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-18</time>
+        <a href="/2021/11/03/Day20-Verilog%E6%97%B6%E5%BB%B6/" class="archive-article-date">
+  	<time datetime="2021-11-03T10:26:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-11-03</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="3-结构化描述方式"><a href="#3-结构化描述方式" class="headerlink" title="3. 结构化描述方式"></a>3. 结构化描述方式</h2><p>在Verilog HDL中，可使用如下方式进行结构化描述。</p>
-<p>（1）门语句（门原语，在门级）</p>
-<p>（2）开关级语句（开关级原语，在晶体管级）</p>
-<p>（3）用户定义语句（用户定义的原语，在门级）</p>
-<p>（4）模块实例（创建成层次结构）</p>
-<p>下面给用结构化描述方式对一位全加器编写的源文件（直接用门语句进行结构化描述）。</p>
-<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">module</span> Fulladder(sum,cout,a,b,cin);</span><br><span class="line">    <span class="keyword">input</span> cin;</span><br><span class="line">    <span class="keyword">input</span> a,b;</span><br><span class="line">    <span class="keyword">output</span> cout;</span><br><span class="line">    <span class="keyword">output</span> sum;</span><br><span class="line">    <span class="keyword">wire</span> f1,e1,e2;</span><br><span class="line">    <span class="keyword">xor</span></span><br><span class="line">    xor1(f1,a,b);</span><br><span class="line">    xor2(sum,f1,cin);</span><br><span class="line">    <span class="keyword">and</span></span><br><span class="line">    and1(e1,f1,cin);</span><br><span class="line">    and2(e2,a,b);</span><br><span class="line">    <span class="keyword">or</span></span><br><span class="line">    or1(cout,e1,e2);</span><br><span class="line"><span class="keyword">endmodule</span>;</span><br></pre></td></tr></table></figure>
+        <h3 id="关键词：时延，-惯性时延"><a href="#关键词：时延，-惯性时延" class="headerlink" title="关键词：时延， 惯性时延"></a>关键词：时延， 惯性时延</h3><p>连续赋值延时语句中的延时，用于控制任意操作数发生变化到语句左端赋予新值之间的时间延时。</p>
+<p>时延一般是不可综合的。</p>
+<p>寄存器的时延也是可以控制的，这部分在时序控制里加以说明。</p>
+<p>连续赋值时延一般可分为普通赋值时延、隐式时延、声明时延。</p>
+<p>下面 3 个例子实现的功能是等效的，分别对应 3 种不同连续赋值时延的写法。</p>
+<p><em>//普通时延，A&amp;B计算结果延时10个时间单位赋值给Z</em><br><strong>wire</strong> Z, A, B ;<br><strong>assign</strong> #10   Z = A &amp; B ;</p>
+<p><em>//隐式时延，声明一个wire型变量时对其进行包含一定时延的连续赋值。</em><br><strong>wire</strong> A, B;<br><strong>wire</strong> #10     Z = A &amp; B;</p>
+<p><em>//声明时延，声明一个wire型变量是指定一个时延。因此对该变量所有的连续赋值都会被推迟到指定的时间。除非门级建模中，一般不推荐使用此类方法建模。</em><br><strong>wire</strong> A, B;<br><strong>wire</strong> #10 Z ;<br><strong>assign</strong>      Z =A &amp; B</p>
+<h3 id="惯性时延"><a href="#惯性时延" class="headerlink" title="惯性时延"></a>惯性时延</h3><p>在上述例子中，A 或 B 任意一个变量发生变化，那么在 Z 得到新的值之前，会有 10 个时间单位的时延。如果在这 10 个时间单位内，即在 Z 获取新的值之前，A 或 B 任意一个值又发生了变化，那么计算 Z 的新值时会取 A 或 B 当前的新值。所以称之为惯性时延，即信号脉冲宽度小于时延时，对输出没有影响。</p>
+<p>因此仿真时，时延一定要合理设置，防止某些信号不能进行有效的延迟。</p>
+<p>对一个有延迟的与门逻辑进行时延仿真。</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">module</span> time_delay_module(</span><br><span class="line">    <span class="keyword">input</span>   ai, bi,</span><br><span class="line">    <span class="keyword">output</span>  so_lose, so_get, so_normal);</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">assign</span> #<span class="number">20</span>      so_lose      = ai &amp; bi ;</span><br><span class="line">    <span class="keyword">assign</span>  #<span class="number">5</span>      so_get       = ai &amp; bi ;</span><br><span class="line">    <span class="keyword">assign</span>          so_normal    = ai &amp; bi ;</span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
 
-<p>可以看出上述建模就是将逻辑电路图用Verilog HDL规定的语言表示出来，即用Verilog HDL中内置的基本门级元件（Gate Level Primitives，门级原语）描述逻辑图中的元件以及元件之间的连接关系。在这个例子中包括了基本门原语xor，and，or。他们用线网变量类型来相互连接。由于没有指定顺序，他们可以以任何顺序排列。xor1，and1，or1 等是门的名称，紧随其后的信号列表是互联的，列表中的第一个是门输出，其余是输入。</p>
+<p>testbench 参考如下:</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">`<span class="meta-keyword">timescale</span> 1ns/1ns</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">module</span> test ;</span><br><span class="line">    <span class="keyword">reg</span>  ai, bi ;</span><br><span class="line">    <span class="keyword">wire</span> so_lose, so_get, so_normal ;</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">initial</span> <span class="keyword">begin</span></span><br><span class="line">        ai        = <span class="number">0</span> ;</span><br><span class="line">        #<span class="number">25</span> ;      ai        = <span class="number">1</span> ;</span><br><span class="line">        #<span class="number">35</span> ;      ai        = <span class="number">0</span> ;        <span class="comment">//60ns</span></span><br><span class="line">        #<span class="number">40</span> ;      ai        = <span class="number">1</span> ;        <span class="comment">//100ns</span></span><br><span class="line">        #<span class="number">10</span> ;      ai        = <span class="number">0</span> ;        <span class="comment">//110ns</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"> </span><br><span class="line">    <span class="keyword">initial</span> <span class="keyword">begin</span></span><br><span class="line">        bi        = <span class="number">1</span> ;</span><br><span class="line">        #<span class="number">70</span> ;      bi        = <span class="number">0</span> ;</span><br><span class="line">        #<span class="number">20</span> ;      bi        = <span class="number">1</span> ;</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"> </span><br><span class="line">    time_delay_module  u_wire_delay(</span><br><span class="line">        <span class="variable">.ai</span>              (ai),</span><br><span class="line">        <span class="variable">.bi</span>              (bi),</span><br><span class="line">        <span class="variable">.so_lose</span>         (so_lose),</span><br><span class="line">        <span class="variable">.so_get</span>          (so_get),</span><br><span class="line">        <span class="variable">.so_normal</span>       (so_normal));</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">initial</span> <span class="keyword">begin</span></span><br><span class="line">        <span class="keyword">forever</span> <span class="keyword">begin</span></span><br><span class="line">            #<span class="number">100</span>;</span><br><span class="line">            <span class="comment">//$display(&quot;---gyc---%d&quot;, $time);</span></span><br><span class="line">            <span class="keyword">if</span> (<span class="built_in">$time</span> &gt;= <span class="number">1000</span>) <span class="keyword">begin</span></span><br><span class="line">                <span class="built_in">$finish</span> ;</span><br><span class="line">            <span class="keyword">end</span></span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"> </span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
+
 
       
 
@@ -301,7 +318,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2021/10/18/Day4-Verilog%E7%9A%84%E6%8F%8F%E8%BF%B0%E6%96%B9%E5%BC%8F3/">展开全文 >></a>
+          <a class="article-more-a" href="/2021/11/03/Day20-Verilog%E6%97%B6%E5%BB%B6/">展开全文 >></a>
         </p>
       
 
@@ -331,375 +348,132 @@
 
 
   
-    <article id="post-Day3-Verilog的表述方式2" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-Day19-Verilog连续赋值" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2021/10/17/Day3-Verilog%E7%9A%84%E8%A1%A8%E8%BF%B0%E6%96%B9%E5%BC%8F2/">Day3-Verilog的表述方式2</a>
+      <a class="article-title" href="/2021/11/02/Day19-Verilog%E8%BF%9E%E7%BB%AD%E8%B5%8B%E5%80%BC/">Day19-Verilog连续赋值</a>
     </h1>
   
 
         
-        <a href="/2021/10/17/Day3-Verilog%E7%9A%84%E8%A1%A8%E8%BF%B0%E6%96%B9%E5%BC%8F2/" class="archive-article-date">
-  	<time datetime="2021-10-17T11:12:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-17</time>
+        <a href="/2021/11/02/Day19-Verilog%E8%BF%9E%E7%BB%AD%E8%B5%8B%E5%80%BC/" class="archive-article-date">
+  	<time datetime="2021-11-02T10:25:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-11-02</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="2-行为表述方式"><a href="#2-行为表述方式" class="headerlink" title="2. 行为表述方式"></a>2. 行为表述方式</h2><p>一个设计用行为描述方式给出其行为功能，可使用如下语句：</p>
-<p>（1）initial语句：该语句只执行一次，通常多用于仿真</p>
-<p>（2）always语句：该语句总是循环执行，或者说该语句重复执行。</p>
-<p>需要特别注意的是：<strong>1、只有寄存器类型的数据能够在这两种语句中被赋值</strong>；<strong>2、寄存器类型的数据在被赋给新值前保持原值不变</strong>；<strong>3、所有的初始化语句initial和总是语句always在0时刻并发执行</strong></p>
-<p>下面给出了用行为描述方式对码制转换电路编写的源文件。</p>
-<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">module</span> bcd2grey(data_in,data_out);</span><br><span class="line">    <span class="keyword">input</span>[<span class="number">3</span>:<span class="number">0</span>]data_in;</span><br><span class="line">    <span class="keyword">output</span> <span class="keyword">reg</span>[<span class="number">3</span>:<span class="number">0</span>]data_out;</span><br><span class="line">    <span class="keyword">always</span>@(data_in)</span><br><span class="line">        <span class="keyword">begin</span></span><br><span class="line">            data_out[<span class="number">3</span>]=data_in[<span class="number">3</span>];</span><br><span class="line">            data_out[<span class="number">2</span>]=data_in[<span class="number">3</span>]^data_in[<span class="number">2</span>];</span><br><span class="line">            data_out[<span class="number">1</span>]=data_in[<span class="number">2</span>]^data_in[<span class="number">1</span>];</span><br><span class="line">            data_out[<span class="number">0</span>]=data_in[<span class="number">1</span>]^data_in[<span class="number">0</span>];</span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line"><span class="keyword">endmodule</span>;</span><br></pre></td></tr></table></figure>
+        <h3 id="关键词：assign，-全加器"><a href="#关键词：assign，-全加器" class="headerlink" title="关键词：assign， 全加器"></a>关键词：assign， 全加器</h3><p>连续赋值语句是 Verilog 数据流建模的基本语句，用于对 wire 型变量进行赋值。：</p>
+<p>格式如下</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">assign     LHS_target = RHS_expression  ；</span><br></pre></td></tr></table></figure>
 
-<p>上面的例子给出了always的使用方法</p>
-<p>下面的例子将使用一个initial语句产生波形</p>
-<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">`<span class="meta-keyword">timescale</span> 1ns/1ns</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">module</span> test_w(w1,w2);</span><br><span class="line">    <span class="keyword">output</span> w1,w2;</span><br><span class="line">    <span class="keyword">reg</span> w1,w2;</span><br><span class="line">    <span class="keyword">initial</span></span><br><span class="line">        <span class="keyword">begin</span></span><br><span class="line">            w1=<span class="number">0</span>;</span><br><span class="line">            w2=<span class="number">0</span>;</span><br><span class="line">            w1=#<span class="number">2</span> <span class="number">1</span>;</span><br><span class="line">            w2=#<span class="number">3</span> <span class="number">1</span>;</span><br><span class="line">            w1=#<span class="number">5</span> <span class="number">0</span>;</span><br><span class="line">            w2=#<span class="number">1</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line"><span class="keyword">endmodule</span>;</span><br></pre></td></tr></table></figure>
+<p>LHS（left hand side） 指赋值操作的左侧，RHS（right hand side）指赋值操作的右侧。</p>
+<p>assign 为关键词，任何已经声明 wire 变量的连续赋值语句都是以 assign 开头，例如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">wire      Cout, A, B ;</span><br><span class="line">assign    Cout  = A &amp; B ;     //实现计算A与B的功能</span><br></pre></td></tr></table></figure>
 
-<p>initial语句包含了一个顺序过程begin…end。</p>
-<p>这一顺序过程在0ns时开始执行，并且顺序过程中的所有语句全部执行完毕后，initial语句永远挂起。</p>
-<p>initial语句主要用在仿真的初始状态对各变量进行初始化，也可生成激励波形作为电路的仿真信号。</p>
-<p><strong>initial语句主要是一条面向仿真的过程语句，不能用来描述硬件电路的功能</strong></p>
+<p>需要说明的是：</p>
+<ul>
+<li>LHS_target 必须是一个标量或者线型向量，而不能是寄存器类型。</li>
+<li>RHS_expression 的类型没有要求，可以是标量或线型或存器向量，也可以是函数调用。</li>
+<li>只要 RHS_expression 表达式的操作数有事件发生（值的变化）时，RHS_expression 就会立刻重新计算，同时赋值给 LHS_target。</li>
+</ul>
+<p>Verilog 还提供了另一种对 wire 型赋值的简单方法，即在 wire 型变量声明的时候同时对其赋值。wire 型变量只能被赋值一次，因此该种连续赋值方式也只能有一次。例如下面赋值方式和上面的赋值例子的赋值方式，效果都是一致的。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">wire      A, B ;</span><br><span class="line">wire      Cout = A &amp; B ;</span><br></pre></td></tr></table></figure>
 
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/10/17/Day3-Verilog%E7%9A%84%E8%A1%A8%E8%BF%B0%E6%96%B9%E5%BC%8F2/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Day2-Verilog的描述方式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/10/16/Day2-Verilog%E7%9A%84%E6%8F%8F%E8%BF%B0%E6%96%B9%E5%BC%8F/">Day2-Verilog的描述方式</a>
-    </h1>
-  
-
-        
-        <a href="/2021/10/16/Day2-Verilog%E7%9A%84%E6%8F%8F%E8%BF%B0%E6%96%B9%E5%BC%8F/" class="archive-article-date">
-  	<time datetime="2021-10-16T10:59:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-16</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="1-概述"><a href="#1-概述" class="headerlink" title="1. 概述"></a>1. 概述</h1><p>在设计的源文件即模块中，可以采用下述四种：</p>
-<p>（1）数据流描述方式</p>
-<p>（2）行为描述方式</p>
-<p>（3）结构化描述方式</p>
-<p>（4）混合描述方式（前面三种方式的混合）</p>
-<h1 id="2-数据流描述方式"><a href="#2-数据流描述方式" class="headerlink" title="2. 数据流描述方式"></a>2. 数据流描述方式</h1><p>用数据流描述方式对要求实现的硬件电路建模或设计源文件，最基本的方式就是使用连续赋值语句。在连续赋值语句中，若干个值（或数据）被指定为线网变量。线网变量是数据类型的一种。</p>
-<p>连续赋值语句的格式为：</p>
-<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">assign</span> [delay] LHS_net=RHS_expression;</span><br></pre></td></tr></table></figure>
-
-<p><strong>等号右边表达式中的操作数无论在什么时候发生变化，该表达式都会重新计算，并在设定的时延[delay]后将变化了的值赋予等号左边的线网变量。</strong></p>
-<p>下面给出了用数据流描述方式的实例：</p>
-<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">module</span> ywqj(s,j,a,b,c);</span><br><span class="line">    <span class="keyword">input</span> a,b,c;</span><br><span class="line">    <span class="keyword">output</span> s,j;</span><br><span class="line">    <span class="keyword">wire</span> d0,d1,d2,d3;</span><br><span class="line">    <span class="keyword">assign</span> d0=c^b;</span><br><span class="line">    <span class="keyword">assign</span> s=d0^a;</span><br><span class="line">    <span class="keyword">assign</span> d1=~a;</span><br><span class="line">    <span class="keyword">assign</span> d2=~(d0&amp;d1);</span><br><span class="line">    <span class="keyword">assign</span> d3=~(b&amp;c);</span><br><span class="line">    <span class="keyword">assign</span> j=~(d2&amp;d3);</span><br><span class="line"><span class="keyword">endmodule</span>;</span><br></pre></td></tr></table></figure>
-
-
-
-<p><strong>连续赋值语句是并发执行的，与语句的先后顺序无关</strong></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/10/16/Day2-Verilog%E7%9A%84%E6%8F%8F%E8%BF%B0%E6%96%B9%E5%BC%8F/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Day1-Verilog的基本结构" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/10/15/Day1-Verilog%E7%9A%84%E5%9F%BA%E6%9C%AC%E7%BB%93%E6%9E%84/">Day1-Verilog的基本结构</a>
-    </h1>
-  
-
-        
-        <a href="/2021/10/15/Day1-Verilog%E7%9A%84%E5%9F%BA%E6%9C%AC%E7%BB%93%E6%9E%84/" class="archive-article-date">
-  	<time datetime="2021-10-15T10:39:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-15</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="1-模块"><a href="#1-模块" class="headerlink" title="1. 模块"></a>1. 模块</h1><p>​    模块是Verilog的基本描述单位</p>
-<p>​    模块用于描述某个电路设计的功能或结构以及与其他模块通信的外部端口。每个模块与其他模块之间通过端口联系，模块自身通过端口与其描述的内容联系。</p>
-<p>​    一个硬件电路用Verilog设计的基本结构组成一个模块，他是实现硬件电路的源文件。</p>
-<p>​    一个硬件电路用Verilog程序设计的过程叫做编写源文件或建模</p>
-<p>​    一个模块又可以在另一个模块中使用</p>
-<h1 id="2-实例"><a href="#2-实例" class="headerlink" title="2. 实例"></a>2. 实例</h1><p>​    下面是一个简单的Verilog实例</p>
-<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">module</span> Fulladder(sum,cout,a,b,cin);</span><br><span class="line">    <span class="keyword">input</span> cin;</span><br><span class="line">    <span class="keyword">input</span> a,b;</span><br><span class="line">    <span class="keyword">output</span> cout;</span><br><span class="line">    <span class="keyword">output</span> sum;</span><br><span class="line">    <span class="keyword">assign</span> sum=(a^b)^cin;</span><br><span class="line">    <span class="keyword">assign</span> cout=((a^b)&amp;cin)|(a&amp;b);</span><br><span class="line"><span class="keyword">endmodule</span>;</span><br></pre></td></tr></table></figure>
-
-<p>这是一个大家熟知的全加器，我们可以看到，在Fulladder模块中，我们应现在模块名后的（）中定义该模块需要调用的端口，这与大家所熟知的C/C++以及Java中函数的调用类似</p>
-<p>在模块中，我们也对端口进行了输入输出功能的定义和赋值。</p>
-<p>通过这个例子，我们初步看到了Verilog实现硬件电路的源文件，即模块的基本结构：</p>
-<p>​    （1）Verilog程序是由模块构成的。每个模块中包含不同的内容，这些内容被安排在module和endmodule两个关键字之间</p>
-<p>​    （2）每个模块完成一个特定的功能。模块是可以进行层次嵌套的。一个大型的数字电路与系统可以分割成若干个实现一定功能的子模块，然后通过顶层模块调用子模块，完成系统的整体功能。</p>
-<p>​    （3）在每个模块中要对端口进行定义，说明输入、输出端口，并对模块的功能进行逻辑描述。</p>
-<p>​    （4）模块是Verilog的基本设计单位。一个模块由两个部分组成：一部分描述端口；另一个部分描述逻辑功能。这种描述实际上就是说明输入是如何影响输出的。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/10/15/Day1-Verilog%E7%9A%84%E5%9F%BA%E6%9C%AC%E7%BB%93%E6%9E%84/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-QuartusCLC电路——74138原理图绘制及仿真" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/09/29/QuartusCLC%E7%94%B5%E8%B7%AF%E2%80%94%E2%80%9474138%E5%8E%9F%E7%90%86%E5%9B%BE%E7%BB%98%E5%88%B6%E5%8F%8A%E4%BB%BF%E7%9C%9F/">QuartusCLC电路——74138原理图绘制及仿真</a>
-    </h1>
-  
-
-        
-        <a href="/2021/09/29/QuartusCLC%E7%94%B5%E8%B7%AF%E2%80%94%E2%80%9474138%E5%8E%9F%E7%90%86%E5%9B%BE%E7%BB%98%E5%88%B6%E5%8F%8A%E4%BB%BF%E7%9C%9F/" class="archive-article-date">
-  	<time datetime="2021-09-29T15:26:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-09-29</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="1-原理图绘制"><a href="#1-原理图绘制" class="headerlink" title="1.原理图绘制"></a>1.原理图绘制</h1><h2 id="1-1-绘制真值表"><a href="#1-1-绘制真值表" class="headerlink" title="1.1 绘制真值表"></a>1.1 绘制真值表</h2><p>双全加器74LS138的真值表如下</p>
+<h3 id="全加器"><a href="#全加器" class="headerlink" title="全加器"></a>全加器</h3><p>下面采用数据流描述方式，来设计一个 1bit 全加器。</p>
+<p>设 Ai，Bi，Ci 分别为被加数、加数和相邻低位的进位数，So, Co 分别为本位和与向相邻高位的进位数。</p>
+<p>真值表如下：</p>
 <table>
-   <tr>
-      <td>输入</td>
-      <td></td>
-      <td></td>
-      <td>输出</td>
-      <td></td>
-   </tr>
-   <tr>
-      <td>CI</td>
-      <td>A</td>
-      <td>B</td>
-      <td>S</td>
-      <td>CO</td>
-   </tr>
-   <tr>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-   </tr>
-   <tr>
-      <td>0</td>
-      <td>0</td>
-      <td>1</td>
-      <td>1</td>
-      <td>0</td>
-   </tr>
-   <tr>
-      <td>0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>1</td>
-      <td>0</td>
-   </tr>
-   <tr>
-      <td>0</td>
-      <td>1</td>
-      <td>1</td>
-      <td>0</td>
-      <td>1</td>
-   </tr>
-   <tr>
-      <td>1</td>
-      <td>0</td>
-      <td>0</td>
-      <td>1</td>
-      <td>0</td>
-   </tr>
-   <tr>
-      <td>1</td>
-      <td>0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>1</td>
-   </tr>
-   <tr>
-      <td>1</td>
-      <td>1</td>
-      <td>0</td>
-      <td>0</td>
-      <td>1</td>
-   </tr>
-   <tr>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-   </tr>
-   <tr>
-      <td></td>
-   </tr>
-</table>
+<thead>
+<tr>
+<th align="left">Input</th>
+<th align="left"></th>
+<th align="left"></th>
+<th align="left">Output</th>
+<th align="left"></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">Ci</td>
+<td align="left">Ai</td>
+<td align="left">Bi</td>
+<td align="left">So</td>
+<td align="left">Co</td>
+</tr>
+<tr>
+<td align="left">0</td>
+<td align="left">0</td>
+<td align="left">0</td>
+<td align="left">0</td>
+<td align="left">0</td>
+</tr>
+<tr>
+<td align="left">0</td>
+<td align="left">0</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">0</td>
+</tr>
+<tr>
+<td align="left">0</td>
+<td align="left">1</td>
+<td align="left">0</td>
+<td align="left">1</td>
+<td align="left">0</td>
+</tr>
+<tr>
+<td align="left">0</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">0</td>
+<td align="left">1</td>
+</tr>
+<tr>
+<td align="left">1</td>
+<td align="left">0</td>
+<td align="left">0</td>
+<td align="left">1</td>
+<td align="left">0</td>
+</tr>
+<tr>
+<td align="left">1</td>
+<td align="left">0</td>
+<td align="left">1</td>
+<td align="left">0</td>
+<td align="left">1</td>
+</tr>
+<tr>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">0</td>
+<td align="left">0</td>
+<td align="left">1</td>
+</tr>
+<tr>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">1</td>
+</tr>
+</tbody></table>
+<p>全加器的表达式为：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">So = Ai ⊕ Bi ⊕ Ci ;</span><br><span class="line">Co = AiBi + Ci(Ai+Bi)</span><br></pre></td></tr></table></figure>
 
-<h2 id="1-2-绘制卡诺图化简"><a href="#1-2-绘制卡诺图化简" class="headerlink" title="1.2 绘制卡诺图化简"></a>1.2 绘制卡诺图化简</h2><p>$$<br>\left{\begin{matrix}<br> S= \left ( A’B’CI’+AB’CI+A’BCI+ABCI’ \right )’ \<br> CO= \left ( A’B’+B’CI’+A’CI’ \right)’<br>\end{matrix}\right.<br>$$</p>
-<h2 id="1-3-根据函数式绘制原理图"><a href="#1-3-根据函数式绘制原理图" class="headerlink" title="1.3 根据函数式绘制原理图"></a>1.3 根据函数式绘制原理图</h2><p>![原理图](QuartusCLC电路——74138原理图绘制及仿真/2021-09-29 (2).png)</p>
-<p>非门选择元件库中逻辑元件NOT</p>
-<p>与门选择元件库中的7408</p>
-<p>三输入与门选择元件库中的7411</p>
-<p>四输入或非门选择元件库中的逻辑元件NOR4</p>
-<p>三输入或非门选择元件库中的原件7427</p>
-<p>连接元器件组成CLC电路</p>
-<p>按照视频教程自动布置端口</p>
-<blockquote>
-<p>注意：连接元器件时注意不要出现没有连上的孤立线段，否则会报错</p>
-</blockquote>
-<h2 id="1-4-编译"><a href="#1-4-编译" class="headerlink" title="1.4 编译"></a>1.4 编译</h2><p>![编译方法](QuartusCLC电路——74138原理图绘制及仿真/2021-09-29 (2)_LI.jpg)</p>
-<h2 id="1-5-创建vwf文件"><a href="#1-5-创建vwf文件" class="headerlink" title="1.5 创建vwf文件"></a>1.5 创建vwf文件</h2><p>find node，引入所有端口</p>
-<p>A 设置波形为时钟信号，周期200ns</p>
-<p>B 设置波形为时钟信号，周期100ns</p>
-<p>CI 设置波形为时钟信号，周期50ns</p>
-<p>保存文件</p>
-<blockquote>
-<p>注意：文件名的首字母不能为数字，否则会报错</p>
-</blockquote>
-<h1 id="2-电路仿真"><a href="#2-电路仿真" class="headerlink" title="2. 电路仿真"></a>2. 电路仿真</h1><h2 id="2-1-功能仿真"><a href="#2-1-功能仿真" class="headerlink" title="2.1 功能仿真"></a>2.1 功能仿真</h2><p>![波形图仿真](QuartusCLC电路——74138原理图绘制及仿真/2021-09-29 (3).png)</p>
-<p>点击Simulation-&gt;Simulation settings,按照教学视频中的所教授的方法消除bug</p>
-<p>然后点击Simulation-&gt; Run Functional Simulation,开始功能仿真</p>
-<p>开始后可能出现如下问题</p>
-<p>![-novopt option](QuartusCLC电路——74138原理图绘制及仿真/2021-09-29 (4).png)</p>
-<p>报错信息</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"># vsim -novopt -c -t 1ps -L cycloneive_ver -L altera_ver -L altera_mf_ver -L 220model_ver -L sgate_ver -L altera_lnsim_ver work.my_74138_vlg_vec_tst</span><br><span class="line"># Start time: 23:12:01 on Sep 29,2021</span><br><span class="line"># ** Error (suppressible):(vsim-12110) The -novopt option has no effect on this product. -novopt option is now deprecated and will be removed in future releases.</span><br><span class="line"># Error loading design</span><br><span class="line">Error loading design</span><br><span class="line"></span><br><span class="line"># End time: 23:12:01 on Sep 29,2021, Elapsed time: 0:00:00</span><br><span class="line"># Errors: 1, Warnings: 0</span><br><span class="line"></span><br><span class="line">Error.</span><br></pre></td></tr></table></figure>
+<p>rtl 代码（full_adder1.v）如下：</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">module</span> full_adder1(</span><br><span class="line">    <span class="keyword">input</span>    Ai, Bi, Ci,</span><br><span class="line">    <span class="keyword">output</span>   So, Co);</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">assign</span> So = Ai ^ Bi ^ Ci ;</span><br><span class="line">    <span class="keyword">assign</span> Co = (Ai &amp; Bi) | (Ci &amp; (Ai | Bi));</span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
 
-<p>这是因为novopt功能在Quartus Prime早期版本中已经中不被支持了，所以应当关闭novopt功能</p>
-<p>我们打开Simulation-&gt;Simulation-settings, 修改Verilog HDL文件中的如下代码行</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vsim -novopt -c -t 1ps -L cycloneive_ver -L altera_ver -L altera_mf_ver -L 220model_ver -L sgate_ver -L altera_lnsim_ver work.my_74138_vlg_vec_tst</span><br></pre></td></tr></table></figure>
+<p>当然，更为贴近加法器的代码描述可以为：</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">module</span> full_adder1(</span><br><span class="line">    <span class="keyword">input</span>    Ai, Bi, Ci</span><br><span class="line">    <span class="keyword">output</span>   So, Co);</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">assign</span> &#123;Co, So&#125; = Ai + Bi + Ci ;</span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
 
-<p>删除如下option</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-novopt</span><br></pre></td></tr></table></figure>
+<p>testbench（test.sv）参考如下：</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">`<span class="meta-keyword">timescale</span> 1ns/1ns</span></span><br><span class="line"> </span><br><span class="line"><span class="keyword">module</span> test ;</span><br><span class="line">    <span class="keyword">reg</span> Ai, Bi, Ci ;</span><br><span class="line">    <span class="keyword">wire</span> So, Co ;</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">initial</span> <span class="keyword">begin</span></span><br><span class="line">        &#123;Ai, Bi, Ci&#125;      = <span class="number">3&#x27;b0</span>;</span><br><span class="line">        <span class="keyword">forever</span> <span class="keyword">begin</span></span><br><span class="line">            #<span class="number">10</span> ;</span><br><span class="line">            &#123;Ai, Bi, Ci&#125;      = &#123;Ai, Bi, Ci&#125; + <span class="number">1&#x27;b1</span>;</span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"> </span><br><span class="line">    full_adder1  u_adder(</span><br><span class="line">        <span class="variable">.Ai</span>      (Ai),</span><br><span class="line">        <span class="variable">.Bi</span>      (Bi),</span><br><span class="line">        <span class="variable">.Ci</span>      (Ci),</span><br><span class="line">        <span class="variable">.So</span>      (So),</span><br><span class="line">        <span class="variable">.Co</span>      (Co));</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">initial</span> <span class="keyword">begin</span></span><br><span class="line">        <span class="keyword">forever</span> <span class="keyword">begin</span></span><br><span class="line">            #<span class="number">100</span>;</span><br><span class="line">            <span class="comment">//$display(&quot;---gyc---%d&quot;, $time);</span></span><br><span class="line">            <span class="keyword">if</span> (<span class="built_in">$time</span> &gt;= <span class="number">1000</span>) <span class="keyword">begin</span></span><br><span class="line">            <span class="built_in">$finish</span> ;</span><br><span class="line">            <span class="keyword">end</span></span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"> </span><br><span class="line"> <span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
 
-<h2 id="2-2-时序仿真"><a href="#2-2-时序仿真" class="headerlink" title="2.2 时序仿真"></a>2.2 时序仿真</h2><p>![时序仿真](QuartusCLC电路——74138原理图绘制及仿真/2021-09-29 (1).png)</p>
-<p>同功能仿真</p>
-<p>点击Simulation-&gt;Run Timing Simulation</p>
-<p>同样可能出现novopt功能的错误，在Simulation-&gt;Simulation Settings-&gt;Timing Simulation Settings 删除Verilog文件中的相同行中的novopt option</p>
 
       
 
@@ -708,22 +482,11 @@
     <div class="article-info article-info-index">
       
       
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">数电</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
       
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2021/09/29/QuartusCLC%E7%94%B5%E8%B7%AF%E2%80%94%E2%80%9474138%E5%8E%9F%E7%90%86%E5%9B%BE%E7%BB%98%E5%88%B6%E5%8F%8A%E4%BB%BF%E7%9C%9F/">展开全文 >></a>
+          <a class="article-more-a" href="/2021/11/02/Day19-Verilog%E8%BF%9E%E7%BB%AD%E8%B5%8B%E5%80%BC/">展开全文 >></a>
         </p>
       
 
@@ -753,33 +516,46 @@
 
 
   
-    <article id="post-路由器、交换机、防火墙、无线AP基础理论知识总结" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-Day18-Verilog编译指令" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2021/08/14/%E8%B7%AF%E7%94%B1%E5%99%A8%E3%80%81%E4%BA%A4%E6%8D%A2%E6%9C%BA%E3%80%81%E9%98%B2%E7%81%AB%E5%A2%99%E3%80%81%E6%97%A0%E7%BA%BFAP%E5%9F%BA%E7%A1%80%E7%90%86%E8%AE%BA%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/">路由器、交换机、防火墙、无线AP基础理论知识总结</a>
+      <a class="article-title" href="/2021/11/01/Day18-Verilog%E7%BC%96%E8%AF%91%E6%8C%87%E4%BB%A4/">Day18-Verilog编译指令</a>
     </h1>
   
 
         
-        <a href="/2021/08/14/%E8%B7%AF%E7%94%B1%E5%99%A8%E3%80%81%E4%BA%A4%E6%8D%A2%E6%9C%BA%E3%80%81%E9%98%B2%E7%81%AB%E5%A2%99%E3%80%81%E6%97%A0%E7%BA%BFAP%E5%9F%BA%E7%A1%80%E7%90%86%E8%AE%BA%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/" class="archive-article-date">
-  	<time datetime="2021-08-14T15:09:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-08-14</time>
+        <a href="/2021/11/01/Day18-Verilog%E7%BC%96%E8%AF%91%E6%8C%87%E4%BB%A4/" class="archive-article-date">
+  	<time datetime="2021-11-01T10:20:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-11-01</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><strong>路由器&amp;交换机&amp;防火墙&amp;无线AP基础理论知识总结</strong><br>Ethernet口不能直接配IP地址，需要划分VLAN不同网段还需要加trunk。<br>配完命令需要save 保存到内存中，导出保存配置是存在硬盘中。</p>
-<p><strong>1.路由器</strong><br>原理：网关设备，工作在OSI网络层对不同的网络之间的数据包进行存储、分组转发处理，其主要就是在不同的逻辑分开网络。在网络通信中，路由器具有判断网络地址以及选择IP路径的作用，可以在多个网络环境中，构建灵活的链接系统，通过不同的数据分组以及介质访问方式对各个子网进行链接。路由器在操作中仅接受源站或者其他相关路由器传递的信息，是一种基于网络层的互联设备。<br>传输介质<br>本地路由器：光纤、同轴电缆、双绞线<br>远程路由器：电话线要配调制解调器，无线要通过无线接收机、发射机。<br>启动过程<br>作为路由器来讲，也有一个类似于我们PC系统中BIOS一样作用的部分，叫做MiniIOS。MiniIOS可以使我们在路由器的FLASH中不存在ISO时，先引导起来，进入恢复模式，来使用TFTP或X-MODEM等方式去给FLASH中导入ISO文件。所以，路由器的启动过程应该是这样的：<br>路由器在加电后首先会进行POST，Power On Self Test (上电自检，对硬件进行检测的过程)。<br>POST完成后，首先读取ROM里的BootStrap程序进行初步引导。<br>初步引导完成后，尝试定位并读取完整的ISO镜像文件。在这里，路由器将会首先在FLASH中查找ISO文件，如果找到了ISO文件的话，那么读取ISO文件，引导路由器。<br>如果在FLASH中没有找到ISO文件的话，那么路由器将会进入BOOT模式，在BOOT模式下可以使用TFTP上的ISO文件。或者使用TFTP/X-MODEM来给路由器的FLASH中传一个ISO文件(一般我们把这个过程叫做灌ISO)。传输完毕后重新启动路由器，路由器就可以正常启动到CLI模式。<br>当路由器初始化完成ISO文件后，就会开始在NVRAM中查找STARTUP-CONFIG文件，STARTUP-CONFIG叫做启动配置文件。该文件里保存了我们对路由器所做的所有的配置和修改。当路由器找到了这个文件后，路由器就会加载该文件里的所有配置，并且根据配置来学习、生成、维护路由表，并将所有的配置加载到RAM(路由器的内存)里后，进入用户模式，最终完成启动过程。<br>如果在NVRAM里没有STARTUP-CONFIG文件，则路由器会进入询问配置模式，也就是俗称的问答配置模式，在该模式下所有关于路由器的配置都可以以问答的形式进行配置。不过一般情况下我们基本上是不用这样的模式的。我们一般都会进入CLI(Comman Line Interface)命令行模式后对路由器进行配置。<br>作用功能<br>（1）实现IP、TCP、UDP、ICMP等网络的互连。<br>（2）对数据进行处理。收发数据包，具有对数据的分组过滤、复用、加密、压缩及防护墙等各项功能。<br>（3）依据路由表的信息，对数据包下一传输目的地进行选择。<br>（4） 进行外部网关协议和其他自制域之间拓扑信息的交换。<br>（5） 实现网络管理和系统支持功能。<br>分类<br>（1）功能上可以划分为：骨干级、企业级和接入级路由器。骨干级路由器数据吐量较大且重要，是企业级网络实现互连的关键。骨干级路由器要求性能的高速度及高可靠性。 网络通常采用热备份、双电源和双数据通路等技术来确保其可靠性。企业级路由器连接对象为许多终端系统，简单且数据流量较小。 [5]<br>（2）结构上可以划分为：模块化和非模块化路由器。 模块化路由器可以实现路由器的灵活配置，适应企业的业务需求；非模块化路由器只能提供固定单一的端口。通常情况下，高端路由器是模块化结构，低端路由器是非模块化结构的。 [5]<br>（3）按所处网络位置划分为“边界路由器”和“中间节点路由器”。在广域网范围内的路由器按其转发报文的性能可以分为两种类型，即边界路由器和中间节点路由器。<br><strong>VPN技术</strong><br>VPN（虚拟专用网）是路由器技术中最重要的一种。VPN 指在建筑在上能够进行自我管理的专用网络。在上，VPN用户可以控制自己与其他使用者之间的联系，可以同时支持拨号的用户使用。成功的VPN具备这些特点：安全保障、服务质量保障、具备可扩充性、灵活性和可管理性。 [5]<br>路由器的主要技术：背板结构、移动IP技术、IPV6技术、vpn技术、VPRN技术、QoS技术。<br>安全隐患：无线网络路由隐蔽性不高、存在窃听网络通信问题、拒绝服务攻击。</p>
-<p><strong>2.交换机</strong><br>交换机定义：工作在数据链路层，同个子网网段之间数据的传输。作用：传输信息放大，与路由器是最优路径选择。工作在局域网中。<br>交换机拥有一条很高带宽的背部总线和内部交换矩阵。交换机的所有的端口都挂接在这条背部总线上，控制电路收到数据包以后，处理端口会查找内存中的地址对照表以确定目的MAC（网卡的硬件地址）的NIC（网卡）挂接在哪个端口上，通过内部交换矩阵迅速将数据包传送到目的端口，目的MAC若不存在，广播到所有的端口，接收端口回应后交换机会“学习”新的MAC地址，并把它添加入内部MAC地址表中。使用交换机也可以把网络“分段”，通过对照IP地址表，交换机只允许必要的网络流量通过交换机。通过交换机的过滤和转发，可以有效的减少冲突域。<br>交换机工作于OSI参考模型的第二层，即数据链路层。交换机内部的CPU会在每个端口成功连接时，通过将MAC地址和端口对应，形成一张MAC表。在今后的通讯中，发往该MAC地址的数据包将仅送往其对应的端口，而不是所有的端口。因此，交换机可用于划分数据链路层广播，即冲突域；但它不能划分网络层广播，即广播域。<br>交换机分类：广域网交换机和局域网交换机。广域网交换机主要应用于电信领域，提供通信用的基础平台。而局域网交换机则应用于局域网络，用于连接终端设备，如PC机及网络打印机等。<br>传输介质和传输速度：以太网交换机、快速以太网交换机、千兆以太网交换机、FDDI交换机、ATM交换机和令牌环交换机等。<br>规模上：企业级交换机都是机架式，部门级交换机可以是机架式（插槽数较少），也可以是固定配置式，而工作组级交换机为固定配置式（功能较为简单）。另一方面，从应用的规模来看，作为骨干交换机时，支持500个信息点以上大型企业应用的交换机为企业级交换机，支持300个信息点以下中型企业的交换机为部门级交换机，而支持100个信息点以内的交换机为工作组级交换机。<br>交换机：以太网交换（二层交换机、三层交换机、四层交换机），光交换机<br>光交换机<br>光交换是人们正在研制的下一代交换技术。所有的交换技术都是基于电信号的，即使是光纤交换机也是先将光信号转为电信号，经过交换处理后，再转回光信号发到另一根光纤。由于光电转换速率较低，同时电路的处理速度存在物理学上的瓶颈，因此人们希望设计出一种无需经过光电转换的“光交换机”，其内部不是电路而是光路，逻辑原件不是开关电路而是开关光路。这样将大大提高交换机的处理速率。 [3]<br>远程配置<br>交换机除了可以通过“Console”端口与计算机直接连接，还可以通过普通端口连接。此时配置交换机就不能用本地配置，而是需要通过Telnet或者Web浏览器的方式实现交换机配置。具体配置方法如下：<br>1、Telnet<br>Telnet协议是一种远程访问协议，可以通过它登录到交换机进行配置。<br>假设交换机IP为：192.168.0.1，通过Telnet进行交换机配置只需两步： [3]<br>第1步，单击开始，运行，输入“Telnet 192.168.0.1”<br>第2步，输入好后，单击“确定”按钮，或单击回车键，建立与远程交换机的连接。然后，就可以根据实际需要对该交换机进行相应的配置和管理了。<br>2、Web<br>通过Web界面，可以对交换机设置，方法如下：<br>第1步，运行Web浏览器，在地址栏中输入交换机IP，回车，弹出如下对话框。<br>第2步，输入正确的用户名和密码。<br>第3步，连接建立，可进入交换机配置系统。<br>第4步，根据提示进行交换机设置和参数修改。 [3]<br>交换机的主要功能包括物理编址、网络拓扑结构、错误校验、帧序列以及流控。交换机还具备了一些新的功能，如对VLAN（虚拟局域网）的支持、对链路汇聚的支持，甚至有的还具有防火墙的功能。</p>
-<p>3.无线局域网AP、AC<br>无线AP（Access Point）：即无线接入点，它用于无线网络的无线交换机，也是无线网络的核心。无线AP是移动计算机用户进入有线网络的接入点，主要用于宽带家庭、大楼内部以及园区内部，可以覆盖几十米至上百米。无线AP（又称会话点或存取桥接器）是一个包含很广的名称，它不仅包含单纯性无线接入点（无线AP），同样也是无线路由器（含无线网关、无线网桥）等类设备的统称。<br>无线接入点（AP）是无线局域网的一种典型应用。AP是Access Point的简称，就是所谓的“无线访问节点”，无线AP是无线网和有线网之间沟通的桥梁，是组建无线局域网（WLAN）的核心设备。它主要是提供无线工作站和有线局域网之间的互相访问，这样，在AP信号覆盖范围内的无线工作站可以通过它进行相互通信，没有AP基本上就无法组建真正意义上可访问Internet的WLAN。AP在WLAN中就相当于发射基站在移动通信网络中的角色 [2] 。<br>简介<br>在无线网络中，AP就相当于有线网络的集线器，它能够把各个无线客户端连接起来，无线客户端所使用的网卡是无线网卡，传输介质是空气（电磁波）。在逻辑上，它是一个无线单元的中心点，该单元内的所有无线信号都要通过它才能进行交换。AP是无线局域网基本模式中必不可少的设备，虽然只使用无线网卡而不使用AP也能组成一个点对点模式的无线局域网，但这样的无线局域网多少有些特殊，它只适用于临时性的无线连接。使用AP后不仅可以得到永久性的无线连接服务，而且能集中管理用户并大大提高无线网的安全性。通俗地讲，无线AP是无线网和有线网之间沟通的桥梁。由于无线AP的覆盖范围是一个向外扩散的圆形区域，因此，应当尽量把无线AP放置在无线网络的中心位置，而且各无线客户端与无线AP的直线距离最好不要超过30m，以避免因通信信号衰减过多而导致通信失败。<br>无线接入点(AP)设备用作无线基站，主要是用来连接无线网络及有线网络的桥接器。利用这种接入点AP，可整合有线及无线网络 [3] 。产品遵循IEEE802．11及IEEE802．11b，可支持11Mbit/s、5．5Mbit/s、2Mbit/s和1Mbit/s，亦支持漫游功能，同时也支持ESSID及WEP的加密功能，可防止未经授权的不当接人。增强型AP设备还支持同一AP下用户的隔离，而且支持以太网线供电功能。AP主要技术参数如下。<br>(1)标准：IEEE802．11b(无线局域网)、IEEE802．3(以太网)；<br>(2)频段：2400～2483．5MHz与ISM频段公用；<br>(3)调制技术：直接序列扩频；<br>(4)数据速率：1Mbit/s DBPSK，2Mbit/s DPQSK，5．5Mbit/s CCK，11Mbit/s CCK；<br>(5)子信道数量：13条；<br>(6)传播范围(11Mbit/s)：办公室环境35～100m，开放环境100～300m；<br>(7)数据安全：64位和128位WEP加密；<br>(8)接收机灵敏度：<br>1Mbit/s传输率下接收灵敏度为-92dBm；<br>2Mbit/s传输率下接收灵敏度为-90dBm；<br>5.5Mbit/s传输率下接收灵敏度为-87dBm；<br>11Mbit/s传输率下接收灵敏度为一84dBm；<br>天线类型：双极化天线(2dB增益)。<br>功能<br>无线路由器其实就是无线AP+路由功能，很多的无线路由器都拥有AP功能。如果你家是ADSL或小区宽带，应该选择无线路由而不是无线AP来共享网络，如果你家有路由器了，买个无线AP就行了，对于一般的家庭用户笔者强烈推荐选择无线路由器。<br>在SOHO办公环境中，一个无线路由就可以满足需求了。通过整合的宽带接入路由器和无线AP功能，它可以轻松实现无线网络的连接。无线路由器一般包括了网络地址转换(NAT)协议，支持网络连接共享，这对于soho办公来说非常有用。<br>无线路由器有基本的防火墙或者信息包过滤器来防止端口扫描软件和其他针对宽带连接的攻击。另外无线路由器的四个有线端口也很实用，它可以连接几台有线的PC，这对于管理路由器或共享打印机都是非常有用的。</p>
-<p><strong>4.防火墙</strong><br>防火墙技术是通过有机结合各类用于安全管理与筛选的软件和硬件设备，帮助计算机网络于其内、外网之间构建一道相对隔绝的保护屏障，以保护用户资料与信息安全性的一种技术。 [1]<br>防火墙技术的功能主要在于及时发现并处理计算机网络运行时可能存在的安全风险、数据传输等问题，其中处理措施包括隔离与保护，同时可对计算机网络安全当中的各项操作实施记录与检测，以确保计算机网络运行的安全性，保障用户资料与信息的完整性，为用户提供更好、更安全的计算机网络使用体验。<br>在逻辑上，防火墙是一个分离器，一个限制器，也是一个分析器，有效地监控了内部网和Internet之间的任何活动，保证了内部网络的安全。<br>防火墙功能：<br>(1)网络安全的屏障<br>(2)强化网络安全策略<br>(3)监控审计<br>(4)防止内部信息的外泄<br>(5)日志记录与事件通知<br>重要性<br>1、记录计算机网络之中的数据信息<br>2、防止工作人员访问存在安全隐患的网站<br>3、控制不安全服务<br>意义和特征<br>(1)数据必经之地<br>典型的防火墙体系网络结构一端连接企事业单位内部的局域网，而另一端则连接着互联网。所有的内、外部网络之间的通信都要经过防火墙，只有符合安全策略的数据流才能通过防火墙。<br>(2)网络流量的合法性<br>(3)抗攻击免疫力</p>
-<p>主要类型：过滤型防火墙、应用代理类型防火墙、复合型。<br>关键技术：包过滤技术、加密技术、防病毒技术、代理服务器。<br>部署方式：桥接式、网关模式、NAT模式、高可靠性设计。<br>具体应用<br>1、内网中的防火墙技术<br>防火墙在内网中的设定位置是比较固定的，一般将其设置在服务器的入口处，通过对外部的访问者进行控制，从而达到保护内部网络的作用，而处于内部网络的用户，可以根据自己的需求明确权限规划，使用户可以访问规划内的路径。总的来说，内网中的防火墙主要起到以下两个作用：一是认证应用，内网中的多项行为具有远程的特点，只有在约束的情况下，通过相关认证才能进行；二是记录访问记录，避免自身的攻击，形成安全策略。 [3]<br>2、外网中的防火墙技术<br>应用于外网中的防火墙，主要发挥其防范作用，外网在防火墙授权的情况下，才可以进入内网。针对外网布设防火墙时，必须保障全面性，促使外网的所有网络活动均可在防火墙的监视下，如果外网出现非法入侵，防火墙则可主动拒绝为外网提供服务。基于防火墙的作用下，内网对于外网而言，处于完全封闭的状态，外网无法解析到内网的任何信息。防火墙成为外网进入内网的唯一途径，所以防火墙能够详细记录外网活动，汇总成日志，防火墙通过分析日常日志，判断外网行为是否具有攻击特性。<br>未来趋势<br>随着网络技术的不断发展，防火墙相关产品和技术也在不断进步。 [7]<br>（1）防火墙的产品发展趋势<br>目前，就防火墙产品而言，新的产品有：智能防火墙、分布式防火墙和网络产品的系统化应用等。 [7]<br>智能防火墙：在防火墙产品中加入人工智能识别技术，不但提高防火墙的安全防范能力，而且由于防火墙具有自学习功能，可以防范来自网络的最新型攻击。 [7]<br>分布式防火墙：一种全新的防火墙体系结构。网络防火墙、主机防火墙和管理中心是分布式防火墙的构成组件。传统防火墙实际上是在网络边缘上实现防护的防火墙，而分布式防火墙则在网络内部增加了另外一层安全防护。分布式防火墙的优点有：支持移动计算；支持加密和认证功能，与网络拓扑无关等。 [7]<br>网络产品的系统化应用：主要是指某些厂商的安全产品直接与防火墙进行融合，打包销售。另外，有些厂商的产品之间虽然各自独立，当各个产品之间可以进行通信。 [7]<br>（2）防火墙的技术发展趋势<br>包过滤技术作为防火墙技术中最核心的技术之一，自身具有比较明显的缺点：不具备身份验证机制和用户角色配置功能。因此，一些产品开发商就将AAA认证系统集成到防火墙中，确保防火墙具备支持基于用户角色的安全策略功能。多级过滤技术就是在防火墙中设置多层过滤规则。在网络层，利用分组过滤技术拦截所有假冒的IP源地址和源路由分组；根据过滤规则，传输层拦截所有禁止出/入的协议和数据包；在应用层，利用FTP、SMTP等网关对各种Internet的服务进行监测和控制。 [7]<br>综合来讲，上述技术都是对已有防火墙技术的有效补充，是提升已有防火墙技术的弥补措施。 [7]<br>（3）防火墙的体系结构发展趋势<br>随着软硬件处理能力、网络带宽的不断提升，防火墙的数据处理能力也在得到提升。尤其近几年多媒体流技术（在线视频）的发展，要求防火墙的处理时延必须越来越小。基于以上业务需求，防火墙制造商开发了基于网络处理器和基于ASIC(ApplicationSpecificIntegratedCircuits,专用集成电路)的防火墙产品。基于网络处理器的防火墙本质上还是依赖于软件系统的解决方案，因此软件性能的好坏直接影响防火墙的性能。而基于ASIC的防火墙产品具有定制化、可编程的硬件芯片以及与之相匹配的软件系统，因此性能的优越性不言而喻，可以很好地满足客户对系统灵活性和高性能的要求。 [7]<br>————————————————<br>版权声明：本文为CSDN博主「weixin_42099301」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。<br>原文链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_42099301/article/details/105856089">https://blog.csdn.net/weixin_42099301/article/details/105856089</a></p>
+        <h3 id="default-nettype"><a href="#default-nettype" class="headerlink" title="`default_nettype"></a>`default_nettype</h3><p>该指令用于为隐式的线网变量指定为线网类型，即将没有被声明的连线定义为线网类型。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">`default_nettype wand </span><br></pre></td></tr></table></figure>
 
+<p>该实例定义的缺省的线网为线与类型。因此，如果在此指令后面的任何模块中的连线没有说明，那么该线网被假定为线与类型。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">`default_nettype none</span><br></pre></td></tr></table></figure>
+
+<p>该实例定义后，将不再自动产生 wire 型变量。</p>
+<p>例如下面第一种写法编译时不会报 Error，第二种写法编译将不会通过。</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//Z1 无定义就使用，系统默认Z1为wire型变量，有 Warning 无 Error</span></span><br><span class="line"><span class="keyword">module</span> test_and(</span><br><span class="line">        <span class="keyword">input</span>      A,</span><br><span class="line">        <span class="keyword">input</span>      B,</span><br><span class="line">        <span class="keyword">output</span>     Z);</span><br><span class="line">    <span class="keyword">assign</span> Z1 = A &amp; B ;  </span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//Z1无定义就使用，由于编译指令的存在，系统会报Error，从而检查出书写错误</span></span><br><span class="line"><span class="meta">`<span class="meta-keyword">default_nettype</span> none</span></span><br><span class="line"><span class="keyword">module</span> test_and(</span><br><span class="line">        <span class="keyword">input</span>      A,</span><br><span class="line">        <span class="keyword">input</span>      B,</span><br><span class="line">        <span class="keyword">output</span>     Z);</span><br><span class="line">    <span class="keyword">assign</span> Z1 = A &amp; B ;  </span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="resetall"><a href="#resetall" class="headerlink" title="`resetall"></a>`resetall</h3><p>该编译器指令将所有的编译指令重新设置为缺省值。</p>
+<p><strong>`resetall</strong> 可以使得缺省连线类型为线网类型。</p>
+<p>当 <strong><code>resetall** 加到模块最后时，可以将当前的 **</code>timescale</strong> 取消防止进一步传递，只保证当前的 **<code>timescale** 在局部有效，避免 </code>timescale 的错误继承。</p>
+<h3 id="celldefine"><a href="#celldefine" class="headerlink" title="`celldefine,"></a>`celldefine,</h3><h3 id="endcelldefine"><a href="#endcelldefine" class="headerlink" title="`endcelldefine"></a>`endcelldefine</h3><p>这两个程序指令用于将模块标记为单元模块，他们包含模块的定义。例如一些与、或、非门，一些 PLL 单元，PAD 模型，以及一些 Analog IP 等。</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">`<span class="meta-keyword">celldefine</span></span></span><br><span class="line"><span class="keyword">module</span> (</span><br><span class="line">    <span class="keyword">input</span>      clk,</span><br><span class="line">    <span class="keyword">input</span>      rst,</span><br><span class="line">    <span class="keyword">output</span>     clk_pll,</span><br><span class="line">    <span class="keyword">output</span>     flag);</span><br><span class="line">        ……</span><br><span class="line"><span class="keyword">endmodule</span></span><br><span class="line"><span class="meta">`<span class="meta-keyword">endcelldefine</span></span></span><br></pre></td></tr></table></figure>
+
+<h3 id="unconnected-drive"><a href="#unconnected-drive" class="headerlink" title="`unconnected_drive,"></a>`unconnected_drive,</h3><h3 id="nounconnected-drive"><a href="#nounconnected-drive" class="headerlink" title="`nounconnected_drive"></a>`nounconnected_drive</h3><p>在模块实例化中，出现在这两个编译指令间的任何未连接的输入端口，为正偏电路状态或者为反偏电路状态。</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">`<span class="meta-keyword">unconnected_drive</span> pull1</span></span><br><span class="line">. . .</span><br><span class="line"> / *在这两个程序指令间的所有未连接的输入端口为正偏电路状态（连接到高电平） * /</span><br><span class="line"><span class="meta">`<span class="meta-keyword">nounconnected_drive</span></span></span><br><span class="line"><span class="meta">`<span class="meta-keyword">unconnected_drive</span> pull0</span></span><br><span class="line">. . .</span><br><span class="line"> / *在这两个程序指令间的所有未连接的输入端口为反偏电路状态（连接到低电平） * /</span><br><span class="line"><span class="meta">`<span class="meta-keyword">nounconnected_drive</span> </span></span><br><span class="line"> </span><br></pre></td></tr></table></figure>
       
 
       
@@ -787,22 +563,11 @@
     <div class="article-info article-info-index">
       
       
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">通信</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
       
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2021/08/14/%E8%B7%AF%E7%94%B1%E5%99%A8%E3%80%81%E4%BA%A4%E6%8D%A2%E6%9C%BA%E3%80%81%E9%98%B2%E7%81%AB%E5%A2%99%E3%80%81%E6%97%A0%E7%BA%BFAP%E5%9F%BA%E7%A1%80%E7%90%86%E8%AE%BA%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/">展开全文 >></a>
+          <a class="article-more-a" href="/2021/11/01/Day18-Verilog%E7%BC%96%E8%AF%91%E6%8C%87%E4%BB%A4/">展开全文 >></a>
         </p>
       
 
@@ -832,31 +597,51 @@
 
 
   
-    <article id="post-商品的二因素——使用价值与价值（价值实体与价值量）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-Day17-Verilog编译指令" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2021/05/25/%E5%95%86%E5%93%81%E7%9A%84%E4%BA%8C%E5%9B%A0%E7%B4%A0%E2%80%94%E2%80%94%E4%BD%BF%E7%94%A8%E4%BB%B7%E5%80%BC%E4%B8%8E%E4%BB%B7%E5%80%BC%EF%BC%88%E4%BB%B7%E5%80%BC%E5%AE%9E%E4%BD%93%E4%B8%8E%E4%BB%B7%E5%80%BC%E9%87%8F%EF%BC%89/">商品的二因素——使用价值与价值（价值实体与价值量）</a>
+      <a class="article-title" href="/2021/10/31/Day17-Verilog%E7%BC%96%E8%AF%91%E6%8C%87%E4%BB%A4/">Day17-Verilog编译指令</a>
     </h1>
   
 
         
-        <a href="/2021/05/25/%E5%95%86%E5%93%81%E7%9A%84%E4%BA%8C%E5%9B%A0%E7%B4%A0%E2%80%94%E2%80%94%E4%BD%BF%E7%94%A8%E4%BB%B7%E5%80%BC%E4%B8%8E%E4%BB%B7%E5%80%BC%EF%BC%88%E4%BB%B7%E5%80%BC%E5%AE%9E%E4%BD%93%E4%B8%8E%E4%BB%B7%E5%80%BC%E9%87%8F%EF%BC%89/" class="archive-article-date">
-  	<time datetime="2021-05-25T14:52:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-05-25</time>
+        <a href="/2021/10/31/Day17-Verilog%E7%BC%96%E8%AF%91%E6%8C%87%E4%BB%A4/" class="archive-article-date">
+  	<time datetime="2021-10-31T10:18:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-31</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>​        劳动生产力愈大，则生产某一种物品所必要的劳动时间愈少，，结晶于该物品内的劳动力愈小，该物品的价值也愈小。繁殖，劳动生产力愈小，则生产一种物品所必要的劳动时间愈多，该物品的价值也愈大。所以，商品的价值量与实现在商品体内的劳动的量成正比，与实现在商品体内的劳动的生产力成反比。</p>
-<p>​        有使用价值之物，可以无价值。对人类有效用但非起源于劳动之物，便是这样，如空气。。。。。。</p>
-<p>​        有效用又为人类劳动生产物之物，可以不是商品。以自身劳动满足自身欲望的人，即是只创造使用价值，而不创造商品。</p>
-<p>​        要生产商品，不仅要生产使用价值，且要生产为他人的使用价值——即社会的使用价值。</p>
-<p>​        任一物，若不是有用物，必不能有价值。</p>
+        <h3 id="include"><a href="#include" class="headerlink" title="`include"></a>`include</h3><p>使用 <strong>`include</strong> 可以在编译时将一个 Verilog 文件内嵌到另一个 Verilog 文件中，作用类似于 C 语言中的 #include 结构。该指令通常用于将全局或公用的头文件包含在设计文件里。</p>
+<p>文件路径既可以使用相对路径，也可以使用绝对路径。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">`include         &quot;../../param.v&quot;</span><br><span class="line">`include         &quot;header.v&quot;</span><br></pre></td></tr></table></figure>
+
+<h3 id="timescale"><a href="#timescale" class="headerlink" title="`timescale"></a>`timescale</h3><p>在 Verilog 模型中，时延有具体的单位时间表述，并用 <strong>`timescale</strong> 编译指令将时间单位与实际时间相关联。</p>
+<p>该指令用于定义时延、仿真的单位和精度，格式为：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">`timescale      time_unit / time_precision</span><br></pre></td></tr></table></figure>
+
+<p>time_unit 表示时间单位，time_precision 表示时间精度，它们均是由数字以及单位 s（秒），ms（毫秒），us（微妙），ns（纳秒），ps（皮秒）和 fs（飞秒）组成。时间精度可以和时间单位一样，但是时间精度大小不能超过时间单位大小，例如下面例子中，输出端 Z 会延迟 5.21ns 输出 A&amp;B 的结果。</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">`<span class="meta-keyword">timescale</span> 1ns/100ps    //时间单位为1ns，精度为100ps，合法</span></span><br><span class="line"><span class="comment">//`timescale 100ps/1ns  //不合法</span></span><br><span class="line"><span class="keyword">module</span> AndFunc(Z, A, B);</span><br><span class="line">    <span class="keyword">output</span> Z;</span><br><span class="line">    <span class="keyword">input</span> A, B ;</span><br><span class="line">    <span class="keyword">assign</span> #<span class="number">5</span><span class="variable">.207</span> Z = A &amp; B</span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
+
+<p>在编译过程中，**<code>timescale** 指令会影响后面所有模块中的时延值，直至遇到另一个 **</code>timescale** 指令或 <strong>`resetall</strong> 指令。</p>
+<p>由于在 Verilog 中没有默认的 <strong><code>timescale**，如果没有指定 **</code>timescale</strong>，Verilog 模块就有会继承前面编译模块的 <strong>`timescale</strong> 参数。有可能导致设计出错。</p>
+<p>如果一个设计中的多个模块都带有 <strong>`timescale</strong> 时，模拟器总是定位在所有模块的最小时延精度上，并且所有时延都相应地换算为最小时延精度，时延单位并不受影响。例如:</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">`<span class="meta-keyword">timescale</span> 10ns/1ns      </span></span><br><span class="line"><span class="keyword">module</span> test;</span><br><span class="line">    <span class="keyword">reg</span>        A, B ;</span><br><span class="line">    <span class="keyword">wire</span>       OUTZ ;</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">initial</span> <span class="keyword">begin</span></span><br><span class="line">        A     = <span class="number">1</span>;</span><br><span class="line">        B     = <span class="number">0</span>;</span><br><span class="line">        # <span class="number">1</span><span class="variable">.28</span>    B = <span class="number">1</span>;</span><br><span class="line">        # <span class="number">3</span><span class="variable">.1</span>     A = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"> </span><br><span class="line">    AndFunc        u_and(OUTZ, A, B) ;</span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
+
+<p>在模块 AndFunc 中，5.207 对应 5.21ns。</p>
+<p>在模块 test 中，1.28 对应 13ns，3.1 对应 31ns。</p>
+<p>但是，当仿真 test 时，由于 AndFunc 中的最小精度为 100ps，因此 test 中的时延精度将进行重新调整。13ns 将对应 130<em>100ps，31ns 将对应 310</em>100ps。仿真时，时延精度也会使用 100ps。仿真时间单位大小没有影响。</p>
+<p>如果有并行子模块，子模块间的 `timescale 并不会相互影响。</p>
+<p>例如在模块 test 中再例化一个子模块 OrFunc。仿真 test 时，OrFunc 中的 #5.207 延时依然对应 52ns。</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//子模块：</span></span><br><span class="line"><span class="meta">`<span class="meta-keyword">timescale</span> 10ns/1ns      //时间单位为1ns，精度为100ps，合法</span></span><br><span class="line"><span class="keyword">module</span> OrFunc(Z, A, B);</span><br><span class="line">    <span class="keyword">output</span> Z;</span><br><span class="line">    <span class="keyword">input</span> A, B ;</span><br><span class="line">    <span class="keyword">assign</span> #<span class="number">5</span><span class="variable">.207</span> Z = A | B</span><br><span class="line"><span class="keyword">endmodule</span></span><br><span class="line"> </span><br><span class="line"><span class="comment">//顶层模块：</span></span><br><span class="line"><span class="meta">`<span class="meta-keyword">timescale</span> 10ns/1ns      </span></span><br><span class="line"><span class="keyword">module</span> test;</span><br><span class="line">    <span class="keyword">reg</span>        A, B ;</span><br><span class="line">    <span class="keyword">wire</span>       OUTZ ;</span><br><span class="line">    <span class="keyword">wire</span>       OUTX ;</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">initial</span> <span class="keyword">begin</span></span><br><span class="line">        A     = <span class="number">1</span>;</span><br><span class="line">        B     = <span class="number">0</span>;</span><br><span class="line">        # <span class="number">1</span><span class="variable">.28</span>    B = <span class="number">1</span>;</span><br><span class="line">        # <span class="number">3</span><span class="variable">.1</span>     A = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"> </span><br><span class="line">    AndFunc        u_and(OUTZ, A, B) ;</span><br><span class="line">    OrFunc         u_and(OUTX, A, B) ;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
+
+<p>此例中，仿真 test 时，OrFunc 中的 #5.207 延时依然对应 52ns。</p>
+<p><strong>`timescale</strong> 的时间精度设置是会影响仿真时间的。时间精度越小，仿真时占用内存越多，实际使用的仿真时间就越长。所以如果没有必要，应尽量将时间精度设置的大一些。</p>
 
       
 
@@ -865,22 +650,11 @@
     <div class="article-info article-info-index">
       
       
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">资本论</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
       
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2021/05/25/%E5%95%86%E5%93%81%E7%9A%84%E4%BA%8C%E5%9B%A0%E7%B4%A0%E2%80%94%E2%80%94%E4%BD%BF%E7%94%A8%E4%BB%B7%E5%80%BC%E4%B8%8E%E4%BB%B7%E5%80%BC%EF%BC%88%E4%BB%B7%E5%80%BC%E5%AE%9E%E4%BD%93%E4%B8%8E%E4%BB%B7%E5%80%BC%E9%87%8F%EF%BC%89/">展开全文 >></a>
+          <a class="article-more-a" href="/2021/10/31/Day17-Verilog%E7%BC%96%E8%AF%91%E6%8C%87%E4%BB%A4/">展开全文 >></a>
         </p>
       
 
@@ -910,39 +684,47 @@
 
 
   
-    <article id="post-CNN-Explainer" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-Day16-Verilog编译指令" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2021/05/15/CNN-Explainer/">CNN-Explainer</a>
+      <a class="article-title" href="/2021/10/30/Day16-Verilog%E7%BC%96%E8%AF%91%E6%8C%87%E4%BB%A4/">Day16-Verilog编译指令</a>
     </h1>
   
 
         
-        <a href="/2021/05/15/CNN-Explainer/" class="archive-article-date">
-  	<time datetime="2021-05-15T13:42:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-05-15</time>
+        <a href="/2021/10/30/Day16-Verilog%E7%BC%96%E8%AF%91%E6%8C%87%E4%BB%A4/" class="archive-article-date">
+  	<time datetime="2021-10-30T10:14:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-30</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="CNN-Explainer"><a href="#CNN-Explainer" class="headerlink" title="CNN-Explainer"></a>CNN-Explainer</h1><p>在学习使用机器学习时，CNN是绕不开的一个技术，在Github上有一个叫做CNN-Explainer的项目，较为简洁的描述了CNN的工作原理</p>
-<p>我们可以通过网页在线浏览</p>
-<p>也可以clone该项目进行本地浏览</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git clone git@github.com:poloclub/cnn-explainer.git</span><br><span class="line"></span><br><span class="line">#use degit if you don&#x27;t want to download commit histories</span><br><span class="line">degit poloclub/cnn-explainer</span><br></pre></td></tr></table></figure>
+        <p>以反引号 <strong>`</strong> 开始的某些标识符是 Verilog 系统编译指令。</p>
+<p>编译指令为 Verilog 代码的撰写、编译、调试等提供了极大的便利。</p>
+<p>下面介绍下完整的 8 种编译指令，其中前 4 种使用频率较高。</p>
+<h3 id="define"><a href="#define" class="headerlink" title="`define,"></a>`define,</h3><h3 id="undef"><a href="#undef" class="headerlink" title="`undef"></a>`undef</h3><p>在编译阶段，**`define** 用于文本替换，类似于 C 语言中的 <strong>#define</strong>。</p>
+<p>一旦 <strong>`define</strong> 指令被编译，其在整个编译过程中都会有效。例如，在一个文件中定义：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">`define    DATA_DW     32</span><br></pre></td></tr></table></figure>
 
-<p>cd到CNN-Explainer安装依赖</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install</span><br></pre></td></tr></table></figure>
+<p>则在另一个文件中也可以直接使用 DATA_DW。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">`define    S     $stop;   </span><br><span class="line">//用`S来代替系统函数$stop; (包括分号)</span><br><span class="line">`define    WORD_DEF   reg [31:0]       </span><br><span class="line">//可以用`WORD_DEF来声明32bit寄存器变量</span><br></pre></td></tr></table></figure>
 
-<p>然后运行CNN-Explainer</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm run dev</span><br></pre></td></tr></table></figure>
+<p><strong>`undef</strong> 用来取消之前的宏定义，例如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">`define    DATA_DW     32</span><br><span class="line">……</span><br><span class="line">reg  [DATA_DW-1:0]    data_in   ;</span><br><span class="line">……</span><br><span class="line">`undef DATA_DW</span><br><span class="line"></span><br><span class="line">`ifdef, `ifndef, `elsif, `else, `endif</span><br></pre></td></tr></table></figure>
 
-<p>最后在你的浏览器上浏览 </p>
-<p>[]: localhost:5000</p>
+<p>这些属于条件编译指令。例如下面的例子中，如果定义了 MCU51，则使用第一种参数说明；如果没有定义 MCU、定义了 WINDOW，则使用第二种参数说明；如果 2 个都没有定义，则使用第三种参数说明。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">`ifdef       MCU51</span><br><span class="line">    parameter DATA_DW = 8   ;</span><br><span class="line">`elsif       WINDOW</span><br><span class="line">    parameter DATA_DW = 64  ;</span><br><span class="line">`else</span><br><span class="line">    parameter DATA_DW = 32  ;</span><br><span class="line">`endif</span><br></pre></td></tr></table></figure>
+
+<p><strong><code>elsif, </code>else</strong> 编译指令对于 <strong><code>ifdef** 指令是可选的，即可以只有 **</code>ifdef</strong> 和 <strong>`endif</strong> 组成一次条件编译指令块。</p>
+<p>当然，也可用 <strong>`ifndef</strong> 来设置条件编译，表示如果没有相关的宏定义，则执行相关语句。</p>
+<p>下面例子中，如果定义了 WINDOW，则使用第二种参数说明。如果没有定义 WINDOW，则使用第一种参数说明。</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">`<span class="meta-keyword">ifndef</span>     WINDOW</span></span><br><span class="line">    <span class="keyword">parameter</span> DATA_DW = <span class="number">32</span> ;  </span><br><span class="line"> <span class="meta">`<span class="meta-keyword">else</span></span></span><br><span class="line">    <span class="keyword">parameter</span> DATA_DW = <span class="number">64</span> ;</span><br><span class="line"> <span class="meta">`<span class="meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure>
+
 
       
 
@@ -951,22 +733,11 @@
     <div class="article-info article-info-index">
       
       
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">机器学习</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
       
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2021/05/15/CNN-Explainer/">展开全文 >></a>
+          <a class="article-more-a" href="/2021/10/30/Day16-Verilog%E7%BC%96%E8%AF%91%E6%8C%87%E4%BB%A4/">展开全文 >></a>
         </p>
       
 
@@ -996,31 +767,52 @@
 
 
   
-    <article id="post-正弦电流电路导论知识点整理" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-Day15-Verilog表达式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2021/05/14/%E6%AD%A3%E5%BC%A6%E7%94%B5%E6%B5%81%E7%94%B5%E8%B7%AF%E5%AF%BC%E8%AE%BA%E7%9F%A5%E8%AF%86%E7%82%B9%E6%95%B4%E7%90%86/">正弦电流电路导论知识点整理</a>
+      <a class="article-title" href="/2021/10/29/Day15-Verilog%E8%A1%A8%E8%BE%BE%E5%BC%8F/">Day15-Verilog表达式</a>
     </h1>
   
 
         
-        <a href="/2021/05/14/%E6%AD%A3%E5%BC%A6%E7%94%B5%E6%B5%81%E7%94%B5%E8%B7%AF%E5%AF%BC%E8%AE%BA%E7%9F%A5%E8%AF%86%E7%82%B9%E6%95%B4%E7%90%86/" class="archive-article-date">
-  	<time datetime="2021-05-14T13:24:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-05-14</time>
+        <a href="/2021/10/29/Day15-Verilog%E8%A1%A8%E8%BE%BE%E5%BC%8F/" class="archive-article-date">
+  	<time datetime="2021-10-29T10:11:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-29</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="1-正弦电压和电流的基本概念"><a href="#1-正弦电压和电流的基本概念" class="headerlink" title="1.正弦电压和电流的基本概念"></a>1.正弦电压和电流的基本概念</h1><p>略，同高中交流电路</p>
-<h1 id="2-线性电路对正弦激励的响应-cdot-正弦稳态响应"><a href="#2-线性电路对正弦激励的响应-cdot-正弦稳态响应" class="headerlink" title="2.线性电路对正弦激励的响应$\cdot$正弦稳态响应"></a>2.线性电路对正弦激励的响应$\cdot$正弦稳态响应</h1><p>略</p>
-<h1 id="3-正弦量的相量表示法"><a href="#3-正弦量的相量表示法" class="headerlink" title="3.正弦量的相量表示法"></a>3.正弦量的相量表示法</h1><p>$$<br>z=re^{j\psi}=x+yj<br>$$</p>
-<p>分别是指数形式和代数形式</p>
-<p><img src="/.io//Users\15357\OneDrive\blog\source_posts\正弦电流电路导论知识点整理\绘图1.png"></p>
+        <h3 id="归约操作符"><a href="#归约操作符" class="headerlink" title="归约操作符"></a>归约操作符</h3><p>归约操作符包括：归约与（&amp;），归约与非（<del>&amp;），归约或（|），归约或非（</del>|），归约异或（^），归约同或（~^）。</p>
+<p>归约操作符只有一个操作数，它对这个向量操作数逐位进行操作，最终产生一个 1bit 结果。</p>
+<p>逻辑操作符、按位操作符和归约操作符都使用相同的符号表示，因此有时候容易混淆。区分这些操作符的关键是分清操作数的数目，和计算结果的规则。</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">A = <span class="number">4&#x27;b1010</span> ;</span><br><span class="line">&amp;A ;      <span class="comment">//结果为 1 &amp; 0 &amp; 1 &amp; 0 = 1&#x27;b0，可用来判断变量A是否全1</span></span><br><span class="line">~|A ;     <span class="comment">//结果为 ~(1 | 0 | 1 | 0) = 1&#x27;b0, 可用来判断变量A是否为全0</span></span><br><span class="line">^A ;      <span class="comment">//结果为 1 ^ 0 ^ 1 ^ 0 = 1&#x27;b0</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="移位操作符"><a href="#移位操作符" class="headerlink" title="移位操作符"></a>移位操作符</h3><p>​    </p>
+<p>移位操作符包括左移（&lt;&lt;），右移（&gt;&gt;），算术左移（&lt;&lt;&lt;），算术右移（&gt;&gt;&gt;）。</p>
+<p>移位操作符是双目操作符，两个操作数分别表示要进行移位的向量信号（操作符左侧）与移动的位数（操作符右侧）。</p>
+<p>算术左移和逻辑左移时，右边低位会补 0。</p>
+<p>逻辑右移时，左边高位会补 0；而算术右移时，左边高位会补充符号位，以保证数据缩小后值的正确性。</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">A = <span class="number">4&#x27;b1100</span> ;</span><br><span class="line">B = <span class="number">4&#x27;b0010</span> ;</span><br><span class="line">A = A &gt;&gt; <span class="number">2</span> ;        <span class="comment">//结果为 4&#x27;b0011</span></span><br><span class="line">A = A &lt;&lt; <span class="number">1</span>;         <span class="comment">//结果为 4&#x27;b1000</span></span><br><span class="line">A = A &lt;&lt;&lt; <span class="number">1</span> ;       <span class="comment">//结果为 4&#x27;b1000</span></span><br><span class="line">C = B + (A&gt;&gt;&gt;<span class="number">2</span>);    <span class="comment">//结果为 2 + (-4/4) = 1, 4&#x27;b0001</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="拼接操作符"><a href="#拼接操作符" class="headerlink" title="拼接操作符"></a>拼接操作符</h3><p>拼接操作符用大括号 <strong>{，}</strong> 来表示，用于将多个操作数（向量）拼接成新的操作数（向量），信号间用逗号隔开。</p>
+<p>拼接符操作数必须指定位宽，常数的话也需要指定位宽。例如：</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">A = <span class="number">4&#x27;b1010</span> ;</span><br><span class="line">B = <span class="number">1&#x27;b1</span> ;</span><br><span class="line">Y1 = &#123;B, A[<span class="number">3</span>:<span class="number">2</span>], A[<span class="number">0</span>], <span class="number">4&#x27;h3</span> &#125;;  <span class="comment">//结果为Y1=&#x27;b1100_0011</span></span><br><span class="line">Y2 = &#123;<span class="number">4</span>&#123;B&#125;, <span class="number">3&#x27;d4</span>&#125;;  <span class="comment">//结果为 Y2=7&#x27;b111_1100</span></span><br><span class="line">Y3 = &#123;<span class="number">32</span>&#123;<span class="number">1&#x27;b0</span>&#125;&#125;;  <span class="comment">//结果为 Y3=32h0，常用作寄存器初始化时匹配位宽的赋初值</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="条件操作符"><a href="#条件操作符" class="headerlink" title="条件操作符"></a>条件操作符</h3><p>条件表达式有 3 个操作符，结构描述如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">condition_expression ? true_expression : false_expression</span><br></pre></td></tr></table></figure>
+
+<p>计算时，如果 condition_expression 为真（逻辑值为 1），则运算结果为 true_expression；如果 condition_expression 为假（逻辑值为 0），则计算结果为 false_expression。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">assign hsel    = (addr[9:8] == 2&#x27;b0) ? hsel_p1 : hsel_p2 ;</span><br><span class="line">//当信号 addr 高 2bit 为 0 时，hsel 赋值为 hsel_p1; 否则，将 hsel_p2 赋值给 hsel。</span><br></pre></td></tr></table></figure>
+
+<p>其实，条件表达式类似于 2 路（或多路）选择器，其描述方式完全可以用 if-else 语句代替。</p>
+<p>当然条件操作符也能进行嵌套，完成一个多次选择的逻辑。例如：</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">assign</span>   hsel = (addr[<span class="number">9</span>:<span class="number">8</span>] == <span class="number">2&#x27;b00</span>) ? hsel_p1 :</span><br><span class="line">                (addr[<span class="number">9</span>:<span class="number">8</span>] == <span class="number">2&#x27;b01</span>) ? hsel_p2 :</span><br><span class="line">                (addr[<span class="number">9</span>:<span class="number">8</span>] == <span class="number">2&#x27;b10</span>) ? hsel_p3 :</span><br><span class="line">                (addr[<span class="number">9</span>:<span class="number">8</span>] == <span class="number">2&#x27;b11</span>) ? hsel_p4 ;</span><br></pre></td></tr></table></figure>
+
 
       
 
@@ -1029,22 +821,469 @@
     <div class="article-info article-info-index">
       
       
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">电路原理</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
       
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2021/05/14/%E6%AD%A3%E5%BC%A6%E7%94%B5%E6%B5%81%E7%94%B5%E8%B7%AF%E5%AF%BC%E8%AE%BA%E7%9F%A5%E8%AF%86%E7%82%B9%E6%95%B4%E7%90%86/">展开全文 >></a>
+          <a class="article-more-a" href="/2021/10/29/Day15-Verilog%E8%A1%A8%E8%BE%BE%E5%BC%8F/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Day14-Verilog表达式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/10/28/Day14-Verilog%E8%A1%A8%E8%BE%BE%E5%BC%8F/">Day14-Verilog表达式</a>
+    </h1>
+  
+
+        
+        <a href="/2021/10/28/Day14-Verilog%E8%A1%A8%E8%BE%BE%E5%BC%8F/" class="archive-article-date">
+  	<time datetime="2021-10-28T10:09:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-28</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="关系操作符"><a href="#关系操作符" class="headerlink" title="关系操作符"></a>关系操作符</h3><p>关系操作符有大于（&gt;），小于（&lt;），大于等于（&gt;=），小于等于（&lt;=）。</p>
+<p>关系操作符的正常结果有 2 种，真（1）或假（0）。</p>
+<p>如果操作数中有一位为 x 或 z，则关系表达式的结果为 x。</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">A = <span class="number">4</span> ;</span><br><span class="line">B = <span class="number">3</span> ;</span><br><span class="line">X = <span class="number">3&#x27;b1xx</span> ;</span><br><span class="line">   </span><br><span class="line">A &gt; B     <span class="comment">//为真</span></span><br><span class="line">A &lt;= B    <span class="comment">//为假</span></span><br><span class="line">A &gt;= Z    <span class="comment">//为X，不确定</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="等价操作符"><a href="#等价操作符" class="headerlink" title="等价操作符"></a>等价操作符</h3><p>等价操作符包括逻辑相等（==），逻辑不等（!=），全等（===），非全等（!==）。</p>
+<p>等价操作符的正常结果有 2 种：为真（1）或假（0）。</p>
+<p>逻辑相等/不等操作符不能比较 x 或 z，当操作数包含一个 x 或 z，则结果为 x。</p>
+<p>全等比较时，如果按位比较有相同的 x 或 z，返回结果也可以为 1，即全等比较可比较 x 或 z。所以，全等比较的结果一定不包含 x。举例如下：</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">A = <span class="number">4</span> ;</span><br><span class="line">B = <span class="number">8&#x27;h04</span> ;</span><br><span class="line">C = <span class="number">4&#x27;bxxxx</span> ;</span><br><span class="line">D = <span class="number">4&#x27;hx</span> ;</span><br><span class="line">A == B        <span class="comment">//为真</span></span><br><span class="line">A == (B + <span class="number">1</span>)  <span class="comment">//为假</span></span><br><span class="line">A == C        <span class="comment">//为X，不确定</span></span><br><span class="line">A === C       <span class="comment">//为假，返回值为0</span></span><br><span class="line">C === D       <span class="comment">//为真，返回值为1</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="逻辑操作符"><a href="#逻辑操作符" class="headerlink" title="逻辑操作符"></a>逻辑操作符</h3><p>逻辑操作符主要有 3 个：&amp;&amp;（逻辑与）, ||（逻辑或），!（逻辑非）。</p>
+<p>逻辑操作符的计算结果是一个 1bit 的值，0 表示假，1 表示真，x 表示不确定。</p>
+<p>如果一个操作数不为 0，它等价于逻辑 1；如果一个操作数等于 0，它等价于逻辑 0。如果它任意一位为 x 或 z，它等价于 x。</p>
+<p>如果任意一个操作数包含 x，逻辑操作符运算结果不一定为 x。</p>
+<p>逻辑操作符的操作数可以为变量，也可以为表达式。例如：</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">A = <span class="number">3</span>;</span><br><span class="line">B = <span class="number">0</span>;</span><br><span class="line">C = <span class="number">2&#x27;b1x</span> ;</span><br><span class="line">   </span><br><span class="line">A &amp;&amp; B    <span class="comment">//     为假</span></span><br><span class="line">A || B    <span class="comment">//     为真</span></span><br><span class="line">! A       <span class="comment">//     为假</span></span><br><span class="line">! B       <span class="comment">//     为真</span></span><br><span class="line">A &amp;&amp; C    <span class="comment">//     为X，不确定</span></span><br><span class="line">A || C    <span class="comment">//     为真，因为A为真</span></span><br><span class="line">(A==<span class="number">2</span>) &amp;&amp; (! B)  <span class="comment">//为真，此时第一个操作数为表达式</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="按位操作符"><a href="#按位操作符" class="headerlink" title="按位操作符"></a>按位操作符</h3><p>按位操作符包括：取反（<del>），与（&amp;），或（|），异或（^），同或（</del>^）。</p>
+<p>按位操作符对 2 个操作数的每 1bit 数据进行按位操作。</p>
+<p>如果 2 个操作数位宽不相等，则用 0 向左扩展补充较短的操作数。</p>
+<p>取反操作符只有一个操作数，它对操作数的每 1bit 数据进行取反操作。</p>
+<p>下图给出了按位操作符的逻辑规则。</p>
+<table>
+<thead>
+<tr>
+<th align="left">&amp;(与）</th>
+<th align="left">0</th>
+<th align="left">1</th>
+<th align="left">x</th>
+<th align="left"></th>
+<th align="left">|(或)</th>
+<th align="left">0</th>
+<th align="left">1</th>
+<th align="left">x</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">0</td>
+<td align="left">0</td>
+<td align="left">0</td>
+<td align="left">0</td>
+<td align="left"></td>
+<td align="left">0</td>
+<td align="left">0</td>
+<td align="left">1</td>
+<td align="left">x</td>
+</tr>
+<tr>
+<td align="left">1</td>
+<td align="left">0</td>
+<td align="left">1</td>
+<td align="left">x</td>
+<td align="left"></td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">1</td>
+</tr>
+<tr>
+<td align="left">x</td>
+<td align="left">0</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left"></td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left">1</td>
+<td align="left">x</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th align="left">^(异或)</th>
+<th align="left">0</th>
+<th align="left">1</th>
+<th align="left">x</th>
+<th align="left"></th>
+<th align="left">~^(同或)</th>
+<th align="left">0</th>
+<th align="left">1</th>
+<th align="left">x</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">0</td>
+<td align="left">0</td>
+<td align="left">1</td>
+<td align="left">x</td>
+<td align="left"></td>
+<td align="left">0</td>
+<td align="left">1</td>
+<td align="left">0</td>
+<td align="left">x</td>
+</tr>
+<tr>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">0</td>
+<td align="left">x</td>
+<td align="left"></td>
+<td align="left">1</td>
+<td align="left">0</td>
+<td align="left">1</td>
+<td align="left">x</td>
+</tr>
+<tr>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left"></td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left">x</td>
+</tr>
+</tbody></table>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">A = <span class="number">4&#x27;b0101</span> ;</span><br><span class="line">B = <span class="number">4&#x27;b1001</span> ;</span><br><span class="line">C = <span class="number">4&#x27;bx010</span> ;</span><br><span class="line">   </span><br><span class="line">~A        <span class="comment">//4&#x27;b1010</span></span><br><span class="line">A &amp; B     <span class="comment">//4&#x27;b0001</span></span><br><span class="line">A | B     <span class="comment">//4&#x27;b1101</span></span><br><span class="line">A^B       <span class="comment">//4&#x27;b1100</span></span><br><span class="line">A ~^ B    <span class="comment">//4&#x27;b0011</span></span><br><span class="line">B | C     <span class="comment">//4&#x27;b1011</span></span><br><span class="line">B&amp;C       <span class="comment">//4&#x27;bx000</span></span><br></pre></td></tr></table></figure>
+
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/10/28/Day14-Verilog%E8%A1%A8%E8%BE%BE%E5%BC%8F/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Day13-Verilog表达式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/10/27/Day13-Verilog%E8%A1%A8%E8%BE%BE%E5%BC%8F/">Day13-Verilog表达式</a>
+    </h1>
+  
+
+        
+        <a href="/2021/10/27/Day13-Verilog%E8%A1%A8%E8%BE%BE%E5%BC%8F/" class="archive-article-date">
+  	<time datetime="2021-10-27T10:06:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-27</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="表达式"><a href="#表达式" class="headerlink" title="表达式"></a>表达式</h3><p>表达式由操作符和操作数构成，其目的是根据操作符的意义得到一个计算结果。表达式可以在出现数值的任何地方使用。例如：</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a^b ;          <span class="comment">//a与b进行异或操作</span></span><br><span class="line">address[<span class="number">9</span>:<span class="number">0</span>] + <span class="number">10&#x27;b1</span> ;  <span class="comment">//地址累加</span></span><br><span class="line">flag1 &amp;&amp; flag2 ;  <span class="comment">//逻辑与操作</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="操作数"><a href="#操作数" class="headerlink" title="操作数"></a>操作数</h3><p>操作数可以是任意的数据类型，只是某些特定的语法结构要求使用特定类型的操作数。</p>
+<p>操作数可以为常数，整数，实数，线网，寄存器，时间，位选，域选，存储器及函数调用等。</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">module</span> test;</span><br><span class="line"></span><br><span class="line"><span class="comment">//实数</span></span><br><span class="line"><span class="keyword">real</span> a, b, c;</span><br><span class="line">c = a + b ;</span><br><span class="line"></span><br><span class="line"><span class="comment">//寄存器</span></span><br><span class="line"><span class="keyword">reg</span>  [<span class="number">3</span>:<span class="number">0</span>]       cprmu_1, cprmu_2 ;</span><br><span class="line"><span class="keyword">always</span> @(<span class="keyword">posedge</span> clk) <span class="keyword">begin</span></span><br><span class="line">        cprmu_2 = cprmu_1 ^ cprmu_2 ;</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">         </span><br><span class="line"><span class="comment">//函数</span></span><br><span class="line"><span class="keyword">reg</span>  flag1 ;</span><br><span class="line">flag = calculate_result(A, B);</span><br><span class="line"> </span><br><span class="line"><span class="comment">//非法操作数</span></span><br><span class="line"><span class="keyword">reg</span> [<span class="number">3</span>:<span class="number">0</span>]         res;</span><br><span class="line"><span class="keyword">wire</span> [<span class="number">3</span>:<span class="number">0</span>]        temp;</span><br><span class="line"><span class="keyword">always</span>@ （*）<span class="keyword">begin</span></span><br><span class="line">    res    = cprmu_2 – cprmu_1 ;</span><br><span class="line">    <span class="comment">//temp = cprmu_2 – cprmu_1 ; //不合法，always块里赋值对象不能是wire型</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="操作符"><a href="#操作符" class="headerlink" title="操作符"></a>操作符</h3><p>Verilog 中提供了大约 9 种操作符，分别是算术、关系、等价、逻辑、按位、归约、移位、拼接、条件操作符。</p>
+<p>大部分操作符与 C 语言中类似。同类型操作符之间，除条件操作符从右往左关联，其余操作符都是自左向右关联。圆括号内表达式优先执行。例如下面每组的 2 种写法都是等价的。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">A+B-C ;</span><br><span class="line">(A+B）-C ;</span><br><span class="line"></span><br><span class="line">A ? B : C ? D : F ;</span><br><span class="line">A ? B : (C ? D : F) ;</span><br><span class="line"></span><br><span class="line">(A ? B : C) ? D : F ;</span><br><span class="line">A ? B : C ? D : F ;</span><br></pre></td></tr></table></figure>
+
+<p>不同操作符之间，优先级是不同的。下表列出了操作符优先级从高至低的排列顺序。当没有圆括号时，Verilog 会根据操作符优先级对表达式进行计算。为了避免由操作符优先级导致的计算混乱，在不确定优先级时，建议用圆括号将表达式区分开来。</p>
+<table>
+<thead>
+<tr>
+<th align="left">操作符</th>
+<th align="left">操作符号</th>
+<th align="left">优先级</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">单目运算</td>
+<td align="left">+ - ! ~</td>
+<td align="left">最高</td>
+</tr>
+<tr>
+<td align="left">乘、除、取模</td>
+<td align="left">* / %</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">加减</td>
+<td align="left">+ -</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">移位</td>
+<td align="left">&lt;&lt;  &gt;&gt;</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">关系</td>
+<td align="left">&lt; &lt;= &gt; &gt;=</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">等价</td>
+<td align="left">== != === !===</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">归约</td>
+<td align="left">&amp; ~&amp;</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">^ ~^</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">| ~|</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">逻辑</td>
+<td align="left">&amp;&amp;</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">||</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">条件</td>
+<td align="left">?:</td>
+<td align="left">最低</td>
+</tr>
+</tbody></table>
+<h3 id="算术操作符"><a href="#算术操作符" class="headerlink" title="算术操作符"></a>算术操作符</h3><p>算术操作符包括单目操作符和双目操作符。</p>
+<p>双目操作符对 2 个操作数进行算术运算，包括乘（*）、除（/）、加（+）、减（-）、求幂（**）、取模（%）。</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">reg</span> [<span class="number">3</span>:<span class="number">0</span>]  a, b;</span><br><span class="line"><span class="keyword">reg</span> [<span class="number">4</span>:<span class="number">0</span>]  c ;</span><br><span class="line">a = <span class="number">4&#x27;b0010</span> ;</span><br><span class="line">b = <span class="number">4&#x27;b1001</span> ;</span><br><span class="line">c = a+b;        <span class="comment">//结果为c=b&#x27;b1011</span></span><br><span class="line">c = a/b;          <span class="comment">//结果为c=4，取整</span></span><br></pre></td></tr></table></figure>
+
+<p>如果操作数某一位为 X，则计算结果也会全部出现 X。例如：</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">b = <span class="number">4&#x27;b100x</span> ;</span><br><span class="line">c = a+b ;       <span class="comment">//结果为c=4&#x27;bxxxx</span></span><br></pre></td></tr></table></figure>
+
+<p>对变量进行声明时，要根据变量的操作符对变量的位宽进行合理声明，不要让结果溢出。上述例子中，相加的 2 个变量位宽为 4bit，那么结果寄存器变量位宽最少为 5bit。否则，高位将被截断，导致结果高位丢失。无符号数乘法时，结果变量位宽应该为 2 个操作数位宽之和。</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">reg</span> [<span class="number">3</span>:<span class="number">0</span>]        mula ;</span><br><span class="line"><span class="keyword">reg</span> [<span class="number">1</span>:<span class="number">0</span>]        mulb;</span><br><span class="line"><span class="keyword">reg</span> [<span class="number">5</span>:<span class="number">0</span>]        res ;</span><br><span class="line">mula = <span class="number">4&#x27;he</span>   ;</span><br><span class="line">mulb = <span class="number">2&#x27;h3</span>   ;</span><br><span class="line">res  = mula * mulb ; <span class="comment">//结果为res=6&#x27;h2a, 数据结果没有丢失位数</span></span><br></pre></td></tr></table></figure>
+
+<p>+ 和 - 也可以作为单目操作符来使用，表示操作数的正负性。此类操作符优先级最高。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">-4  //表示负4</span><br><span class="line">+3  //表示正3</span><br></pre></td></tr></table></figure>
+
+<p>负数表示时，可以直接在十进制数字前面增加一个减号 **-**，也可以指定位宽。因为负数使用二进制补码来表示，不指定位宽来表示负数，编译器在转换时，会自动分配位宽，从而导致意想不到的结果。例如：</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mula = -<span class="number">4&#x27;d4</span> ;</span><br><span class="line">mulb = <span class="number">2</span> ;</span><br><span class="line">res = mula * mulb ;      <span class="comment">//计算结果为res=-6&#x27;d8, 即res=6&#x27;h38，正常</span></span><br><span class="line">res = mula * (-<span class="number">&#x27;d4</span>) ;    <span class="comment">//(4的32次幂-4) * 2, 结果异常</span></span><br></pre></td></tr></table></figure>
+
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/10/27/Day13-Verilog%E8%A1%A8%E8%BE%BE%E5%BC%8F/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Day12-Verilog数据类型" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/10/26/Day12-Verilog%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/">Day12-Verilog数据类型</a>
+    </h1>
+  
+
+        
+        <a href="/2021/10/26/Day12-Verilog%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" class="archive-article-date">
+  	<time datetime="2021-10-26T09:47:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-26</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h3><p>在 Verilog 中允许声明 reg, wire, integer, time, real 及其向量类型的数组。</p>
+<p>数组维数没有限制。线网数组也可以用于连接实例模块的端口。数组中的每个元素都可以作为一个标量或者向量，以同样的方式来使用，形如：**&lt;数组名&gt;[&lt;下标&gt;]**。对于多维数组来讲，用户需要说明其每一维的索引。例如：</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">integer</span>          flag [<span class="number">7</span>:<span class="number">0</span>] ; <span class="comment">//8个整数组成的数组</span></span><br><span class="line"><span class="keyword">reg</span>  [<span class="number">3</span>:<span class="number">0</span>]       counter [<span class="number">3</span>:<span class="number">0</span>] ; <span class="comment">//由4个4bit计数器组成的数组</span></span><br><span class="line"><span class="keyword">wire</span> [<span class="number">7</span>:<span class="number">0</span>]       addr_bus [<span class="number">3</span>:<span class="number">0</span>] ; <span class="comment">//由4个8bit wire型变量组成的数组</span></span><br><span class="line"><span class="keyword">wire</span>             data_bit[<span class="number">7</span>:<span class="number">0</span>][<span class="number">5</span>:<span class="number">0</span>] ; <span class="comment">//声明1bit wire型变量的二维数组</span></span><br><span class="line"><span class="keyword">reg</span> [<span class="number">31</span>:<span class="number">0</span>]       data_4d[<span class="number">11</span>:<span class="number">0</span>][<span class="number">3</span>:<span class="number">0</span>][<span class="number">3</span>:<span class="number">0</span>][<span class="number">255</span>:<span class="number">0</span>] ; <span class="comment">//声明4维的32bit数据变量数组</span></span><br></pre></td></tr></table></figure>
+
+<p>下面显示了对数组元素的赋值操作：</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">flag [<span class="number">1</span>]   = <span class="number">32&#x27;d0</span> ; <span class="comment">//将flag数组中第二个元素赋值为32bit的0值</span></span><br><span class="line">counter[<span class="number">3</span>] = <span class="number">4&#x27;hF</span> ;  <span class="comment">//将数组counter中第4个元素的值赋值为4bit 十六进制数F，等效于counter[3][3:0] = 4&#x27;hF，即可省略宽度;</span></span><br><span class="line"><span class="keyword">assign</span> addr_bus[<span class="number">0</span>]        = <span class="number">8&#x27;b0</span> ; <span class="comment">//将数组addr_bus中第一个元素的值赋值为0</span></span><br><span class="line"><span class="keyword">assign</span> data_bit[<span class="number">0</span>][<span class="number">1</span>]     = <span class="number">1&#x27;b1</span>;  <span class="comment">//将数组data_bit的第1行第2列的元素赋值为1，这里不能省略第二个访问标号，即 assign data_bit[0] = 1&#x27;b1; 是非法的。</span></span><br><span class="line">data_4d[<span class="number">0</span>][<span class="number">0</span>][<span class="number">0</span>][<span class="number">0</span>][<span class="number">15</span>:<span class="number">0</span>] = <span class="number">15&#x27;d3</span> ;  <span class="comment">//将数组data_4d中标号为[0][0][0][0]的寄存器单元的15~0bit赋值为3</span></span><br></pre></td></tr></table></figure>
+
+<p>虽然数组与向量的访问方式在一定程度上类似，但不要将向量和数组混淆。向量是一个单独的元件，位宽为 n；数组由多个元件组成，其中每个元件的位宽为 n 或 1。它们在结构的定义上就有所区别。</p>
+<h3 id="存储器"><a href="#存储器" class="headerlink" title="存储器"></a>存储器</h3><p>存储器变量就是一种寄存器数组，可用来描述 RAM 或 ROM 的行为。例如：</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">reg</span>               membit[<span class="number">0</span>:<span class="number">255</span>] ;  <span class="comment">//256bit的1bit存储器</span></span><br><span class="line"><span class="keyword">reg</span>  [<span class="number">7</span>:<span class="number">0</span>]        mem[<span class="number">0</span>:<span class="number">1023</span>] ;    <span class="comment">//1Kbyte存储器，位宽8bit</span></span><br><span class="line">mem[<span class="number">511</span>] = <span class="number">8&#x27;b0</span> ;                  <span class="comment">//令第512个8bit的存储单元值为0</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="参数"><a href="#参数" class="headerlink" title="参数"></a>参数</h3><p>参数用来表示常量，用关键字 parameter 声明，只能赋值一次。例如：</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">parameter</span>      data_width = <span class="number">10&#x27;d32</span> ;</span><br><span class="line"><span class="keyword">parameter</span>      i=<span class="number">1</span>, j=<span class="number">2</span>, k=<span class="number">3</span> ;</span><br><span class="line"><span class="keyword">parameter</span>      mem_size = data_width * <span class="number">10</span> ;</span><br></pre></td></tr></table></figure>
+
+<p>但是，通过实例化的方式，可以更改参数在模块中的值。此部分以后会介绍。</p>
+<p>局部参数用 localparam 来声明，其作用和用法与 parameter 相同，区别在于它的值不能被改变。所以当参数只在本模块中调用时，可用 localparam 来说明。</p>
+<h3 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h3><p>字符串保存在 reg 类型的变量中，每个字符占用一个字节（8bit）。因此寄存器变量的宽度应该足够大，以保证不会溢出。</p>
+<p>字符串不能多行书写，即字符串中不能包含回车符。如果寄存器变量的宽度大于字符串的大小，则使用 0 来填充左边的空余位；如果寄存器变量的宽度小于字符串大小，则会截去字符串左边多余的数据。例如，为存储字符串 “run.runoob.com”, 需要 14*8bit 的存储单元：</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">reg</span> [<span class="number">0</span>: <span class="number">14</span>*<span class="number">8</span>-<span class="number">1</span>]       str ;</span><br><span class="line"><span class="keyword">initial</span> <span class="keyword">begin</span></span><br><span class="line">    str = <span class="string">&quot;run.runoob.com&quot;</span>;</span><br><span class="line"><span class="keyword">end</span>  </span><br></pre></td></tr></table></figure>
+
+<p>有一些特殊字符在显示字符串中有特殊意义，例如换行符，制表符等。如果需要在字符串中显示这些特殊的字符，则需要在前面加前缀转义字符 *<em>*</em> 。例如下表所示：</p>
+<table>
+<thead>
+<tr>
+<th align="left">转义字符</th>
+<th align="left">显示字符</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">\n</td>
+<td align="left">换行</td>
+</tr>
+<tr>
+<td align="left">\t</td>
+<td align="left">制表符</td>
+</tr>
+<tr>
+<td align="left">%%</td>
+<td align="left">%</td>
+</tr>
+<tr>
+<td align="left">\</td>
+<td align="left">\</td>
+</tr>
+<tr>
+<td align="left">&quot;</td>
+<td align="left">“</td>
+</tr>
+<tr>
+<td align="left">\ooo</td>
+<td align="left">1到3个8进制数字字符</td>
+</tr>
+</tbody></table>
+<p>其实，在 SystemVerilog（主要用于 Verilog 仿真的编程语言）语言中，已经可以直接用关键字 string 来表示字符串变量类型，这为 Verilog 的仿真带来了极大的便利。有兴趣的学者可以简单学习下 SystemVerilog。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/10/26/Day12-Verilog%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/">展开全文 >></a>
         </p>
       
 
@@ -1076,7 +1315,7 @@
   
   
     <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
     </nav>
   
 

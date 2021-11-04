@@ -6,15 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://averagejoe-cn.github.io">
-  <title>Archives: 2021 | Average Joe&#39;s Blog</title>
+  <title>Day21-Verilog过程结构 | Average Joe&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="It&#39;s a wonderful life not for Average Joe">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Average Joe&#39;s Blog">
-<meta property="og:url" content="https://averagejoe-cn.github.io/archives/2021/page/2/index.html">
+  <meta name="description" content="关键词：initial， always过程结构语句有 2 种，initial 与 always 语句。它们是行为级建模的 2 种基本语句。 一个模块中可以包含多个 initial 和 always 语句，但 2 种语句不能嵌套使用。 这些语句在模块间并行执行，与其在模块的前后顺序没有关系。 但是 initial 语句或 always 语句内部可以理解为是顺序执行的（非阻塞赋值除外）。 每个 ini">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Day21-Verilog过程结构">
+<meta property="og:url" content="https://averagejoe-cn.github.io/2021/11/04/Day21-Verilog%E8%BF%87%E7%A8%8B%E7%BB%93%E6%9E%84/index.html">
 <meta property="og:site_name" content="Average Joe&#39;s Blog">
-<meta property="og:description" content="It&#39;s a wonderful life not for Average Joe">
+<meta property="og:description" content="关键词：initial， always过程结构语句有 2 种，initial 与 always 语句。它们是行为级建模的 2 种基本语句。 一个模块中可以包含多个 initial 和 always 语句，但 2 种语句不能嵌套使用。 这些语句在模块间并行执行，与其在模块的前后顺序没有关系。 但是 initial 语句或 always 语句内部可以理解为是顺序执行的（非阻塞赋值除外）。 每个 ini">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-11-04T10:28:07.000Z">
+<meta property="article:modified_time" content="2021-11-04T10:28:51.332Z">
 <meta property="article:author" content="Average Joe">
 <meta name="twitter:card" content="summary">
   
@@ -188,295 +190,164 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-Day21-Verilog过程结构" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Day21-Verilog过程结构
+    </h1>
+  
+
+        
+        <a href="/2021/11/04/Day21-Verilog%E8%BF%87%E7%A8%8B%E7%BB%93%E6%9E%84/" class="archive-article-date">
+  	<time datetime="2021-11-04T10:28:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-11-04</time>
+</a>
+        
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="关键词：initial，-always"><a href="#关键词：initial，-always" class="headerlink" title="关键词：initial， always"></a>关键词：initial， always</h3><p>过程结构语句有 2 种，initial 与 always 语句。它们是行为级建模的 2 种基本语句。</p>
+<p>一个模块中可以包含多个 initial 和 always 语句，但 2 种语句不能嵌套使用。</p>
+<p>这些语句在模块间并行执行，与其在模块的前后顺序没有关系。</p>
+<p>但是 initial 语句或 always 语句内部可以理解为是顺序执行的（非阻塞赋值除外）。</p>
+<p>每个 initial 语句或 always 语句都会产生一个独立的控制流，执行时间都是从 0 时刻开始。</p>
+<h3 id="initial语句"><a href="#initial语句" class="headerlink" title="initial语句"></a>initial语句</h3><p>initial 语句从 0 时刻开始执行，只执行一次，多个 initial 块之间是相互独立的。</p>
+<p>如果 initial 块内包含多个语句，需要使用关键字 begin 和 end 组成一个块语句。</p>
+<p>如果 initial 块内只要一条语句，关键字 begin 和 end 可使用也可不使用。</p>
+<p>initial 理论上来讲是不可综合的，多用于初始化、信号检测等。</p>
+<p>对上一节代码稍作修改，进行仿真，代码如下。</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">`<span class="meta-keyword">timescale</span> 1ns/1ns</span></span><br><span class="line"> </span><br><span class="line"><span class="keyword">module</span> test ;</span><br><span class="line">    <span class="keyword">reg</span>  ai, bi ;</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">initial</span> <span class="keyword">begin</span></span><br><span class="line">        ai         = <span class="number">0</span> ;</span><br><span class="line">        #<span class="number">25</span> ;      ai        = <span class="number">1</span> ;</span><br><span class="line">        #<span class="number">35</span> ;      ai        = <span class="number">0</span> ;        <span class="comment">//absolute 60ns</span></span><br><span class="line">        #<span class="number">40</span> ;      ai        = <span class="number">1</span> ;        <span class="comment">//absolute 100ns</span></span><br><span class="line">        #<span class="number">10</span> ;      ai        = <span class="number">0</span> ;        <span class="comment">//absolute 110ns</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"> </span><br><span class="line">    <span class="keyword">initial</span> <span class="keyword">begin</span></span><br><span class="line">        bi         = <span class="number">1</span> ;</span><br><span class="line">        #<span class="number">70</span> ;      bi        = <span class="number">0</span> ;        <span class="comment">//absolute 70ns</span></span><br><span class="line">        #<span class="number">20</span> ;      bi        = <span class="number">1</span> ;        <span class="comment">//absolute 90ns</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"> </span><br><span class="line">    <span class="comment">//at proper time stop the simulation</span></span><br><span class="line">    <span class="keyword">initial</span> <span class="keyword">begin</span></span><br><span class="line">        <span class="keyword">forever</span> <span class="keyword">begin</span></span><br><span class="line">            #<span class="number">100</span>;</span><br><span class="line">            <span class="comment">//$display(&quot;---gyc---%d&quot;, $time);</span></span><br><span class="line">            <span class="keyword">if</span> (<span class="built_in">$time</span> &gt;= <span class="number">1000</span>) <span class="keyword">begin</span></span><br><span class="line">                <span class="built_in">$finish</span> ;</span><br><span class="line">            <span class="keyword">end</span></span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">   <span class="keyword">end</span></span><br><span class="line"> </span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="always-语句"><a href="#always-语句" class="headerlink" title="always 语句"></a>always 语句</h3><p>与 initial 语句相反，always 语句是重复执行的。always 语句块从 0 时刻开始执行其中的行为语句；当执行完最后一条语句后，便再次执行语句块中的第一条语句，如此循环反复。</p>
+<p>由于循环执行的特点，always 语句多用于仿真时钟的产生，信号行为的检测等。</p>
+<p>下面用 always 产生一个 100MHz 时钟源，并在 1010ns 时停止仿真代码如下。</p>
+<p>代码如下:</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">`<span class="meta-keyword">timescale</span> 1ns/1ns</span></span><br><span class="line"> </span><br><span class="line"><span class="keyword">module</span> test ;</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">parameter</span> CLK_FREQ   = <span class="number">100</span> ; <span class="comment">//100MHz</span></span><br><span class="line">    <span class="keyword">parameter</span> CLK_CYCLE  = <span class="number">1</span>e9 / (CLK_FREQ * <span class="number">1</span>e6) ;   <span class="comment">//switch to ns</span></span><br><span class="line"> </span><br><span class="line">    <span class="keyword">reg</span>  clk ;</span><br><span class="line">    <span class="keyword">initial</span>      clk = <span class="number">1&#x27;b0</span> ;      <span class="comment">//clk is initialized to &quot;0&quot;</span></span><br><span class="line">    <span class="keyword">always</span>     # (CLK_CYCLE/<span class="number">2</span>) clk = ~clk ;       <span class="comment">//generating a real clock by reversing</span></span><br><span class="line"> </span><br><span class="line">    <span class="keyword">always</span> <span class="keyword">begin</span></span><br><span class="line">        #<span class="number">10</span>;</span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">$time</span> &gt;= <span class="number">1000</span>) <span class="keyword">begin</span></span><br><span class="line">            <span class="built_in">$finish</span> ;</span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"> </span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
+
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2021" class="archive-year">2021</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/10/25/Day11-Verilog%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" class="archive-article-date">
-  	<time datetime="2021-10-25T09:37:39.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-25</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/10/25/Day11-Verilog%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/">Day11-Verilog数据类型</a>
-    </h1>
-  
+      
 
-        <div class="article-info info-on-right">
-          
-          
+      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=https://averagejoe-cn.github.io/2021/11/04/Day21-Verilog%E8%BF%87%E7%A8%8B%E7%BB%93%E6%9E%84/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/10/24/Day10-Verilog%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" class="archive-article-date">
-  	<time datetime="2021-10-24T09:34:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-24</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2021/11/03/Day20-Verilog%E6%97%B6%E5%BB%B6/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Day20-Verilog时延</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/10/24/Day10-Verilog%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/">Day10-Verilog数据类型</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B3%E9%94%AE%E8%AF%8D%EF%BC%9Ainitial%EF%BC%8C-always"><span class="toc-number">1.</span> <span class="toc-text">关键词：initial， always</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#initial%E8%AF%AD%E5%8F%A5"><span class="toc-number">2.</span> <span class="toc-text">initial语句</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#always-%E8%AF%AD%E5%8F%A5"><span class="toc-number">3.</span> <span class="toc-text">always 语句</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+        
+    </div>
+</aside>
+
+
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/10/23/Day9-Verilog%E6%95%B0%E5%80%BC%E8%A1%A8%E7%A4%BA3/" class="archive-article-date">
-  	<time datetime="2021-10-23T09:31:54.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-23</time>
-</a>
-        </div>
-    	 
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/10/23/Day9-Verilog%E6%95%B0%E5%80%BC%E8%A1%A8%E7%A4%BA3/">Day9-Verilog数值表示3</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/10/22/Day8-Verilog%E6%95%B0%E5%80%BC%E8%A1%A8%E7%A4%BA2/" class="archive-article-date">
-  	<time datetime="2021-10-22T09:29:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-22</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/10/22/Day8-Verilog%E6%95%B0%E5%80%BC%E8%A1%A8%E7%A4%BA2/">Day8-Verilog数值表示2</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/10/21/Day7-Verilog%E6%95%B0%E5%80%BC%E8%A1%A8%E7%A4%BA/" class="archive-article-date">
-  	<time datetime="2021-10-21T09:28:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-21</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/10/21/Day7-Verilog%E6%95%B0%E5%80%BC%E8%A1%A8%E7%A4%BA/">Day7-Verilog数值表示</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/10/20/Day6-Verilog%E7%9A%84%E5%9F%BA%E6%9C%AC%E8%A6%81%E7%B4%A02/" class="archive-article-date">
-  	<time datetime="2021-10-20T09:26:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-20</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/10/20/Day6-Verilog%E7%9A%84%E5%9F%BA%E6%9C%AC%E8%A6%81%E7%B4%A02/">Day6-Verilog的基本要素2</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/10/19/Day5-Verilog%E7%9A%84%E5%9F%BA%E6%9C%AC%E8%A6%81%E7%B4%A0/" class="archive-article-date">
-  	<time datetime="2021-10-19T11:41:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-19</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/10/19/Day5-Verilog%E7%9A%84%E5%9F%BA%E6%9C%AC%E8%A6%81%E7%B4%A0/">Day5-Verilog的基本要素</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/10/18/Day4-Verilog%E7%9A%84%E6%8F%8F%E8%BF%B0%E6%96%B9%E5%BC%8F3/" class="archive-article-date">
-  	<time datetime="2021-10-18T11:30:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-18</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/10/18/Day4-Verilog%E7%9A%84%E6%8F%8F%E8%BF%B0%E6%96%B9%E5%BC%8F3/">Day4-Verilog的描述方式3</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/10/17/Day3-Verilog%E7%9A%84%E8%A1%A8%E8%BF%B0%E6%96%B9%E5%BC%8F2/" class="archive-article-date">
-  	<time datetime="2021-10-17T11:12:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-17</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/10/17/Day3-Verilog%E7%9A%84%E8%A1%A8%E8%BF%B0%E6%96%B9%E5%BC%8F2/">Day3-Verilog的表述方式2</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/10/16/Day2-Verilog%E7%9A%84%E6%8F%8F%E8%BF%B0%E6%96%B9%E5%BC%8F/" class="archive-article-date">
-  	<time datetime="2021-10-16T10:59:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-16</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/10/16/Day2-Verilog%E7%9A%84%E6%8F%8F%E8%BF%B0%E6%96%B9%E5%BC%8F/">Day2-Verilog的描述方式</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/2021/">&amp;laquo; Prev</a><a class="page-number" href="/archives/2021/">1</a><span class="page-number current">2</span><a class="page-number" href="/archives/2021/page/3/">3</a><a class="extend next" rel="next" href="/archives/2021/page/3/">Next &amp;raquo;</a>
-    </nav>
   
 
 
@@ -500,8 +371,8 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: true,

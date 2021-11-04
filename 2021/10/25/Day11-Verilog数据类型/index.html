@@ -6,15 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://averagejoe-cn.github.io">
-  <title>Archives: 2021 | Average Joe&#39;s Blog</title>
+  <title>Day11-Verilog数据类型 | Average Joe&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="It&#39;s a wonderful life not for Average Joe">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Average Joe&#39;s Blog">
-<meta property="og:url" content="https://averagejoe-cn.github.io/archives/2021/page/2/index.html">
+  <meta name="description" content="向量当位宽大于 1 时，wire 或 reg 即可声明为向量的形式。例如： 1234reg [3:0]      counter ;    &#x2F;&#x2F;声明4bit位宽的寄存器counterwire [32-1:0]  gpio_data;   &#x2F;&#x2F;声明32bit位宽的线型变量gpio_datawire [8:2]     addr ;       &#x2F;&#x2F;声明7bit位宽的线型变量addr，位宽范围为8:2">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Day11-Verilog数据类型">
+<meta property="og:url" content="https://averagejoe-cn.github.io/2021/10/25/Day11-Verilog%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/index.html">
 <meta property="og:site_name" content="Average Joe&#39;s Blog">
-<meta property="og:description" content="It&#39;s a wonderful life not for Average Joe">
+<meta property="og:description" content="向量当位宽大于 1 时，wire 或 reg 即可声明为向量的形式。例如： 1234reg [3:0]      counter ;    &#x2F;&#x2F;声明4bit位宽的寄存器counterwire [32-1:0]  gpio_data;   &#x2F;&#x2F;声明32bit位宽的线型变量gpio_datawire [8:2]     addr ;       &#x2F;&#x2F;声明7bit位宽的线型变量addr，位宽范围为8:2">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-10-25T09:37:39.000Z">
+<meta property="article:modified_time" content="2021-11-04T09:46:35.664Z">
 <meta property="article:author" content="Average Joe">
 <meta name="twitter:card" content="summary">
   
@@ -188,295 +190,188 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-Day11-Verilog数据类型" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      Day11-Verilog数据类型
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2021" class="archive-year">2021</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/10/25/Day11-Verilog%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" class="archive-article-date">
+
+        
+        <a href="/2021/10/25/Day11-Verilog%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" class="archive-article-date">
   	<time datetime="2021-10-25T09:37:39.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-25</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/10/25/Day11-Verilog%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/">Day11-Verilog数据类型</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="向量"><a href="#向量" class="headerlink" title="向量"></a>向量</h3><p>当位宽大于 1 时，wire 或 reg 即可声明为向量的形式。例如：</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">reg</span> [<span class="number">3</span>:<span class="number">0</span>]      counter ;    <span class="comment">//声明4bit位宽的寄存器counter</span></span><br><span class="line"><span class="keyword">wire</span> [<span class="number">32</span>-<span class="number">1</span>:<span class="number">0</span>]  gpio_data;   <span class="comment">//声明32bit位宽的线型变量gpio_data</span></span><br><span class="line"><span class="keyword">wire</span> [<span class="number">8</span>:<span class="number">2</span>]     addr ;       <span class="comment">//声明7bit位宽的线型变量addr，位宽范围为8:2</span></span><br><span class="line"><span class="keyword">reg</span> [<span class="number">0</span>:<span class="number">31</span>]     data ;       <span class="comment">//声明32bit位宽的寄存器变量data, 最高有效位为0</span></span><br></pre></td></tr></table></figure>
 
-        <div class="article-info info-on-right">
-          
-          
+<p>对于上面的向量，我们可以指定某一位或若干相邻位，作为其他逻辑使用。例如：</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">wire</span> [<span class="number">9</span>:<span class="number">0</span>]     data_low = data[<span class="number">0</span>:<span class="number">9</span>] ;</span><br><span class="line">addr_temp[<span class="number">3</span>:<span class="number">2</span>] = addr[<span class="number">8</span>:<span class="number">7</span>] + <span class="number">1&#x27;b1</span> ;</span><br></pre></td></tr></table></figure>
 
+<p>Verilog 支持可变的向量域选择，例如：</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">reg</span> [<span class="number">31</span>:<span class="number">0</span>]     data1 ;</span><br><span class="line"><span class="keyword">reg</span> [<span class="number">3</span>:<span class="number">0</span>]      byte1 [<span class="number">7</span>:<span class="number">0</span>];</span><br><span class="line"><span class="keyword">integer</span> j ;</span><br><span class="line"><span class="keyword">always</span>@* <span class="keyword">begin</span></span><br><span class="line">    <span class="keyword">for</span> (j=<span class="number">0</span>; j&lt;=<span class="number">3</span>;j=j+<span class="number">1</span>) <span class="keyword">begin</span></span><br><span class="line">        byte1[j] = data1[(j+<span class="number">1</span>)*<span class="number">4</span>-<span class="number">1</span> : j*<span class="number">4</span>];</span><br><span class="line">        <span class="comment">//把data1[7:0]…data1[31:24]依次赋值给byte1[0][7:0]…byte[3][7:0]</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>Verillog 还支持指定 bit 位后固定位宽的向量域选择访问。</strong></p>
+<ul>
+<li><p><strong>[bit+: width]</strong> : 从起始 bit 位开始递增，位宽为 width。</p>
+</li>
+<li><p><strong>[bit-: width]</strong> : 从起始 bit 位开始递减，位宽为 width。</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//下面 2 种赋值是等效的</span></span><br><span class="line">A = data1[<span class="number">31</span>-: <span class="number">8</span>] ;</span><br><span class="line">A = data1[<span class="number">31</span>:<span class="number">24</span>] ;</span><br><span class="line"></span><br><span class="line"><span class="comment">//下面 2 种赋值是等效的</span></span><br><span class="line">B = data1[<span class="number">0</span>+ : <span class="number">8</span>] ;</span><br><span class="line">B = data1[<span class="number">0</span>:<span class="number">7</span>] ;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<p><strong>对信号重新进行组合成新的向量时，需要借助大括号。例如：</strong></p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">wire</span> [<span class="number">31</span>:<span class="number">0</span>]    temp1, temp2 ;</span><br><span class="line"><span class="keyword">assign</span> temp1 = &#123;byte1[<span class="number">0</span>][<span class="number">7</span>:<span class="number">0</span>], data1[<span class="number">31</span>:<span class="number">8</span>]&#125;;  <span class="comment">//数据拼接</span></span><br><span class="line"><span class="keyword">assign</span> temp2 = &#123;<span class="number">32</span>&#123;<span class="number">1&#x27;b0</span>&#125;&#125;;  <span class="comment">//赋值32位的数值0  </span></span><br></pre></td></tr></table></figure>
+
+<h3 id="整数，实数，时间寄存器变量"><a href="#整数，实数，时间寄存器变量" class="headerlink" title="整数，实数，时间寄存器变量"></a>整数，实数，时间寄存器变量</h3><p>整数，实数，时间等数据类型实际也属于寄存器类型。</p>
+<p><strong>整数（integer）</strong></p>
+<p>整数类型用关键字 integer 来声明。声明时不用指明位宽，位宽和编译器有关，一般为32 bit。reg 型变量为无符号数，而 integer 型变量为有符号数。例如：</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">reg</span> [<span class="number">31</span>:<span class="number">0</span>]      data1 ;</span><br><span class="line"><span class="keyword">reg</span> [<span class="number">3</span>:<span class="number">0</span>]       byte1 [<span class="number">7</span>:<span class="number">0</span>]; <span class="comment">//数组变量，后续介绍</span></span><br><span class="line"><span class="keyword">integer</span> j ;  <span class="comment">//整型变量，用来辅助生成数字电路</span></span><br><span class="line"><span class="keyword">always</span>@* <span class="keyword">begin</span></span><br><span class="line">    <span class="keyword">for</span> (j=<span class="number">0</span>; j&lt;=<span class="number">3</span>;j=j+<span class="number">1</span>) <span class="keyword">begin</span></span><br><span class="line">        byte1[j] = data1[(j+<span class="number">1</span>)*<span class="number">4</span>-<span class="number">1</span> : j*<span class="number">4</span>];</span><br><span class="line">        <span class="comment">//把data1[7:0]…data1[31:24]依次赋值给byte1[0][7:0]…byte[3][7:0]</span></span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<p>此例中，integer 信号 j 作为辅助信号，将 data1 的数据依次赋值给数组 byte1。综合后实际电路里并没有 j 这个信号，j 只是辅助生成相应的硬件电路。</p>
+<p><strong>实数（real）</strong></p>
+<p>实数用关键字 real 来声明，可用十进制或科学计数法来表示。实数声明不能带有范围，默认值为 0。如果将一个实数赋值给一个整数，则只有实数的整数部分会赋值给整数。例如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">real        data1 ;</span><br><span class="line">integer     temp ;</span><br><span class="line">initial begin</span><br><span class="line">    data1 = 2e3 ;</span><br><span class="line">    data1 = 3.75 ;</span><br><span class="line">end</span><br><span class="line"> </span><br><span class="line">initial begin</span><br><span class="line">    temp = data1 ; //temp 值的大小为3</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+
+<p><strong>时间（time）</strong></p>
+<p>Verilog 使用特殊的时间寄存器 time 型变量，对仿真时间进行保存。其宽度一般为 64 bit，通过调用系统函数 $time 获取当前仿真时间。例如：</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">time</span>       current_time ;</span><br><span class="line"><span class="keyword">initial</span> <span class="keyword">begin</span></span><br><span class="line">       #<span class="number">100</span> ;</span><br><span class="line">       current_time = <span class="built_in">$time</span> ; <span class="comment">//current_time 的大小为 100</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=https://averagejoe-cn.github.io/2021/10/25/Day11-Verilog%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/10/24/Day10-Verilog%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" class="archive-article-date">
-  	<time datetime="2021-10-24T09:34:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-24</time>
-</a>
+<nav id="article-nav">
+  
+    <a href="/2021/10/26/Day12-Verilog%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Day12-Verilog数据类型
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2021/10/24/Day10-Verilog%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Day10-Verilog数据类型</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/10/24/Day10-Verilog%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/">Day10-Verilog数据类型</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%91%E9%87%8F"><span class="toc-number">1.</span> <span class="toc-text">向量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B4%E6%95%B0%EF%BC%8C%E5%AE%9E%E6%95%B0%EF%BC%8C%E6%97%B6%E9%97%B4%E5%AF%84%E5%AD%98%E5%99%A8%E5%8F%98%E9%87%8F"><span class="toc-number">2.</span> <span class="toc-text">整数，实数，时间寄存器变量</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+        
+    </div>
+</aside>
+
+
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/10/23/Day9-Verilog%E6%95%B0%E5%80%BC%E8%A1%A8%E7%A4%BA3/" class="archive-article-date">
-  	<time datetime="2021-10-23T09:31:54.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-23</time>
-</a>
-        </div>
-    	 
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/10/23/Day9-Verilog%E6%95%B0%E5%80%BC%E8%A1%A8%E7%A4%BA3/">Day9-Verilog数值表示3</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/10/22/Day8-Verilog%E6%95%B0%E5%80%BC%E8%A1%A8%E7%A4%BA2/" class="archive-article-date">
-  	<time datetime="2021-10-22T09:29:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-22</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/10/22/Day8-Verilog%E6%95%B0%E5%80%BC%E8%A1%A8%E7%A4%BA2/">Day8-Verilog数值表示2</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/10/21/Day7-Verilog%E6%95%B0%E5%80%BC%E8%A1%A8%E7%A4%BA/" class="archive-article-date">
-  	<time datetime="2021-10-21T09:28:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-21</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/10/21/Day7-Verilog%E6%95%B0%E5%80%BC%E8%A1%A8%E7%A4%BA/">Day7-Verilog数值表示</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/10/20/Day6-Verilog%E7%9A%84%E5%9F%BA%E6%9C%AC%E8%A6%81%E7%B4%A02/" class="archive-article-date">
-  	<time datetime="2021-10-20T09:26:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-20</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/10/20/Day6-Verilog%E7%9A%84%E5%9F%BA%E6%9C%AC%E8%A6%81%E7%B4%A02/">Day6-Verilog的基本要素2</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/10/19/Day5-Verilog%E7%9A%84%E5%9F%BA%E6%9C%AC%E8%A6%81%E7%B4%A0/" class="archive-article-date">
-  	<time datetime="2021-10-19T11:41:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-19</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/10/19/Day5-Verilog%E7%9A%84%E5%9F%BA%E6%9C%AC%E8%A6%81%E7%B4%A0/">Day5-Verilog的基本要素</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/10/18/Day4-Verilog%E7%9A%84%E6%8F%8F%E8%BF%B0%E6%96%B9%E5%BC%8F3/" class="archive-article-date">
-  	<time datetime="2021-10-18T11:30:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-18</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/10/18/Day4-Verilog%E7%9A%84%E6%8F%8F%E8%BF%B0%E6%96%B9%E5%BC%8F3/">Day4-Verilog的描述方式3</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/10/17/Day3-Verilog%E7%9A%84%E8%A1%A8%E8%BF%B0%E6%96%B9%E5%BC%8F2/" class="archive-article-date">
-  	<time datetime="2021-10-17T11:12:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-17</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/10/17/Day3-Verilog%E7%9A%84%E8%A1%A8%E8%BF%B0%E6%96%B9%E5%BC%8F2/">Day3-Verilog的表述方式2</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/10/16/Day2-Verilog%E7%9A%84%E6%8F%8F%E8%BF%B0%E6%96%B9%E5%BC%8F/" class="archive-article-date">
-  	<time datetime="2021-10-16T10:59:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-16</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/10/16/Day2-Verilog%E7%9A%84%E6%8F%8F%E8%BF%B0%E6%96%B9%E5%BC%8F/">Day2-Verilog的描述方式</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/2021/">&amp;laquo; Prev</a><a class="page-number" href="/archives/2021/">1</a><span class="page-number current">2</span><a class="page-number" href="/archives/2021/page/3/">3</a><a class="extend next" rel="next" href="/archives/2021/page/3/">Next &amp;raquo;</a>
-    </nav>
   
 
 
@@ -500,8 +395,8 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: true,

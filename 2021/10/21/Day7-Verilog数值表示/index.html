@@ -6,15 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://averagejoe-cn.github.io">
-  <title>Archives: 2021 | Average Joe&#39;s Blog</title>
+  <title>Day7-Verilog数值表示 | Average Joe&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="It&#39;s a wonderful life not for Average Joe">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Average Joe&#39;s Blog">
-<meta property="og:url" content="https://averagejoe-cn.github.io/archives/2021/page/2/index.html">
+  <meta name="description" content="数值种类Verilog HDL 有下列四种基本的值来表示硬件电路中的电平逻辑：  0：逻辑 0 或 “假” 1：逻辑 1 或 “真” x 或 X：未知 z 或 Z：高阻  x 意味着信号数值的不确定，即在实际电路里，信号可能为 1，也可能为 0。 z 意味着信号处于高阻状态，常见于信号（input, reg）没有驱动时的逻辑结果。例如一个 pad 的 input 呈现高阻状态时，其逻辑值和上下拉的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Day7-Verilog数值表示">
+<meta property="og:url" content="https://averagejoe-cn.github.io/2021/10/21/Day7-Verilog%E6%95%B0%E5%80%BC%E8%A1%A8%E7%A4%BA/index.html">
 <meta property="og:site_name" content="Average Joe&#39;s Blog">
-<meta property="og:description" content="It&#39;s a wonderful life not for Average Joe">
+<meta property="og:description" content="数值种类Verilog HDL 有下列四种基本的值来表示硬件电路中的电平逻辑：  0：逻辑 0 或 “假” 1：逻辑 1 或 “真” x 或 X：未知 z 或 Z：高阻  x 意味着信号数值的不确定，即在实际电路里，信号可能为 1，也可能为 0。 z 意味着信号处于高阻状态，常见于信号（input, reg）没有驱动时的逻辑结果。例如一个 pad 的 input 呈现高阻状态时，其逻辑值和上下拉的">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-10-21T09:28:18.000Z">
+<meta property="article:modified_time" content="2021-11-04T09:29:09.645Z">
 <meta property="article:author" content="Average Joe">
 <meta name="twitter:card" content="summary">
   
@@ -188,295 +190,164 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-Day7-Verilog数值表示" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2021" class="archive-year">2021</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/10/25/Day11-Verilog%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" class="archive-article-date">
-  	<time datetime="2021-10-25T09:37:39.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-25</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/10/25/Day11-Verilog%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/">Day11-Verilog数据类型</a>
+    <h1 class="article-title" itemprop="name">
+      Day7-Verilog数值表示
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/10/24/Day10-Verilog%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" class="archive-article-date">
-  	<time datetime="2021-10-24T09:34:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-24</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/10/24/Day10-Verilog%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/">Day10-Verilog数据类型</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/10/23/Day9-Verilog%E6%95%B0%E5%80%BC%E8%A1%A8%E7%A4%BA3/" class="archive-article-date">
-  	<time datetime="2021-10-23T09:31:54.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-23</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/10/23/Day9-Verilog%E6%95%B0%E5%80%BC%E8%A1%A8%E7%A4%BA3/">Day9-Verilog数值表示3</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/10/22/Day8-Verilog%E6%95%B0%E5%80%BC%E8%A1%A8%E7%A4%BA2/" class="archive-article-date">
-  	<time datetime="2021-10-22T09:29:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-22</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/10/22/Day8-Verilog%E6%95%B0%E5%80%BC%E8%A1%A8%E7%A4%BA2/">Day8-Verilog数值表示2</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/10/21/Day7-Verilog%E6%95%B0%E5%80%BC%E8%A1%A8%E7%A4%BA/" class="archive-article-date">
+        
+        <a href="/2021/10/21/Day7-Verilog%E6%95%B0%E5%80%BC%E8%A1%A8%E7%A4%BA/" class="archive-article-date">
   	<time datetime="2021-10-21T09:28:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-21</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/10/21/Day7-Verilog%E6%95%B0%E5%80%BC%E8%A1%A8%E7%A4%BA/">Day7-Verilog数值表示</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="数值种类"><a href="#数值种类" class="headerlink" title="数值种类"></a>数值种类</h3><p>Verilog HDL 有下列四种基本的值来表示硬件电路中的电平逻辑：</p>
+<ul>
+<li>0：逻辑 0 或 “假”</li>
+<li>1：逻辑 1 或 “真”</li>
+<li>x 或 X：未知</li>
+<li>z 或 Z：高阻</li>
+</ul>
+<p><strong>x</strong> 意味着信号数值的不确定，即在实际电路里，信号可能为 1，也可能为 0。</p>
+<p><strong>z</strong> 意味着信号处于高阻状态，常见于信号（input, reg）没有驱动时的逻辑结果。例如一个 pad 的 input 呈现高阻状态时，其逻辑值和上下拉的状态有关系。上拉则逻辑值为 1，下拉则为 0 。</p>
 
-        <div class="article-info info-on-right">
-          
-          
+      
 
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=https://averagejoe-cn.github.io/2021/10/21/Day7-Verilog%E6%95%B0%E5%80%BC%E8%A1%A8%E7%A4%BA/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/10/20/Day6-Verilog%E7%9A%84%E5%9F%BA%E6%9C%AC%E8%A6%81%E7%B4%A02/" class="archive-article-date">
-  	<time datetime="2021-10-20T09:26:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-20</time>
-</a>
+<nav id="article-nav">
+  
+    <a href="/2021/10/22/Day8-Verilog%E6%95%B0%E5%80%BC%E8%A1%A8%E7%A4%BA2/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Day8-Verilog数值表示2
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2021/10/20/Day6-Verilog%E7%9A%84%E5%9F%BA%E6%9C%AC%E8%A6%81%E7%B4%A02/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Day6-Verilog的基本要素2</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/10/20/Day6-Verilog%E7%9A%84%E5%9F%BA%E6%9C%AC%E8%A6%81%E7%B4%A02/">Day6-Verilog的基本要素2</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E5%80%BC%E7%A7%8D%E7%B1%BB"><span class="toc-number">1.</span> <span class="toc-text">数值种类</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+        
+    </div>
+</aside>
+
+
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/10/19/Day5-Verilog%E7%9A%84%E5%9F%BA%E6%9C%AC%E8%A6%81%E7%B4%A0/" class="archive-article-date">
-  	<time datetime="2021-10-19T11:41:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-19</time>
-</a>
-        </div>
-    	 
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/10/19/Day5-Verilog%E7%9A%84%E5%9F%BA%E6%9C%AC%E8%A6%81%E7%B4%A0/">Day5-Verilog的基本要素</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/10/18/Day4-Verilog%E7%9A%84%E6%8F%8F%E8%BF%B0%E6%96%B9%E5%BC%8F3/" class="archive-article-date">
-  	<time datetime="2021-10-18T11:30:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-18</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/10/18/Day4-Verilog%E7%9A%84%E6%8F%8F%E8%BF%B0%E6%96%B9%E5%BC%8F3/">Day4-Verilog的描述方式3</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/10/17/Day3-Verilog%E7%9A%84%E8%A1%A8%E8%BF%B0%E6%96%B9%E5%BC%8F2/" class="archive-article-date">
-  	<time datetime="2021-10-17T11:12:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-17</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/10/17/Day3-Verilog%E7%9A%84%E8%A1%A8%E8%BF%B0%E6%96%B9%E5%BC%8F2/">Day3-Verilog的表述方式2</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/10/16/Day2-Verilog%E7%9A%84%E6%8F%8F%E8%BF%B0%E6%96%B9%E5%BC%8F/" class="archive-article-date">
-  	<time datetime="2021-10-16T10:59:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-16</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/10/16/Day2-Verilog%E7%9A%84%E6%8F%8F%E8%BF%B0%E6%96%B9%E5%BC%8F/">Day2-Verilog的描述方式</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/2021/">&amp;laquo; Prev</a><a class="page-number" href="/archives/2021/">1</a><span class="page-number current">2</span><a class="page-number" href="/archives/2021/page/3/">3</a><a class="extend next" rel="next" href="/archives/2021/page/3/">Next &amp;raquo;</a>
-    </nav>
   
 
 
@@ -500,8 +371,8 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: true,

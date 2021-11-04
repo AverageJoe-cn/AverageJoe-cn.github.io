@@ -6,15 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://averagejoe-cn.github.io">
-  <title>Archives: 2021 | Average Joe&#39;s Blog</title>
+  <title>Day15-Verilog表达式 | Average Joe&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="It&#39;s a wonderful life not for Average Joe">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Average Joe&#39;s Blog">
-<meta property="og:url" content="https://averagejoe-cn.github.io/archives/2021/page/2/index.html">
+  <meta name="description" content="归约操作符归约操作符包括：归约与（&amp;），归约与非（&amp;），归约或（|），归约或非（|），归约异或（^），归约同或（~^）。 归约操作符只有一个操作数，它对这个向量操作数逐位进行操作，最终产生一个 1bit 结果。 逻辑操作符、按位操作符和归约操作符都使用相同的符号表示，因此有时候容易混淆。区分这些操作符的关键是分清操作数的数目，和计算结果的规则。 1234A &#x3D; 4&amp;#x27;b10">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Day15-Verilog表达式">
+<meta property="og:url" content="https://averagejoe-cn.github.io/2021/10/29/Day15-Verilog%E8%A1%A8%E8%BE%BE%E5%BC%8F/index.html">
 <meta property="og:site_name" content="Average Joe&#39;s Blog">
-<meta property="og:description" content="It&#39;s a wonderful life not for Average Joe">
+<meta property="og:description" content="归约操作符归约操作符包括：归约与（&amp;），归约与非（&amp;），归约或（|），归约或非（|），归约异或（^），归约同或（~^）。 归约操作符只有一个操作数，它对这个向量操作数逐位进行操作，最终产生一个 1bit 结果。 逻辑操作符、按位操作符和归约操作符都使用相同的符号表示，因此有时候容易混淆。区分这些操作符的关键是分清操作数的数目，和计算结果的规则。 1234A &#x3D; 4&amp;#x27;b10">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-10-29T10:11:46.000Z">
+<meta property="article:modified_time" content="2021-11-04T10:13:38.393Z">
 <meta property="article:author" content="Average Joe">
 <meta name="twitter:card" content="summary">
   
@@ -188,295 +190,181 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-Day15-Verilog表达式" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Day15-Verilog表达式
+    </h1>
+  
+
+        
+        <a href="/2021/10/29/Day15-Verilog%E8%A1%A8%E8%BE%BE%E5%BC%8F/" class="archive-article-date">
+  	<time datetime="2021-10-29T10:11:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-29</time>
+</a>
+        
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="归约操作符"><a href="#归约操作符" class="headerlink" title="归约操作符"></a>归约操作符</h3><p>归约操作符包括：归约与（&amp;），归约与非（<del>&amp;），归约或（|），归约或非（</del>|），归约异或（^），归约同或（~^）。</p>
+<p>归约操作符只有一个操作数，它对这个向量操作数逐位进行操作，最终产生一个 1bit 结果。</p>
+<p>逻辑操作符、按位操作符和归约操作符都使用相同的符号表示，因此有时候容易混淆。区分这些操作符的关键是分清操作数的数目，和计算结果的规则。</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">A = <span class="number">4&#x27;b1010</span> ;</span><br><span class="line">&amp;A ;      <span class="comment">//结果为 1 &amp; 0 &amp; 1 &amp; 0 = 1&#x27;b0，可用来判断变量A是否全1</span></span><br><span class="line">~|A ;     <span class="comment">//结果为 ~(1 | 0 | 1 | 0) = 1&#x27;b0, 可用来判断变量A是否为全0</span></span><br><span class="line">^A ;      <span class="comment">//结果为 1 ^ 0 ^ 1 ^ 0 = 1&#x27;b0</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="移位操作符"><a href="#移位操作符" class="headerlink" title="移位操作符"></a>移位操作符</h3><p>​    </p>
+<p>移位操作符包括左移（&lt;&lt;），右移（&gt;&gt;），算术左移（&lt;&lt;&lt;），算术右移（&gt;&gt;&gt;）。</p>
+<p>移位操作符是双目操作符，两个操作数分别表示要进行移位的向量信号（操作符左侧）与移动的位数（操作符右侧）。</p>
+<p>算术左移和逻辑左移时，右边低位会补 0。</p>
+<p>逻辑右移时，左边高位会补 0；而算术右移时，左边高位会补充符号位，以保证数据缩小后值的正确性。</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">A = <span class="number">4&#x27;b1100</span> ;</span><br><span class="line">B = <span class="number">4&#x27;b0010</span> ;</span><br><span class="line">A = A &gt;&gt; <span class="number">2</span> ;        <span class="comment">//结果为 4&#x27;b0011</span></span><br><span class="line">A = A &lt;&lt; <span class="number">1</span>;         <span class="comment">//结果为 4&#x27;b1000</span></span><br><span class="line">A = A &lt;&lt;&lt; <span class="number">1</span> ;       <span class="comment">//结果为 4&#x27;b1000</span></span><br><span class="line">C = B + (A&gt;&gt;&gt;<span class="number">2</span>);    <span class="comment">//结果为 2 + (-4/4) = 1, 4&#x27;b0001</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="拼接操作符"><a href="#拼接操作符" class="headerlink" title="拼接操作符"></a>拼接操作符</h3><p>拼接操作符用大括号 <strong>{，}</strong> 来表示，用于将多个操作数（向量）拼接成新的操作数（向量），信号间用逗号隔开。</p>
+<p>拼接符操作数必须指定位宽，常数的话也需要指定位宽。例如：</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">A = <span class="number">4&#x27;b1010</span> ;</span><br><span class="line">B = <span class="number">1&#x27;b1</span> ;</span><br><span class="line">Y1 = &#123;B, A[<span class="number">3</span>:<span class="number">2</span>], A[<span class="number">0</span>], <span class="number">4&#x27;h3</span> &#125;;  <span class="comment">//结果为Y1=&#x27;b1100_0011</span></span><br><span class="line">Y2 = &#123;<span class="number">4</span>&#123;B&#125;, <span class="number">3&#x27;d4</span>&#125;;  <span class="comment">//结果为 Y2=7&#x27;b111_1100</span></span><br><span class="line">Y3 = &#123;<span class="number">32</span>&#123;<span class="number">1&#x27;b0</span>&#125;&#125;;  <span class="comment">//结果为 Y3=32h0，常用作寄存器初始化时匹配位宽的赋初值</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="条件操作符"><a href="#条件操作符" class="headerlink" title="条件操作符"></a>条件操作符</h3><p>条件表达式有 3 个操作符，结构描述如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">condition_expression ? true_expression : false_expression</span><br></pre></td></tr></table></figure>
+
+<p>计算时，如果 condition_expression 为真（逻辑值为 1），则运算结果为 true_expression；如果 condition_expression 为假（逻辑值为 0），则计算结果为 false_expression。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">assign hsel    = (addr[9:8] == 2&#x27;b0) ? hsel_p1 : hsel_p2 ;</span><br><span class="line">//当信号 addr 高 2bit 为 0 时，hsel 赋值为 hsel_p1; 否则，将 hsel_p2 赋值给 hsel。</span><br></pre></td></tr></table></figure>
+
+<p>其实，条件表达式类似于 2 路（或多路）选择器，其描述方式完全可以用 if-else 语句代替。</p>
+<p>当然条件操作符也能进行嵌套，完成一个多次选择的逻辑。例如：</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">assign</span>   hsel = (addr[<span class="number">9</span>:<span class="number">8</span>] == <span class="number">2&#x27;b00</span>) ? hsel_p1 :</span><br><span class="line">                (addr[<span class="number">9</span>:<span class="number">8</span>] == <span class="number">2&#x27;b01</span>) ? hsel_p2 :</span><br><span class="line">                (addr[<span class="number">9</span>:<span class="number">8</span>] == <span class="number">2&#x27;b10</span>) ? hsel_p3 :</span><br><span class="line">                (addr[<span class="number">9</span>:<span class="number">8</span>] == <span class="number">2&#x27;b11</span>) ? hsel_p4 ;</span><br></pre></td></tr></table></figure>
+
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2021" class="archive-year">2021</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/10/25/Day11-Verilog%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" class="archive-article-date">
-  	<time datetime="2021-10-25T09:37:39.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-25</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/10/25/Day11-Verilog%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/">Day11-Verilog数据类型</a>
-    </h1>
-  
+      
 
-        <div class="article-info info-on-right">
-          
-          
+      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=https://averagejoe-cn.github.io/2021/10/29/Day15-Verilog%E8%A1%A8%E8%BE%BE%E5%BC%8F/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/10/24/Day10-Verilog%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" class="archive-article-date">
-  	<time datetime="2021-10-24T09:34:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-24</time>
-</a>
+<nav id="article-nav">
+  
+    <a href="/2021/10/30/Day16-Verilog%E7%BC%96%E8%AF%91%E6%8C%87%E4%BB%A4/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Day16-Verilog编译指令
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2021/10/28/Day14-Verilog%E8%A1%A8%E8%BE%BE%E5%BC%8F/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Day14-Verilog表达式</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/10/24/Day10-Verilog%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/">Day10-Verilog数据类型</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BD%92%E7%BA%A6%E6%93%8D%E4%BD%9C%E7%AC%A6"><span class="toc-number">1.</span> <span class="toc-text">归约操作符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A7%BB%E4%BD%8D%E6%93%8D%E4%BD%9C%E7%AC%A6"><span class="toc-number">2.</span> <span class="toc-text">移位操作符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8B%BC%E6%8E%A5%E6%93%8D%E4%BD%9C%E7%AC%A6"><span class="toc-number">3.</span> <span class="toc-text">拼接操作符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9D%A1%E4%BB%B6%E6%93%8D%E4%BD%9C%E7%AC%A6"><span class="toc-number">4.</span> <span class="toc-text">条件操作符</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+        
+    </div>
+</aside>
+
+
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/10/23/Day9-Verilog%E6%95%B0%E5%80%BC%E8%A1%A8%E7%A4%BA3/" class="archive-article-date">
-  	<time datetime="2021-10-23T09:31:54.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-23</time>
-</a>
-        </div>
-    	 
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/10/23/Day9-Verilog%E6%95%B0%E5%80%BC%E8%A1%A8%E7%A4%BA3/">Day9-Verilog数值表示3</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/10/22/Day8-Verilog%E6%95%B0%E5%80%BC%E8%A1%A8%E7%A4%BA2/" class="archive-article-date">
-  	<time datetime="2021-10-22T09:29:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-22</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/10/22/Day8-Verilog%E6%95%B0%E5%80%BC%E8%A1%A8%E7%A4%BA2/">Day8-Verilog数值表示2</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/10/21/Day7-Verilog%E6%95%B0%E5%80%BC%E8%A1%A8%E7%A4%BA/" class="archive-article-date">
-  	<time datetime="2021-10-21T09:28:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-21</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/10/21/Day7-Verilog%E6%95%B0%E5%80%BC%E8%A1%A8%E7%A4%BA/">Day7-Verilog数值表示</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/10/20/Day6-Verilog%E7%9A%84%E5%9F%BA%E6%9C%AC%E8%A6%81%E7%B4%A02/" class="archive-article-date">
-  	<time datetime="2021-10-20T09:26:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-20</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/10/20/Day6-Verilog%E7%9A%84%E5%9F%BA%E6%9C%AC%E8%A6%81%E7%B4%A02/">Day6-Verilog的基本要素2</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/10/19/Day5-Verilog%E7%9A%84%E5%9F%BA%E6%9C%AC%E8%A6%81%E7%B4%A0/" class="archive-article-date">
-  	<time datetime="2021-10-19T11:41:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-19</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/10/19/Day5-Verilog%E7%9A%84%E5%9F%BA%E6%9C%AC%E8%A6%81%E7%B4%A0/">Day5-Verilog的基本要素</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/10/18/Day4-Verilog%E7%9A%84%E6%8F%8F%E8%BF%B0%E6%96%B9%E5%BC%8F3/" class="archive-article-date">
-  	<time datetime="2021-10-18T11:30:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-18</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/10/18/Day4-Verilog%E7%9A%84%E6%8F%8F%E8%BF%B0%E6%96%B9%E5%BC%8F3/">Day4-Verilog的描述方式3</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/10/17/Day3-Verilog%E7%9A%84%E8%A1%A8%E8%BF%B0%E6%96%B9%E5%BC%8F2/" class="archive-article-date">
-  	<time datetime="2021-10-17T11:12:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-17</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/10/17/Day3-Verilog%E7%9A%84%E8%A1%A8%E8%BF%B0%E6%96%B9%E5%BC%8F2/">Day3-Verilog的表述方式2</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/10/16/Day2-Verilog%E7%9A%84%E6%8F%8F%E8%BF%B0%E6%96%B9%E5%BC%8F/" class="archive-article-date">
-  	<time datetime="2021-10-16T10:59:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-16</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/10/16/Day2-Verilog%E7%9A%84%E6%8F%8F%E8%BF%B0%E6%96%B9%E5%BC%8F/">Day2-Verilog的描述方式</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/2021/">&amp;laquo; Prev</a><a class="page-number" href="/archives/2021/">1</a><span class="page-number current">2</span><a class="page-number" href="/archives/2021/page/3/">3</a><a class="extend next" rel="next" href="/archives/2021/page/3/">Next &amp;raquo;</a>
-    </nav>
   
 
 
@@ -500,8 +388,8 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: true,
